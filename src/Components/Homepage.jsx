@@ -5,6 +5,32 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RamenDiningOutlinedIcon from '@mui/icons-material/RamenDiningOutlined';
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+
+// Caed Content 2..//
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+// import RamenDiningOutlinedIcon from '@mui/icons-material/RamenDi ningOutlined';
+import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
+import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
+
+
+
+const pages = ['Products', 'Pricing', 'Blog'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     cardContent1: {
-        height: '100%',
         width: '5%',
         backgroundColor: '#1F1D2B',
     },
@@ -22,50 +47,152 @@ const useStyles = makeStyles((theme) => ({
         width: '60%',
         backgroundColor: '#393C49',
     },
+    navBar1: {
+        display: 'flex',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
+    userTypo: {
+        display: 'grid',
+        flexDirection: 'column',
+        color: 'white',
+    },
     cardContent3: {
         width: '35%',
         backgroundColor: '#1F1D2B',
     },
     sideBarIcons: {
         display: 'flex',
-        color: 'EA7C69',
         flexDirection: 'column',
+        height: '100%',
+        color: 'EA7C69',
         alignItems: 'center',
-        justifyContent: 'center',
-        justifyItems: 'center'
+        justifyContent: 'space-between',
     },
     icon: {
         color: '#EA6969',
-    }
-    
+        fontSize: '40px',
+        fontWeight: 'bold',
+    },
+
 
 }));
 
 const Homepage = () => {
     const classes = useStyles();
 
-  return (
-    <div className={classes.divContainer}>
-        <Card className={classes.cardWrapper}>
-            <CardContent className={classes.cardContent1}>
-                
-                    <div className={classes.sideBarIcons}>
-                        <StorefrontIcon className={classes.icon}/>
-                        <HomeOutlinedIcon className={classes.icon}/>
-                        <RamenDiningOutlinedIcon className={classes.icon}/>
-                        <DashboardCustomizeOutlinedIcon className={classes.icon}/>
-                    </div>
-                
-            </CardContent>
-            <CardContent className={classes.cardContent2}>
-                
-            </CardContent>
-            <CardContent className={classes.cardContent3}>
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-            </CardContent>
-        </Card>
-    </div>
-  )
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleOpenUserMenu = (event) => {
+        setAnchorElUser(event.currentTarget);
+    };
+
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
+    return (
+        <div className={classes.divContainer}>
+            <Card className={classes.cardWrapper}>
+
+                {/* SIDE-BAR */}
+                <CardContent className={classes.cardContent1}>
+
+                    <div className={classes.sideBarIcons}>
+                        <StorefrontIcon className={classes.icon} />
+                        <HomeOutlinedIcon className={classes.icon} />
+                        <RamenDiningOutlinedIcon className={classes.icon} />
+                        <DashboardCustomizeOutlinedIcon className={classes.icon} />
+                        <EmailOutlinedIcon className={classes.icon} />
+                        <NotificationsNoneOutlinedIcon className={classes.icon} />
+                        <SettingsOutlinedIcon className={classes.icon} />
+                        <ExitToAppOutlinedIcon className={classes.icon} />
+                    </div>
+
+                </CardContent>
+
+                {/* MENU BAR */}
+                <CardContent className={classes.cardContent2}>
+                    <div className={classes.navBar1}>
+                        <SoupKitchenOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '50px', color: 'whitesmoke' }} />
+                        {/* <AdbIcon  /> */}
+
+                        <div>
+                            <Typography className={classes.userTypo} style={{ fontSize: '30px', letterSpacing: '.1rem', }}>
+                                A-Richdom
+                            </Typography>
+                            <div>
+                                <DigitalClock />
+                            </div>
+
+                            <div>
+                                <Toolbar disableGutters>
+
+
+                                    <Box sx={{ flexGrow: 0 }}>
+                                        <Tooltip title="Open settings">
+                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                            </IconButton>
+                                        </Tooltip>
+
+                                        <Menu
+                                            sx={{ mt: '45px' }}
+                                            id="menu-appbar"
+                                            anchorEl={anchorElUser}
+                                            anchorOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            keepMounted
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right',
+                                            }}
+                                            open={Boolean(anchorElUser)}
+                                            onClose={handleCloseUserMenu}
+                                        >
+                                            {settings.map((setting) => (
+                                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                                    <Typography textAlign="center">{setting}</Typography>
+                                                </MenuItem>
+                                            ))}
+                                        </Menu>
+                                    </Box>
+                                </Toolbar>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    <AppBar position="static">
+                        <Container maxWidth="xl">
+
+                        </Container>
+                    </AppBar>
+
+                </CardContent>
+
+                {/* RIGHT-BAR */}
+                <CardContent className={classes.cardContent3}>
+
+                </CardContent>
+            </Card>
+        </div>
+    )
 }
 
 export default Homepage

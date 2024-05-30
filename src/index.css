@@ -1,0 +1,8 @@
+#clock {
+    font-family: "Roboto", sans-serif;
+    color: #e0e6e9;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
