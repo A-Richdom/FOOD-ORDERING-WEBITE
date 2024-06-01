@@ -11,7 +11,16 @@ const router = createBrowserRouter([
 ]);
 
 const theme = createTheme({
-
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+  spacing: 8, 
 });
 
 const App = () => {

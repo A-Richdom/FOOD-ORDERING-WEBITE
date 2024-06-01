@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Container, Drawer } from '@mui/material'
+import { Card, CardContent, Container, Drawer, styled } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -27,10 +27,58 @@ import AdbIcon from '@mui/icons-material/Adb';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 
+//// Search Box
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
+// import { Search } from '@mui/icons-material';
+
+
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: '10px',
+    backgroundColor: 'white',
+    '&:hover': {
+        backgroundColor: 'grey',
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    width: '100%',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
+}));
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,8 +97,11 @@ const useStyles = makeStyles((theme) => ({
     },
     navBar1: {
         display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
+        // alignItems: 'center',
+    },
+    userName: {
+        display: 'flex',
+
     },
     userTypo: {
         display: 'grid',
@@ -122,54 +173,70 @@ const Homepage = () => {
                 {/* MENU BAR */}
                 <CardContent className={classes.cardContent2}>
                     <div className={classes.navBar1}>
-                        <SoupKitchenOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '50px', color: 'whitesmoke' }} />
-                        {/* <AdbIcon  /> */}
+
+                        <div className={classes.userName}>
+                            <SoupKitchenOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '50px', color: 'whitesmoke' }} />
+
+                            <div>
+                                <Typography className={classes.userTypo} style={{ fontSize: '30px', letterSpacing: '.1rem', }}>
+                                    A-Richdom
+                                </Typography>
+
+                                <div>
+                                    <DigitalClock />
+                                </div>
+                            </div>
+
+                        </div>
 
                         <div>
-                            <Typography className={classes.userTypo} style={{ fontSize: '30px', letterSpacing: '.1rem', }}>
-                                A-Richdom
-                            </Typography>
-                            <div>
-                                <DigitalClock />
-                            </div>
-
-                            <div>
-                                <Toolbar disableGutters>
-
-
-                                    <Box sx={{ flexGrow: 0 }}>
-                                        <Tooltip title="Open settings">
-                                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                                            </IconButton>
-                                        </Tooltip>
-
-                                        <Menu
-                                            sx={{ mt: '45px' }}
-                                            id="menu-appbar"
-                                            anchorEl={anchorElUser}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            keepMounted
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorElUser)}
-                                            onClose={handleCloseUserMenu}
-                                        >
-                                            {settings.map((setting) => (
-                                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                                    <Typography textAlign="center">{setting}</Typography>
-                                                </MenuItem>
-                                            ))}
-                                        </Menu>
-                                    </Box>
-                                </Toolbar>
-                            </div>
+                            <Search>
+                                <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper>
+                                <StyledInputBase
+                                    placeholder="Search…"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </Search>
                         </div>
+
+                        <div>
+                            <Toolbar disableGutters>
+                                <Box sx={{ flexGrow: 0 }}>
+                                    <Tooltip title="Open settings">
+                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                        </IconButton>
+                                    </Tooltip>
+
+                                    <Menu
+                                        sx={{ mt: '45px' }}
+                                        id="menu-appbar"
+                                        anchorEl={anchorElUser}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorElUser)}
+                                        onClose={handleCloseUserMenu}
+                                    >
+                                        {settings.map((setting) => (
+                                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                                <Typography textAlign="center">{setting}</Typography>
+                                            </MenuItem>
+                                        ))}
+                                    </Menu>
+                                </Box>
+
+                            </Toolbar>
+                        </div>
+
 
                     </div>
 
