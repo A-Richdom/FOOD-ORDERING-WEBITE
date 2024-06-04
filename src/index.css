@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 #clock {
     font-family: "Roboto", sans-serif;
-    color: #e0e6e9;
+    color: #c9cdce;
     font-size: 14px;
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.small {
+    background-color: #515771;
+}
+
+header {
+    display: none !important;
 }

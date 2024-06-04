@@ -11,6 +11,13 @@ const router = createBrowserRouter([
 ]);
 
 const theme = createTheme({
+  overrides: {
+    MuiAppBar: {
+      root: {
+        backgroundColor: 'transparent !important',
+      },
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,
