@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         backgroundColor: 'transparent !important'
     },
-    cardContent1: {
+    // Side-Bar...//
+    sideBar: {
         width: '5%',
         backgroundColor: '#1F1D2B',
     },
@@ -86,14 +87,15 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: '5px',
         },
     },
-    cardContent2: {
+    // Main Bar...//
+    mainBar: {
         backgroundColor: '#393C49 !important',
         width: '60%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
-    cardContent2Children: {
+    mainBarChildren: {
         width: '98%',
         backgroundColor: '#393C49',
     },
@@ -181,7 +183,8 @@ const useStyles = makeStyles((theme) => ({
     hrLine: {
         height: '0.1px',
         width: '100%',
-        backgroundColor: '#c9cdce',
+        backgroundColor: '#25272d !important',
+        // backgroundColor: '#393C49 !important',
     },
     navBar3: {
         paddingTop: '20px',
@@ -231,9 +234,55 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    cardContent3: {
+    //Right Bar...//
+    rightBar: {
         width: '35%',
         backgroundColor: '#1F1D2B !important',
+        display: 'flex !important',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    rightBarChildren: {
+        width: '94%',
+        border: '1px solid red'
+    },
+    orderBtnWrapper: {
+        display: 'flex !important',
+        flexWrap: 'wrap !important',
+        gap: '8px !important',
+        paddingTop: '20px'
+    },
+    orderBtn: {
+        fontFamily: 'Quicksand !important',
+        fontWeight: '600 !important',
+        textTransform: 'none !important',
+        border: '1px solid #c9cdce !important',
+        borderRadius: '10px !important',
+        padding: theme.spacing(1),
+        color: '#EA6969 !important',
+        '&:hover': {
+            backgroundColor: '#EA6969 !important',
+            color: 'white !important',
+            border: 'none !important',
+        },
+        '&:focus': {
+            backgroundColor: '#EA6969 !important',
+            color: 'white !important',
+            border: 'none !important'
+        },
+
+    },
+    subHeader: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        paddingTop: '30px',
+        paddingBottom: '14px',
+        alignItems: 'center !important',
+        justifyContent: 'space-between',
+    },
+    subHeaderChildren: {
+        display: 'flex',
+        gap: '40px',
     },
 
 }));
@@ -278,7 +327,7 @@ const Homepage = () => {
             <Card className={classes.cardWrapper}>
 
                 {/* SIDE-BAR */}
-                <CardContent className={classes.cardContent1}>
+                <CardContent className={classes.sideBar}>
 
                     <div className={classes.sideBarIcons}>
                         <StorefrontIcon className={classes.icon} />
@@ -293,9 +342,9 @@ const Homepage = () => {
 
                 </CardContent>
 
-                {/* MENU BAR */}
-                <CardContent className={classes.cardContent2}>
-                    <div className={classes.cardContent2Children}>
+                {/* MAIN BAR */}
+                <CardContent className={classes.mainBar}>
+                    <div className={classes.mainBarChildren}>
                         <div className={classes.navBar1}>
 
                             <div className={classes.userName}>
@@ -427,7 +476,7 @@ const Homepage = () => {
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             <Card className={classes.dishCard}>
-                
+
                                 <img src="" alt="" />
                                 <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', color: 'white', }}>eyetetette</Typography>
 
@@ -440,8 +489,56 @@ const Homepage = () => {
                 </CardContent>
 
                 {/* RIGHT-BAR */}
-                <CardContent className={classes.cardContent3}>
-                    <Typography></Typography>
+                <CardContent className={classes.rightBar}>
+                    <div className={classes.rightBarChildren}>
+
+                        <Typography sx={{
+                            fontSize: {
+                                xs: '14px',
+                                sm: '16px',
+                                md: '18px',
+                                lg: '25px',
+                                xl: '24px',
+                            },
+                            fontWeight: '400',
+                            color: 'white',
+                        }}>
+                            Orders #23244
+                        </Typography>
+
+                        <div className={classes.orderBtnWrapper}>
+                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                                Dine In
+                            </Button>
+                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                                To Go
+                            </Button>
+                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                                Delivery
+                            </Button>
+                        </div>
+
+                        <div className={classes.subHeader}>
+                            <Typography sx={{
+                                fontSize: '19px',
+                                color: 'white'
+                            }}>Item</Typography>
+
+                            <div className={classes.subHeaderChildren}>
+                                <Typography sx={{
+                                    fontSize: '19px',
+                                    color: 'white',
+                                }}>Qty</Typography>
+                                <Typography sx={{
+                                    fontSize: '19px',
+                                    color: 'white'
+                                }}>Price</Typography>
+                            </div>
+                        </div>
+                        <hr className={classes.hrLine} />
+
+                    </div>
+
                 </CardContent>
             </Card>
         </div>
