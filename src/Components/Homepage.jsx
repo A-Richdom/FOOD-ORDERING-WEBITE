@@ -929,7 +929,7 @@ const Homepage = () => {
                                     '@media (max-width: 400px)': {
                                         width: '90%',
                                         fontSize: '10px',
-                                        // padding: '1px',
+                                        padding: '1px',
                                     },
                                 }}>
                                 Continue to Payment
