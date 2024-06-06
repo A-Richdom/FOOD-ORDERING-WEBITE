@@ -502,7 +502,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
-        gap: '10px'
+        gap: '10px',
+        '@media (max-width: 600px)': {
+            fontSize: '12px',
+            padding: '8px',
+        },
+        '@media (max-width: 400px)': {
+            fontSize: '10px',
+            padding: '6px',
+        },
     },
     discount: {
         display: 'flex',
@@ -845,21 +853,62 @@ const Homepage = () => {
                         {/* Payment Wrapper */}
                         <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
                             <div className={classes.discount}>
-                                <Typography sx={{ fontSize: '15px', fontFamily: 'Quicksand', color: '#b5b8b9', }}>
+                                <Typography sx={{
+                                    fontSize: '15px',
+                                    fontFamily: 'Quicksand',
+                                    color: '#b5b8b9',
+                                    '@media (max-width: 600px)': {
+                                        fontSize: '12px',
+                                    },
+                                    '@media (max-width: 400px)': {
+                                        fontSize: '12px !important',
+                                    },
+                                }}>
                                     Discount
                                 </Typography>
                                 <span>
-                                    <Typography sx={{ fontSize: '17px', fontFamily: 'Quicksand', color: 'white', }}>
+                                    <Typography sx={{
+                                        fontSize: '17px',
+                                        fontFamily: 'Quicksand',
+                                        color: 'white',
+                                        '@media (max-width: 600px)': {
+                                            fontSize: '12px',
+                                        },
+                                        '@media (max-width: 400px)': {
+                                            fontSize: '12px !important',
+                                        },
+                                    }}>
                                         $0
                                     </Typography>
                                 </span>
                             </div>
                             <div className={classes.subTotal}>
-                                <Typography sx={{ fontSize: '15px', fontFamily: 'Quicksand', color: '#b5b8b9', }}>
+                                <Typography
+                                    sx={{
+                                        fontSize: '15px',
+                                        fontFamily: 'Quicksand',
+                                        color: '#b5b8b9',
+                                        '@media (max-width: 600px)': {
+                                            fontSize: '12px',
+                                        },
+                                        '@media (max-width: 400px)': {
+                                            fontSize: '12px !important',
+                                        },
+                                    }}>
                                     Sub total
                                 </Typography>
                                 <span>
-                                    <Typography sx={{ fontSize: '17px', fontFamily: 'Quicksand', color: 'white', }}>
+                                    <Typography sx={{
+                                        fontSize: '17px',
+                                        fontFamily: 'Quicksand',
+                                        color: 'white',
+                                        '@media (max-width: 600px)': {
+                                            fontSize: '12px',
+                                        },
+                                        '@media (max-width: 400px)': {
+                                            fontSize: '12px !important',
+                                        },
+                                    }}>
                                         $31.90
                                     </Typography>
                                 </span>
@@ -876,12 +925,12 @@ const Homepage = () => {
                                     '@media (max-width: 600px)': {
                                         fontSize: '12px',
                                         padding: '8px',
-                                      },
-                                      '@media (max-width: 400px)': {
+                                    },
+                                    '@media (max-width: 400px)': {
                                         width: '90%',
                                         fontSize: '10px',
-                                        padding: '2px',
-                                      },
+                                        // padding: '1px',
+                                    },
                                 }}>
                                 Continue to Payment
                             </Button>
