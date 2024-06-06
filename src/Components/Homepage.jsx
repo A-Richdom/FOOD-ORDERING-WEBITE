@@ -148,7 +148,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const useStyles = makeStyles((theme) => ({
-
     cardWrapper: {
         width: '100%',
         height: '100vh',

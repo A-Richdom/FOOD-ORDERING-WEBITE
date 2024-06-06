@@ -1,11 +1,11 @@
 import React from 'react'
 
-const PopUpPage = () => {
+const PopOverPage = () => {
   return (
     <div>
-        
+      
     </div>
   )
 }
 
-export default PopUpPage
+export default PopOverPage
