@@ -148,10 +148,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const useStyles = makeStyles((theme) => ({
-    // divContainer: {
-    //     width: '100%',
-    //     
-    // },
+
     cardWrapper: {
         width: '100%',
         height: '100vh',
@@ -201,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
     },
     navBar2: {
         display: 'flex',
-        flexWrap: 'wra',
+        flexWrap: 'wrap',
         listStyle: 'none',
         padding: 12,
         paddingBottom: '20px',
@@ -302,9 +299,6 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: '#393C49 !important'
         },
-        // '&:hover $dineInIcon': {
-        //     transform: 'rotate(180deg)',
-        // },
         '&:focus $dineInIcon': {
             transform: 'rotate(180deg)',
         },
@@ -326,6 +320,9 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         justifyContent: 'space-between',
         height: '25%',
+        '@media (max-width: 400px)': {
+            height: '15%'
+        },
         overflowY: 'scroll !important',
         borderBottom: '1px solid #555a70',
         '&::-webkit-scrollbar': {
@@ -334,6 +331,12 @@ const useStyles = makeStyles((theme) => ({
     },
     dishCard: {
         width: '23%',
+        '@media (max-width: 600px)': {
+            width: '30%'
+        },
+        '@media (max-width: 400px)': {
+            width: '60%'
+        },
         backgroundColor: '#1F1D2B !important',
         display: 'flex',
         flexDirection: 'column',
@@ -347,6 +350,14 @@ const useStyles = makeStyles((theme) => ({
     dishImg: {
         width: '100px',
         height: '100px',
+        '@media (max-width: 600px)': {
+            width: '80px',
+            height: '80px'
+        },
+        '@media (max-width: 400px)': {
+            width: '60px',
+            height: '60px'
+        }
     },
     //Right Bar...//
     rightBar: {
@@ -358,7 +369,6 @@ const useStyles = makeStyles((theme) => ({
     },
     rightBarChildren: {
         width: '100% !important',
-        // border: '1px solid yellow'
     },
     orderBtnWrapper: {
         display: 'flex !important',
@@ -490,6 +500,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paymentWrapper: {
         display: 'flex',
+        flexWrap: 'wrap !important',
         flexDirection: 'column',
         gap: '10px'
     },
@@ -830,7 +841,7 @@ const Homepage = () => {
                             </TableContainer>
 
                         </div>
-                        
+
                         {/* Payment Wrapper */}
                         <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
                             <div className={classes.discount}>
@@ -854,14 +865,24 @@ const Homepage = () => {
                                 </span>
                             </div>
                             <Button
-                                sx={{ 
-                                    backgroundColor: '#f97f7f', 
-                                    color: 'white', 
-                                    padding: '10px', 
-                                    textTransform: 'none', 
-                                    fontFamily: 'Quicksand', 
-                                    fontSize: '14px', 
-                                    fontWeight: '600' }}>
+                                sx={{
+                                    backgroundColor: '#f97f7f',
+                                    color: 'white',
+                                    padding: '10px',
+                                    textTransform: 'none',
+                                    fontFamily: 'Quicksand',
+                                    fontSize: '14px',
+                                    fontWeight: '600',
+                                    '@media (max-width: 600px)': {
+                                        fontSize: '12px',
+                                        padding: '8px',
+                                      },
+                                      '@media (max-width: 400px)': {
+                                        width: '90%',
+                                        fontSize: '10px',
+                                        padding: '2px',
+                                      },
+                                }}>
                                 Continue to Payment
                             </Button>
                         </div>
