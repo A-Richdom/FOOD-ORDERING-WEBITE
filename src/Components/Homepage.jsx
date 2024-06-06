@@ -1,5 +1,7 @@
-import React from 'react'
-import { Card, CardContent, Box, Drawer, colors, styled, Button, Menu, MenuItem, Fade, } from '@mui/material'
+import React, { useState } from 'react'
+import {
+    Card, CardContent, Box, Drawer, colors, styled, Button, Menu, MenuItem, Fade, TextField,
+} from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -19,17 +21,107 @@ import Tooltip from '@mui/material/Tooltip';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import  from '../assets'
-
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 //// Search Box
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import zIndex from '@mui/material/styles/zIndex';
 
 
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
+function createData(item, amount, quantity, price, textboxValue) {
+    return { item, amount, quantity, price, textboxValue };
+}
+
+const dishes = [
+    {
+        imgSrc: 'DishImages/img1.png',
+        name: 'Salted Pasta Seasoning',
+        price: '$3.42',
+        unitAvailable: '20 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img2.png',
+        name: 'Ice cream sandwich',
+        price: '$1.06',
+        unitAvailable: '10 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img3.png',
+        name: 'Spicy Instant Noodles',
+        price: '$1.33',
+        unitAvailable: '5 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img4.png',
+        name: 'Fresh Youghout',
+        price: '$3.33',
+        unitAvailable: '4 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pasta with assorted meat',
+        price: '$2.33',
+        unitAvailable: '15 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img6.png',
+        name: 'Instant Noodles with egg',
+        price: '$0.33',
+        unitAvailable: '10 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img1.png',
+        name: 'Salted Pasta Seasoning',
+        price: '$3.42',
+        unitAvailable: '20 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img2.png',
+        name: 'Ice cream sandwich',
+        price: '$1.06',
+        unitAvailable: '3 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img3.png',
+        name: 'Spicy Instant Noodles',
+        price: '$1.33',
+        unitAvailable: '10 Bowls Available'
+    },
+    {
+        imgSrc: 'DishImages/img4.png',
+        name: 'Fresh Youghout',
+        price: '$3.33',
+        unitAvailable: '20 Bowl Available'
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pasta with assorted meat',
+        price: '$2.33',
+        unitAvailable: '20 Bowl Available'
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pasta with assorted meat',
+        price: '$2.33',
+        unitAvailable: '15 Bowls Available'
+    },
+];
+
+const orderingItems = [
+    createData('Salted pasta seasoning', '$2.33', '2', '$9.26'),
+    createData('Ice cream sandwich', '$1.06', '5', '$10.22'),
+    createData('Spicy Instant Noodles', '$1.33', '1', '$25'),
+    createData('Fresh Youghout', '$3.33', '6', '$25'),
+    createData('Salted pasta with assorted meat', '$2.33', '1', '$25'),
+    createData('Instant Noodles with egg', '$0.33', '9', '$15.6'),
+    createData('Beef dumpling in hot and sour soup', '$1.33', '12', '$25'),
+];
 
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -55,11 +147,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 }));
 
-
 const useStyles = makeStyles((theme) => ({
+    // divContainer: {
+    //     width: '100%',
+    //     height: '100vh',
+    // },
     cardWrapper: {
         width: '100%',
-        height: '95vh',
+        height: '100vh',
         display: 'flex',
         backgroundColor: 'transparent !important'
     },
@@ -81,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         cursor: 'pointer',
         '&:hover': {
-            backgroundColor: '#EA6969',
+            backgroundColor: '#f97f7f',
             color: 'white',
             padding: 10,
             borderRadius: '5px',
@@ -109,6 +204,9 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wra',
         listStyle: 'none',
         padding: 12,
+        paddingBottom: '20px',
+        borderBottom: '1px solid #555a70 !important',
+
         '& li': {
             marginRight: theme.spacing(6),
             '& a': {
@@ -157,7 +255,7 @@ const useStyles = makeStyles((theme) => ({
     },
     search: {
         position: 'relative',
-        border: '1px solid #555a70;',
+        border: '1px solid #555a70',
         borderRadius: '10px',
         backgroundColor: '#474b5d',
         '&:hover': {
@@ -180,14 +278,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    hrLine: {
-        height: '0.1px',
-        width: '100%',
-        backgroundColor: '#25272d !important',
-        // backgroundColor: '#393C49 !important',
-    },
+
     navBar3: {
-        paddingTop: '20px',
+        paddingTop: '5px',
+        paddingBottom: '15px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -208,12 +302,12 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: '#393C49 !important'
         },
-        '&:hover $dineInIcon': {
+        // '&:hover $dineInIcon': {
+        //     transform: 'rotate(180deg)',
+        // },
+        '&:focus $dineInIcon': {
             transform: 'rotate(180deg)',
         },
-        '&:focus $dineInIcon': {
-            transform: 'rotate(180deg)'
-        }
     },
     dineInItem: {
         fontSize: '12px !important',
@@ -225,14 +319,34 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(1, 2)
         },
     },
+    dishesWrapper: {
+        display: 'flex !important',
+        flexWrap: 'wrap',
+        gap: '30px',
+        textAlign: 'center',
+        justifyContent: 'space-between',
+        height: '25%',
+        overflowY: 'scroll !important',
+        borderBottom: '1px solid #555a70',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
     dishCard: {
-        width: '30%',
-        height: '100%',
+        width: '23%',
         backgroundColor: '#1F1D2B !important',
         display: 'flex',
         flexDirection: 'column',
+        gap: '5px',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: '20px',
+        borderRadius: '20px !important',
+        cursor: 'pointer',
+    },
+    dishImg: {
+        width: '100px',
+        height: '100px',
     },
     //Right Bar...//
     rightBar: {
@@ -243,8 +357,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     rightBarChildren: {
-        width: '94%',
-        border: '1px solid red'
+        width: '100% !important',
+        // border: '1px solid yellow'
     },
     orderBtnWrapper: {
         display: 'flex !important',
@@ -261,30 +375,134 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         color: '#EA6969 !important',
         '&:hover': {
-            backgroundColor: '#EA6969 !important',
+            backgroundColor: '#f97f7f',
             color: 'white !important',
             border: 'none !important',
         },
         '&:focus': {
             backgroundColor: '#EA6969 !important',
             color: 'white !important',
-            border: 'none !important'
+            border: '1px solid #555a70',
         },
-
     },
-    subHeader: {
+    dishesOrdering: {
+        height: '20% !important',
+        width: '100%',
+        paddingTop: '10px',
+    },
+    tableWrapper: {
+        height: '100%',
+        overflowY: 'scroll !important',
+        borderBottom: '1px solid #555a70',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
+    tableHead: {
+        position: 'sticky',
+        top: 0,
+        backgroundColor: '#1F1D2B !important',
+        zIndex: '1',
+        '& .MuiTableCell-root': {
+            position: 'sticky',
+            color: '#fff !important',
+            borderBottom: '1px solid #555a70 !important',
+        },
+    },
+    tableHeadItemCell: {
+        width: '70%',
+        paddingLeft: '0 !important',
+        color: 'white !important',
+        fontSize: '18px !important',
+        fontFamily: 'Quicksand !important',
+        fontWeight: 'bold !important',
+    },
+    tableHeadQtyCell: {
+        width: '15%',
+        color: 'red !important',
+        fontSize: '18px !important',
+        fontFamily: 'Quicksand !important',
+        fontWeight: 'bold !important',
+    },
+    tableHeadPriceCell: {
+        width: '15%',
+        paddingRight: '0 !important',
+        color: 'white !important',
+        fontSize: '18px !important',
+        fontFamily: 'Quicksand !important',
+        fontWeight: 'bold !important',
+    },
+    tableBody: {
+        paddingTop: '20px !important',
+        borderTop: '1px solid #555a70',
+        '& .MuiTableCell-root': {
+            color: '#c9cdce !important',
+            borderBottom: 'none !important',
+        },
+    },
+    tableBodyItemCell: {
+        width: '70%',
+        fontSize: '17px !important',
+        paddingLeft: '0 !important',
+        color: 'white !important',
+        fontFamily: 'Quicksand !important',
+    },
+    tableBodyAmountCell: {
+        fontSize: '14px !important',
+        color: '#c9cdce !important',
+        paddingTop: '5px',
+    },
+    tableBodyQtyCell: {
+        width: '15%',
+    },
+    tableBodyQtyBtn: {
+        minWidth: 'unset !important',
+        border: '1px solid inherit !important',
+        borderRadius: '10px',
+        padding: '12px 18px !important',
+        color: 'white !important',
+        fontSize: '17px !important',
+        backgroundColor: '#393C49 !important',
+    },
+    tableBodyPriceCell: {
+        fontSize: '17px !important',
+        width: '15%',
+        textAlign: 'center !important',
+        paddingRight: '0 !important',
+        color: 'white !important',
+    },
+    textFieldInput: {
+        fontFamily: 'Quicksand !important',
+        color: '#fff !important',
+        backgroundColor: '#393C49',
+        borderRadius: '20px',
+        '&:hover': {
+            border: 'none'
+        },
+        '&:focus': {
+            border: '1px solid #555a70 !important'
+        },
+    },
+    deleteOrderIcon: {
+        display: 'flex !important',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paymentWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px'
+    },
+    discount: {
         display: 'flex',
         flexWrap: 'wrap',
-        paddingTop: '30px',
-        paddingBottom: '14px',
-        alignItems: 'center !important',
         justifyContent: 'space-between',
     },
-    subHeaderChildren: {
+    subTotal: {
         display: 'flex',
-        gap: '40px',
-    },
-
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+    }
 }));
 
 
@@ -294,6 +512,8 @@ const Homepage = () => {
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [orders, setOrders] = useState(orderingItems);
+
 
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -304,8 +524,6 @@ const Homepage = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -320,6 +538,12 @@ const Homepage = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleTextboxChange = (index) => (event) => {
+        const newRows = [...rows];
+        newRows[index].textboxValue = event.target.value;
+        setRows(newRows);
     };
 
     return (
@@ -431,7 +655,7 @@ const Homepage = () => {
                                 <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
                             </ul>
                         </div>
-                        <hr className={classes.hrLine} />
+                        {/* <hr className={classes.hrLine} /> */}
 
                         <div className={classes.navBar3}>
                             <div>
@@ -475,14 +699,32 @@ const Homepage = () => {
 
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
-                            <Card className={classes.dishCard}>
+                            {
+                                dishes.map((dish, index) => (
+                                    <Card key={index} className={classes.dishCard}>
 
-                                <img src="" alt="" />
-                                <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', color: 'white', }}>eyetetette</Typography>
+                                        <img src={dish.imgSrc} alt={dish.name}
+                                            className={classes.dishImg}
+                                        />
+                                        <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                            {dish.name}
+                                        </Typography>
 
-                                <span><Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>$2.67</Typography></span>
+                                        <span>
+                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>
+                                                {dish.price}
+                                            </Typography>
+                                        </span>
 
-                            </Card>
+                                        <span>
+                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                {dish.unitAvailable}
+                                            </Typography>
+                                        </span>
+
+                                    </Card>
+                                ))
+                            }
                         </div>
 
                     </div>
@@ -518,24 +760,111 @@ const Homepage = () => {
                             </Button>
                         </div>
 
-                        <div className={classes.subHeader}>
-                            <Typography sx={{
-                                fontSize: '19px',
-                                color: 'white'
-                            }}>Item</Typography>
+                        {/* Dishes-Ordering */}
+                        <div className={classes.dishesOrdering}>
 
-                            <div className={classes.subHeaderChildren}>
-                                <Typography sx={{
-                                    fontSize: '19px',
-                                    color: 'white',
-                                }}>Qty</Typography>
-                                <Typography sx={{
-                                    fontSize: '19px',
-                                    color: 'white'
-                                }}>Price</Typography>
-                            </div>
+                            <TableContainer className={classes.tableWrapper}>
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableHead className={classes.tableHead}>
+
+                                        <TableRow>
+                                            <TableCell className={classes.tableHeadItemCell}>Item</TableCell>
+                                            <TableCell className={classes.tableHeadQtyCell}>Qty</TableCell>
+                                            <TableCell className={classes.tableHeadPriceCell} style={{ paddingRight: '0px' }}>Price</TableCell>
+                                        </TableRow>
+
+                                    </TableHead>
+
+                                    <TableBody className={classes.tableBody}>
+                                        {orders.map((order, index) => (
+                                            <React.Fragment key={order.item}>
+                                                <TableRow>
+                                                    <TableCell className={classes.tableBodyItemCell}>
+                                                        {order.item}
+                                                        <span><Typography className={classes.tableBodyAmountCell}>{order.amount}</Typography></span>
+                                                    </TableCell>
+                                                    <TableCell className={classes.tableBodyQtyCell}>
+                                                        <Button
+                                                            className={classes.tableBodyQtyBtn}
+                                                        >
+                                                            {order.quantity}
+                                                        </Button>
+                                                    </TableCell>
+                                                    <TableCell className={classes.tableBodyPriceCell}>
+                                                        {order.price}
+                                                    </TableCell>
+                                                </TableRow>
+
+                                                {/* TextBox Row */}
+                                                <TableRow>
+                                                    <TableCell colSpan={2} sx={{ paddingLeft: '0px' }}>
+                                                        <TextField
+                                                            fullWidth
+                                                            value={order.textboxValue}
+                                                            onChange={handleTextboxChange(index)}
+                                                            placeholder="Order Note..."
+                                                            variant="outlined"
+                                                            size="large"
+                                                            InputProps={{
+                                                                className: classes.textFieldInput,
+                                                            }}
+                                                        />
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Button sx={{
+                                                            border: '1px solid #EA6969',
+                                                            borderRadius: '10px',
+                                                            padding: '14px 14px',
+                                                            color: '#EA6969',
+                                                            minWidth: 'unset',
+                                                        }}>
+                                                            <DeleteOutlineOutlinedIcon />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </React.Fragment>
+                                        ))}
+                                    </TableBody>
+
+                                </Table>
+                            </TableContainer>
+
                         </div>
-                        <hr className={classes.hrLine} />
+                        
+                        {/* Payment Wrapper */}
+                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
+                            <div className={classes.discount}>
+                                <Typography sx={{ fontSize: '15px', fontFamily: 'Quicksand', color: '#b5b8b9', }}>
+                                    Discount
+                                </Typography>
+                                <span>
+                                    <Typography sx={{ fontSize: '17px', fontFamily: 'Quicksand', color: 'white', }}>
+                                        $0
+                                    </Typography>
+                                </span>
+                            </div>
+                            <div className={classes.subTotal}>
+                                <Typography sx={{ fontSize: '15px', fontFamily: 'Quicksand', color: '#b5b8b9', }}>
+                                    Sub total
+                                </Typography>
+                                <span>
+                                    <Typography sx={{ fontSize: '17px', fontFamily: 'Quicksand', color: 'white', }}>
+                                        $31.90
+                                    </Typography>
+                                </span>
+                            </div>
+                            <Button
+                                sx={{ 
+                                    backgroundColor: '#f97f7f', 
+                                    color: 'white', 
+                                    padding: '10px', 
+                                    textTransform: 'none', 
+                                    fontFamily: 'Quicksand', 
+                                    fontSize: '14px', 
+                                    fontWeight: '600' }}>
+                                Continue to Payment
+                            </Button>
+                        </div>
 
                     </div>
 
