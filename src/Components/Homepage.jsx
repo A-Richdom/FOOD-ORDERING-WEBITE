@@ -406,19 +406,15 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     dishesOrdering: {
-        height: '21% !important',
+        height: '17% !important',
         width: '100%',
         paddingTop: '10px',
+        border: '1px solid red'
     },
 
-    // tableWrapper: {
-    //     height: '100%',
-    //     overflowY: 'scroll !important',
-    //     borderBottom: '1px solid #555a70',
-    //     '&::-webkit-scrollbar': {
-    //         display: 'none',
-    //     },
-    // },
+
+
+    
     // tableHead: {
     //     width: '100%',
     //     position: 'sticky',
@@ -522,6 +518,50 @@ const useStyles = makeStyles((theme) => ({
     //     justifyContent: 'center',
     // },
 
+    tableContainer: {
+        height: '100%',
+        overflowY: 'scroll',
+        borderBottom: '1px solid #555a70',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
+    table: {
+        width: '100% !important',
+    },
+    // TABLE HEADER..//
+    tableHead: {
+        width: '100% !important',
+        position: 'sticky !important',
+        top: '0',
+        backgroundColor: '#1F1D2B !important',
+        zIndex: '1',
+        '& .MuiTableCell-root': {
+                    position: 'sticky',
+                    color: '#fff !important',
+                    borderBottom: '1px solid #555a70 !important',
+                },
+    },
+    tableHeadRow: {
+        width: '100% !important',
+    },
+    itemCell: {
+        width: '100% !important',
+        border: '1px solid yellow',
+        paddingLeft: '0 !important',
+    },
+    quantityCell: {
+        width: '100% !important',
+        border: '1px solid yellow',
+    },
+    priceCell: {
+        width: '100% !important',
+        border: '1px solid yellow',
+        paddingRight: '0 !important'
+    },
+
+    // TABLE BODY...//
+    
 
     paymentWrapper: {
         display: 'flex',
@@ -561,7 +601,7 @@ const Homepage = () => {
     };
     // text field
     const [name, setName] = React.useState('Cat in the Hat');
-    
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -777,10 +817,12 @@ const Homepage = () => {
                             <TableContainer className={classes.tableContainer}>
                                 <Table className={classes.table}>
                                     <TableHead className={classes.tableHead}>
-                                        <TableRow>
-                                            <TableCell className={classes.itemCell}>Item</TableCell>
-                                            <TableCell className={classes.quantityCell}>Qty</TableCell>
-                                            <TableCell className={classes.priceCell}>Price</TableCell>
+                                        <TableRow className={classes.tableHeadRow}>
+                                            <TableCell className={classes.itemCell}><Typography sx={{ fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600'}}>Item</Typography></TableCell>
+
+                                            <TableCell className={classes.quantityCell}><Typography sx={{ display: 'flex', justifyContent: 'center', fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600'}}>Qty</Typography></TableCell>
+
+                                            <TableCell className={classes.priceCell}><Typography sx={{ display: 'flex', justifyContent: 'right', paddingRight: '10px', fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600'}}>Price</Typography></TableCell>
                                         </TableRow>
                                     </TableHead>
 
@@ -790,13 +832,34 @@ const Homepage = () => {
                                             dishes.map((dish, index) => (
                                                 <React.Fragment key={dish.name}>
                                                     <TableRow>
-                                                        <TableCell className={classes.tableBodyItemCell}>{dish.name}
-                                                            <span>
-                                                                <Typography className={classes.tableBodyAmountCell}>{dish.price}
-                                                                </Typography>
-                                                            </span>
+                                                        <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex' }}>
+                                                            <img src={dish.imgSrc} alt={dish.name}
+                                                                className={classes.dishImg}
+                                                            />
+                                                            <div>
+                                                                {dish.name}
+                                                                <span>
+                                                                    <Typography className={classes.tableBodyAmountCell}>{dish.price}
+                                                                    </Typography>
+                                                                </span>
+                                                            </div>
+
                                                         </TableCell>
-                                                        <TableCell className={classes.tableBodyQtyCell}>{dish.quantity}</TableCell>
+                                                        <TableCell className={classes.tableBodyQtyCell}>
+                                                            <Box
+                                                                component="form"
+                                                                sx={{
+                                                                    '& > :not(style)': { width: '6ch' },
+                                                                }}
+                                                                noValidate
+                                                                autoComplete="off"
+                                                            >
+                                                                <TextField
+                                                                    id="outlined-uncontrolled"
+                                                                // sx={{ width: '5px' }}
+                                                                />
+                                                            </Box>
+                                                        </TableCell>
                                                         <TableCell className={classes.tableBodyPriceCell}>{dish.totalPrice}</TableCell>
                                                     </TableRow>
                                                 </React.Fragment>
