@@ -11,7 +11,6 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-
 // Card Content 2..//
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -27,92 +26,111 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import zIndex from '@mui/material/styles/zIndex';
-
-
-
-
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function createData(item, amount, quantity, price, textboxValue) {
     return { item, amount, quantity, price, textboxValue };
 }
-
 const dishes = [
     {
         imgSrc: 'DishImages/img1.png',
         name: 'Salted Pasta Seasoning',
         price: '$3.42',
-        unitAvailable: '20 Bowls Available'
+        unitAvailable: '20 Bowls Available',
+        quantity: '3',
+        totalPrice: '$10.26',
     },
     {
         imgSrc: 'DishImages/img2.png',
         name: 'Ice cream sandwich',
         price: '$1.06',
-        unitAvailable: '10 Bowls Available'
+        unitAvailable: '10 Bowls Available',
+        quantity: '6',
+        totalPrice: '$20.56',
     },
     {
         imgSrc: 'DishImages/img3.png',
         name: 'Spicy Instant Noodles',
         price: '$1.33',
-        unitAvailable: '5 Bowls Available'
+        unitAvailable: '5 Bowls Available',
+        quantity: '9',
+        totalPrice: '$105.50',
     },
     {
         imgSrc: 'DishImages/img4.png',
         name: 'Fresh Youghout',
         price: '$3.33',
-        unitAvailable: '4 Bowls Available'
+        unitAvailable: '4 Bowls Available',
+        quantity: '2',
+        totalPrice: '$20.89',
     },
     {
         imgSrc: 'DishImages/img5.png',
         name: 'Salted pasta with assorted meat',
         price: '$2.33',
-        unitAvailable: '15 Bowls Available'
+        unitAvailable: '15 Bowls Available',
+        quantity: '35',
+        totalPrice: '$70.00',
     },
     {
         imgSrc: 'DishImages/img6.png',
         name: 'Instant Noodles with egg',
-        price: '$0.33',
-        unitAvailable: '10 Bowls Available'
+        price: '$10.33',
+        unitAvailable: '10 Bowls Available',
+        quantity: '1',
+        totalPrice: '$10.56',
     },
     {
         imgSrc: 'DishImages/img1.png',
         name: 'Salted Pasta Seasoning',
         price: '$3.42',
-        unitAvailable: '20 Bowls Available'
+        unitAvailable: '20 Bowls Available',
+        quantity: '120',
+        totalPrice: '$490.45',
     },
     {
         imgSrc: 'DishImages/img2.png',
         name: 'Ice cream sandwich',
         price: '$1.06',
-        unitAvailable: '3 Bowls Available'
+        unitAvailable: '3 Bowls Available',
+        quantity: '3',
+        totalPrice: '$23.11',
     },
     {
         imgSrc: 'DishImages/img3.png',
         name: 'Spicy Instant Noodles',
         price: '$1.33',
-        unitAvailable: '10 Bowls Available'
+        unitAvailable: '10 Bowls Available',
+        quantity: '25',
+        totalPrice: '$24.33',
     },
     {
         imgSrc: 'DishImages/img4.png',
         name: 'Fresh Youghout',
         price: '$3.33',
-        unitAvailable: '20 Bowl Available'
+        unitAvailable: '20 Bowl Available',
+        quantity: '3',
+        totalPrice: '$10.11',
     },
     {
         imgSrc: 'DishImages/img5.png',
         name: 'Salted pasta with assorted meat',
         price: '$2.33',
-        unitAvailable: '20 Bowl Available'
+        unitAvailable: '20 Bowl Available',
+        quantity: '10',
+        totalPrice: '$4.76',
     },
     {
         imgSrc: 'DishImages/img5.png',
         name: 'Salted pasta with assorted meat',
         price: '$2.33',
-        unitAvailable: '15 Bowls Available'
+        unitAvailable: '15 Bowls Available',
+        quantity: '11',
+        totalPrice: '$22.33',
     },
 ];
-
 const orderingItems = [
     createData('Salted pasta seasoning', '$2.33', '2', '$9.26'),
     createData('Ice cream sandwich', '$1.06', '5', '$10.22'),
@@ -122,8 +140,6 @@ const orderingItems = [
     createData('Instant Noodles with egg', '$0.33', '9', '$15.6'),
     createData('Beef dumpling in hot and sour soup', '$1.33', '12', '$25'),
 ];
-
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'white',
     width: '100%',
@@ -144,9 +160,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
             fontSize: '14px',
         },
     },
-
 }));
-
 const useStyles = makeStyles((theme) => ({
     cardWrapper: {
         width: '100%',
@@ -202,7 +216,6 @@ const useStyles = makeStyles((theme) => ({
         padding: 12,
         paddingBottom: '20px',
         borderBottom: '1px solid #555a70 !important',
-
         '& li': {
             marginRight: theme.spacing(6),
             '& a': {
@@ -226,7 +239,6 @@ const useStyles = makeStyles((theme) => ({
             left: 0,
             width: '100%',
             height: '2px',
-
             marginBottom: '-5px',
             backgroundColor: '#EA6969 !important',
             transform: 'scaleX(0)',
@@ -274,7 +286,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
     navBar3: {
         paddingTop: '5px',
         paddingBottom: '15px',
@@ -395,108 +406,123 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     dishesOrdering: {
-        height: '20% !important',
+        height: '21% !important',
         width: '100%',
         paddingTop: '10px',
     },
-    tableWrapper: {
-        height: '100%',
-        overflowY: 'scroll !important',
-        borderBottom: '1px solid #555a70',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
-    tableHead: {
-        position: 'sticky',
-        top: 0,
-        backgroundColor: '#1F1D2B !important',
-        zIndex: '1',
-        '& .MuiTableCell-root': {
-            position: 'sticky',
-            color: '#fff !important',
-            borderBottom: '1px solid #555a70 !important',
-        },
-    },
-    tableHeadItemCell: {
-        width: '70%',
-        paddingLeft: '0 !important',
-        color: 'white !important',
-        fontSize: '18px !important',
-        fontFamily: 'Quicksand !important',
-        fontWeight: 'bold !important',
-    },
-    tableHeadQtyCell: {
-        width: '15%',
-        color: 'red !important',
-        fontSize: '18px !important',
-        fontFamily: 'Quicksand !important',
-        fontWeight: 'bold !important',
-    },
-    tableHeadPriceCell: {
-        width: '15%',
-        paddingRight: '0 !important',
-        color: 'white !important',
-        fontSize: '18px !important',
-        fontFamily: 'Quicksand !important',
-        fontWeight: 'bold !important',
-    },
-    tableBody: {
-        paddingTop: '20px !important',
-        borderTop: '1px solid #555a70',
-        '& .MuiTableCell-root': {
-            color: '#c9cdce !important',
-            borderBottom: 'none !important',
-        },
-    },
-    tableBodyItemCell: {
-        width: '70%',
-        fontSize: '17px !important',
-        paddingLeft: '0 !important',
-        color: 'white !important',
-        fontFamily: 'Quicksand !important',
-    },
-    tableBodyAmountCell: {
-        fontSize: '14px !important',
-        color: '#c9cdce !important',
-        paddingTop: '5px',
-    },
-    tableBodyQtyCell: {
-        width: '15%',
-    },
-    tableBodyQtyBtn: {
-        minWidth: 'unset !important',
-        border: '1px solid inherit !important',
-        borderRadius: '10px',
-        padding: '12px 18px !important',
-        color: 'white !important',
-        fontSize: '17px !important',
-        backgroundColor: '#393C49 !important',
-    },
-    tableBodyPriceCell: {
-        fontSize: '17px !important',
-        width: '15%',
-        textAlign: 'center !important',
-        paddingRight: '0 !important',
-        color: 'white !important',
-    },
-    textFieldInput: {
-        fontFamily: 'Quicksand !important',
-        color: '#fff !important',
-        backgroundColor: '#393C49',
-        borderRadius: '20px',
-        '&:hover': {
-            border: 'none'
-        },
-        '&:focus': {
-            border: '1px solid #555a70 !important'
-        },
-    },
-    deleteOrderIcon: {
-        display: 'flex !important',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+
+    // tableWrapper: {
+    //     height: '100%',
+    //     overflowY: 'scroll !important',
+    //     borderBottom: '1px solid #555a70',
+    //     '&::-webkit-scrollbar': {
+    //         display: 'none',
+    //     },
+    // },
+    // tableHead: {
+    //     width: '100%',
+    //     position: 'sticky',
+    //     top: 0,
+    //     backgroundColor: '#1F1D2B !important',
+    //     zIndex: '1',
+    //     // border: '1px solid red',
+    //     '& .MuiTableCell-root': {
+    //         position: 'sticky',
+    //         color: '#fff !important',
+    //         borderBottom: '1px solid #555a70 !important',
+    //     },
+    // },
+    // tableHeadItemCell: {
+    //     width: '75% !important',
+    //     paddingLeft: '0 !important',
+    //     color: 'white !important',
+    //     fontSize: '18px !important',
+    //     fontFamily: 'Quicksand !important',
+    //     fontWeight: 'bold !important',
+    //     border: '1px solid blue'
+    // },
+    // tableHeadQtyCell: {
+    //     width: '5% !important',
+    //     color: 'red !important',
+    //     fontSize: '18px !important',
+    //     fontFamily: 'Quicksand !important',
+    //     fontWeight: 'bold !important',
+    //     border: '1px solid red !important',
+    //     textAlign: 'center !important',
+    // },
+    // tableHeadPriceCell: {
+    //     width: '15% !important',
+    //     paddingRight: '0 !important',
+    //     color: 'white !important',
+    //     fontSize: '18px !important',
+    //     fontFamily: 'Quicksand !important',
+    //     fontWeight: 'bold !important',
+    //     border: '1px solid yellow'
+    // },
+    // tableBody: {
+    //     width: '100%',
+    //     paddingTop: '20px !important',
+    //     borderTop: '1px solid #555a70',
+    //     '& .MuiTableCell-root': {
+    //         color: '#c9cdce !important',
+    //         borderBottom: 'none !important',
+    //     },
+    // },
+    // tableBodyItemCell: {
+    //     width: '75%',
+    //     paddingLeft: '0 !important',
+    //     color: 'white !important',
+    //     fontSize: '17px !important', 
+    //     fontFamily: 'Quicksand !important',
+    //     border: '1px solid red',
+    //     zIndex: 1
+    // },
+    // tableBodyAmountCell: {
+    //     fontSize: '14px !important',
+    //     color: '#c9cdce !important',
+    //     paddingTop: '5px',
+    // },
+    // tableBodyQtyCell: {
+    //     width: '10% !important',
+    // },
+    // tableBodyQtyBtn: {
+    //     minWidth: 'unset !important',
+    //     textAlign: 'center !important',
+    //     justifyContent: 'center',
+    //     border: '1px solid inherit !important',
+    //     borderRadius: '10px',
+    //     padding: '12px 18px !important',
+    //     color: 'white !important',
+    //     fontSize: '17px !important',
+    //     backgroundColor: '#393C49 !important',
+    // },
+    // tableBodyPriceCell: {
+    //     minWidth: 'unset !important',
+    //     fontSize: '17px !important',
+    //     width: '15%',
+    //     textAlign: 'center !important',
+    //     paddingRight: '0 !important',
+    //     color: 'white !important',
+    // },
+    // textFieldInput: {
+    //     fontFamily: 'Quicksand !important',
+    //     color: '#fff !important',
+    //     backgroundColor: '#393C49',
+    //     borderRadius: '20px',
+    //     '&:hover': {
+    //         border: 'none'
+    //     },
+    //     '&:focus': {
+    //         border: '1px solid #555a70 !important'
+    //     },
+    // },
+    // deleteOrderIcon: {
+    //     display: 'flex !important',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    // },
+
+
     paymentWrapper: {
         display: 'flex',
         flexWrap: 'wrap !important',
@@ -522,42 +548,35 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
     }
 }));
-
-
-
 const Homepage = () => {
     const classes = useStyles();
-
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [orders, setOrders] = useState(orderingItems);
-
-
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    // text field
+    const [name, setName] = React.useState('Cat in the Hat');
+    
     const handleClose = () => {
         setAnchorEl(null);
     };
-
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
         newRows[index].textboxValue = event.target.value;
@@ -567,10 +586,8 @@ const Homepage = () => {
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
-
                 {/* SIDE-BAR */}
                 <CardContent className={classes.sideBar}>
-
                     <div className={classes.sideBarIcons}>
                         <StorefrontIcon className={classes.icon} />
                         <HomeOutlinedIcon className={classes.icon} />
@@ -581,17 +598,13 @@ const Homepage = () => {
                         <SettingsOutlinedIcon className={classes.icon} />
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
-
                 </CardContent>
-
                 {/* MAIN BAR */}
                 <CardContent className={classes.mainBar}>
                     <div className={classes.mainBarChildren}>
                         <div className={classes.navBar1}>
-
                             <div className={classes.userName}>
                                 <SoupKitchenOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '55px', color: 'whitesmoke' }} />
-
                                 <div>
                                     <Typography className={classes.userTypo} sx={{
                                         fontSize: {
@@ -605,14 +618,11 @@ const Homepage = () => {
                                     }}>
                                         A-Richdom
                                     </Typography>
-
                                     <div>
                                         <DigitalClock />
                                     </div>
                                 </div>
-
                             </div>
-
                             <div>
                                 <div className={classes.search} >
                                     <div className={classes.searchIconWrapper}>
@@ -624,7 +634,6 @@ const Homepage = () => {
                                     />
                                 </div>
                             </div>
-
                             <div>
                                 <Toolbar disableGutters>
                                     <Box sx={{ flexGrow: 0 }}>
@@ -633,7 +642,6 @@ const Homepage = () => {
                                                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                                             </IconButton>
                                         </Tooltip>
-
                                         <Menu
                                             sx={{ mt: '45px' }}
                                             id="menu-appbar"
@@ -657,12 +665,9 @@ const Homepage = () => {
                                             ))}
                                         </Menu>
                                     </Box>
-
                                 </Toolbar>
                             </div>
-
                         </div>
-
                         <div className={classes.navBar2Wrapper}>
                             <ul className={classes.navBar2}>
                                 <li className={classes.navItem}><a href="" className={classes.navLink}>Hot Dishes</a></li>
@@ -674,7 +679,6 @@ const Homepage = () => {
                             </ul>
                         </div>
                         {/* <hr className={classes.hrLine} /> */}
-
                         <div className={classes.navBar3}>
                             <div>
                                 <Typography className={classes.chooseDishTypo} sx={{ fontSize: '18px' }}>
@@ -695,7 +699,6 @@ const Homepage = () => {
                                         Dine in
                                     </Typography>
                                 </Button>
-
                                 <Menu
                                     id="fade-menu"
                                     MenuListProps={{
@@ -714,44 +717,36 @@ const Homepage = () => {
                                 </Menu>
                             </div>
                         </div>
-
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             {
                                 dishes.map((dish, index) => (
                                     <Card key={index} className={classes.dishCard}>
-
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />
                                         <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
                                             {dish.name}
                                         </Typography>
-
                                         <span>
                                             <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>
                                                 {dish.price}
                                             </Typography>
                                         </span>
-
                                         <span>
                                             <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
                                                 {dish.unitAvailable}
                                             </Typography>
                                         </span>
-
                                     </Card>
                                 ))
                             }
                         </div>
-
                     </div>
                 </CardContent>
-
                 {/* RIGHT-BAR */}
                 <CardContent className={classes.rightBar}>
                     <div className={classes.rightBarChildren}>
-
                         <Typography sx={{
                             fontSize: {
                                 xs: '14px',
@@ -765,7 +760,6 @@ const Homepage = () => {
                         }}>
                             Orders #23244
                         </Typography>
-
                         <div className={classes.orderBtnWrapper}>
                             <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
                                 Dine In
@@ -780,75 +774,39 @@ const Homepage = () => {
 
                         {/* Dishes-Ordering */}
                         <div className={classes.dishesOrdering}>
-
-                            <TableContainer className={classes.tableWrapper}>
-                                <Table className={classes.table} aria-label="simple table">
+                            <TableContainer className={classes.tableContainer}>
+                                <Table className={classes.table}>
                                     <TableHead className={classes.tableHead}>
-
                                         <TableRow>
-                                            <TableCell className={classes.tableHeadItemCell}>Item</TableCell>
-                                            <TableCell className={classes.tableHeadQtyCell}>Qty</TableCell>
-                                            <TableCell className={classes.tableHeadPriceCell} style={{ paddingRight: '0px' }}>Price</TableCell>
+                                            <TableCell className={classes.itemCell}>Item</TableCell>
+                                            <TableCell className={classes.quantityCell}>Qty</TableCell>
+                                            <TableCell className={classes.priceCell}>Price</TableCell>
                                         </TableRow>
-
                                     </TableHead>
 
+                                    {/* TABLE BODY */}
                                     <TableBody className={classes.tableBody}>
-                                        {orders.map((order, index) => (
-                                            <React.Fragment key={order.item}>
-                                                <TableRow>
-                                                    <TableCell className={classes.tableBodyItemCell}>
-                                                        {order.item}
-                                                        <span><Typography className={classes.tableBodyAmountCell}>{order.amount}</Typography></span>
-                                                    </TableCell>
-                                                    <TableCell className={classes.tableBodyQtyCell}>
-                                                        <Button
-                                                            className={classes.tableBodyQtyBtn}
-                                                        >
-                                                            {order.quantity}
-                                                        </Button>
-                                                    </TableCell>
-                                                    <TableCell className={classes.tableBodyPriceCell}>
-                                                        {order.price}
-                                                    </TableCell>
-                                                </TableRow>
-
-                                                {/* TextBox Row */}
-                                                <TableRow>
-                                                    <TableCell colSpan={2} sx={{ paddingLeft: '0px' }}>
-                                                        <TextField
-                                                            fullWidth
-                                                            value={order.textboxValue}
-                                                            onChange={handleTextboxChange(index)}
-                                                            placeholder="Order Note..."
-                                                            variant="outlined"
-                                                            size="large"
-                                                            InputProps={{
-                                                                className: classes.textFieldInput,
-                                                            }}
-                                                        />
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <Button sx={{
-                                                            border: '1px solid #EA6969',
-                                                            borderRadius: '10px',
-                                                            padding: '14px 14px',
-                                                            color: '#EA6969',
-                                                            minWidth: 'unset',
-                                                        }}>
-                                                            <DeleteOutlineOutlinedIcon />
-                                                        </Button>
-                                                    </TableCell>
-                                                </TableRow>
-                                            </React.Fragment>
-                                        ))}
+                                        {
+                                            dishes.map((dish, index) => (
+                                                <React.Fragment key={dish.name}>
+                                                    <TableRow>
+                                                        <TableCell className={classes.tableBodyItemCell}>{dish.name}
+                                                            <span>
+                                                                <Typography className={classes.tableBodyAmountCell}>{dish.price}
+                                                                </Typography>
+                                                            </span>
+                                                        </TableCell>
+                                                        <TableCell className={classes.tableBodyQtyCell}>{dish.quantity}</TableCell>
+                                                        <TableCell className={classes.tableBodyPriceCell}>{dish.totalPrice}</TableCell>
+                                                    </TableRow>
+                                                </React.Fragment>
+                                            ))}
+                                        <TableRow></TableRow>
                                     </TableBody>
-
                                 </Table>
                             </TableContainer>
 
                         </div>
-
                         {/* Payment Wrapper */}
                         <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
                             <div className={classes.discount}>
@@ -928,19 +886,17 @@ const Homepage = () => {
                                     '@media (max-width: 400px)': {
                                         width: '90%',
                                         fontSize: '10px',
+                                        // padding: '1px',
                                         padding: '1px',
                                     },
                                 }}>
                                 Continue to Payment
                             </Button>
                         </div>
-
                     </div>
-
                 </CardContent>
             </Card>
         </div>
     )
 }
-
 export default Homepage
