@@ -5,8 +5,7 @@ import { makeStyles } from '@mui/styles';
 
 
 const useStyles = makeStyles((theme) => ({
-
-     //Right Bar...//
+    
      rightBar: {
         width: '35%',
         backgroundColor: '#1F1D2B !important',
