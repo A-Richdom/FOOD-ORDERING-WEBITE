@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-    Card, CardContent, Box, Drawer, colors, styled, Button, Menu, MenuItem, Fade, TextField,
+    Card, CardContent, Box, Drawer, colors, styled, Button, Menu, MenuItem, Fade, Typography,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -12,20 +12,17 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 // Card Content 2..//
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { Avatar, InputBase, Toolbar, IconButton, Tooltip,  } from '@mui/material'
 //// Search Box
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import zIndex from '@mui/material/styles/zIndex';
+import DishesOrdering from './DishesOrdering';
+
+
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -501,12 +498,12 @@ const useStyles = makeStyles((theme) => ({
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
         cursor: 'pointer',
-        maxWidth: '150px', 
-      },
-      fullText: {
+        maxWidth: '150px',
+    },
+    fullText: {
         cursor: 'pointer',
-        maxWidth: '150px', 
-      },
+        maxWidth: '150px',
+    },
     deleteBtnCell: {
         width: '100% !important',
         paddingTop: '14px !important',
@@ -554,20 +551,22 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
     }
 }));
+
 const Homepage = () => {
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [expandedDishName, setExpandedDishName] = useState(null);
+    // text field
+    const [name, setName] = React.useState('');
 
+    // MAIN-BAR...//
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    // text field
-    const [name, setName] = React.useState('');
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -584,6 +583,8 @@ const Homepage = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    // RIGHT BAR...//
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
         newRows[index].textboxValue = event.target.value;
@@ -593,6 +594,7 @@ const Homepage = () => {
     const handleDishName = (index) => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
+
 
     return (
         <div className={classes.divContainer}>
@@ -788,159 +790,13 @@ const Homepage = () => {
                         </div>
 
                         {/* Dishes-Ordering */}
-                        <div className={classes.dishesOrdering}>
-                            <TableContainer className={classes.tableContainer}>
-                                <Table className={classes.table}>
-                                    <TableHead className={classes.tableHead}>
-                                        <TableRow className={classes.tableHeadRow}>
-                                            <TableCell className={classes.itemCell}><Typography sx={{ fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600' }}>Item</Typography></TableCell>
+                        <DishesOrdering
+                            dishes={dishes}
+                            handleTextboxChange={handleTextboxChange}
+                            handleDishName={handleDishName}
+                            expandedDishName={expandedDishName}
+                        />
 
-                                            <TableCell className={classes.quantityCell}><Typography sx={{ display: 'flex', justifyContent: 'center', fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600' }}>Qty</Typography></TableCell>
-
-                                            <TableCell className={classes.totalPriceCell}><Typography sx={{ display: 'flex', justifyContent: 'right', paddingRight: '10px', fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '600' }}>Price</Typography></TableCell>
-                                        </TableRow>
-                                    </TableHead>
-
-                                    {/* TABLE BODY */}
-                                    <TableBody className={classes.tableBody}>
-                                        {
-                                            dishes.map((dish, index) => (
-                                                <React.Fragment key={dish.name}>
-                                                    <TableRow className={classes.tableBodyRow}>
-                                                        <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
-                                                            <img src={dish.imgSrc} alt={dish.name}
-                                                                className={classes.dishImgOrdering}
-                                                            />
-                                                            <div>
-                                                                <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText} 
-                                                                
-                                                                sx={{ 
-                                                                    fontFamily: 'Quicksand', fontSize: '18px', 
-                                                                    color: 'white' }}
-
-                                                                onClick={() => handleDishName(index)}
-                                                                >
-                                                                    {dish.name}
-                                                                </Typography>
-
-                                                                <span>
-                                                                    <Typography className={classes.tableBodyPriceCell} sx={{
-                                                                        fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce',
-                                                                    }}>{dish.price}
-                                                                    </Typography>
-                                                                </span>
-                                                            </div>
-                                                        </TableCell>
-
-                                                        <TableCell className={classes.tableBodyQuantityCell}>
-                                                            <Box
-                                                                component="form"
-                                                                sx={{
-                                                                    '& > :not(style)': { width: '6ch' },
-                                                                }}
-                                                                noValidate
-                                                                autoComplete="off"
-                                                            >
-                                                                <TextField
-                                                                    id="outlined-uncontrolled"
-                                                                    value={dish.quantity}
-                                                                    InputProps={{
-                                                                        style: {
-                                                                            color: 'white',
-                                                                            backgroundColor: '#393C49',
-                                                                            fontFamily: 'Quicksand', fontSize: '18px', fontWeight: '500',
-                                                                            borderRadius: '10px',
-                                                                        },
-                                                                    }}
-                                                                    sx={{
-                                                                        '& .MuiOutlinedInput-root': {
-                                                                            '& fieldset': {
-                                                                                borderColor: '#555a70',
-                                                                            },
-                                                                            '&:hover fieldset': {
-                                                                                borderColor: '#555a70',
-                                                                            },
-                                                                            '&.Mui-focused fieldset': {
-                                                                                border: '1px solid white',
-                                                                                borderColor: 'white',
-                                                                            },
-                                                                            '& .MuiInputBase-input': {
-                                                                                textAlign: 'center',
-                                                                            },
-                                                                            '& .MuiTableCell-root': {
-                                                                                border: 'none'
-                                                                            }
-                                                                        },
-                                                                    }}
-                                                                />
-                                                            </Box>
-                                                        </TableCell>
-
-                                                        <TableCell className={classes.tableBodyTotalPriceCell}><Typography sx={{ display: 'flex', justifyContent: 'right', paddingRight: '10px', fontFamily: 'Quicksand', fontSize: '18px', color: 'white' }}>{dish.totalPrice}</Typography></TableCell>
-                                                    </TableRow>
-
-                                                    <TableRow className={classes.textFieldRow}>
-
-                                                        <TableCell className={classes.textFieldCell} colSpan={2} sx={{ paddingLeft: '0px' }}>
-                                                            <TextField
-                                                                className={classes.textField}
-                                                                fullWidth
-                                                                value={dish.textboxValue}
-                                                                onChange={handleTextboxChange(index)}
-                                                                placeholder="Order Note..."
-                                                                variant="outlined"
-                                                                size="large"
-                                                                InputProps={{
-                                                                    style: {
-                                                                        color: 'white',
-                                                                        backgroundColor: '#393C49',
-                                                                        fontFamily: 'Quicksand', fontSize: '17px',
-                                                                        borderRadius: '10px',
-                                                                    },
-                                                                }}
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        '& fieldset': {
-                                                                            borderColor: '#555a70',
-                                                                        },
-                                                                        '&:hover fieldset': {
-                                                                            borderColor: '#555a70',
-                                                                        },
-                                                                        '&.Mui-focused fieldset': {
-                                                                            border: '1px solid white',
-                                                                            borderColor: 'white',
-                                                                        },
-                                                                        '& .MuiInputBase-input': {
-                                                                            width: '100%',
-
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            />
-                                                        </TableCell>
-                                                        <TableCell className={classes.deleteBtnCell}>
-
-                                                            <Button className={classes.deleteBtn} variant="outlined" href="#outlined-buttons"
-                                                                sx={{
-                                                                    border: '1px solid #EA6969',
-                                                                    borderRadius: '10px',
-                                                                    padding: '14px 14px',
-                                                                    color: '#EA6969',
-                                                                    minWidth: 'unset',
-                                                                }}>
-                                                                <DeleteOutlineOutlinedIcon />
-                                                            </Button>
-                                                        </TableCell>
-
-
-                                                    </TableRow>
-                                                </React.Fragment>
-                                            ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-
-                        </div>
                         {/* Payment Wrapper */}
                         <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
                             <div className={classes.discount}>
@@ -1033,4 +889,5 @@ const Homepage = () => {
         </div>
     )
 }
+
 export default Homepage
