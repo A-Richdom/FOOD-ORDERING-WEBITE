@@ -131,15 +131,7 @@ const dishes = [
         totalPrice: '$22.33',
     },
 ];
-const orderingItems = [
-    createData('Salted pasta seasoning', '$2.33', '2', '$9.26'),
-    createData('Ice cream sandwich', '$1.06', '5', '$10.22'),
-    createData('Spicy Instant Noodles', '$1.33', '1', '$25'),
-    createData('Fresh Youghout', '$3.33', '6', '$25'),
-    createData('Salted pasta with assorted meat', '$2.33', '1', '$25'),
-    createData('Instant Noodles with egg', '$0.33', '9', '$15.6'),
-    createData('Beef dumpling in hot and sour soup', '$1.33', '12', '$25'),
-];
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'white',
     width: '100%',
@@ -412,7 +404,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         paddingTop: '10px',
     },
-      tableContainer: {
+    tableContainer: {
         height: '100%',
         overflowY: 'scroll',
         border: 'none !important',
@@ -503,27 +495,38 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         width: '100%',
     },
+    truncateText: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        cursor: 'pointer',
+        maxWidth: '150px', 
+      },
+      fullText: {
+        cursor: 'pointer',
+        maxWidth: '150px', 
+      },
     deleteBtnCell: {
         width: '100% !important',
         paddingTop: '14px !important',
         paddingRight: '0 !important',
         paddingBottom: '30px !important',
     },
-    deleteBtn: {  
-            border: '1px solid #EA6969 !important',
-            borderRadius: '10px !important',
-            padding: theme.spacing(1),
-            color: '#EA6969 !important',
-            '&:hover': {
-                backgroundColor: '#f97f7f !important',
-                color: 'white !important',
-                border: 'none !important',
-            },
-            '&:focus': {
-                backgroundColor: '#EA6969 !important',
-                color: 'white !important',
-                border: '1px solid #555a70',
-            },
+    deleteBtn: {
+        border: '1px solid #EA6969 !important',
+        borderRadius: '10px !important',
+        padding: theme.spacing(1),
+        color: '#EA6969 !important',
+        '&:hover': {
+            backgroundColor: '#f97f7f !important',
+            color: 'white !important',
+            border: 'none !important',
+        },
+        '&:focus': {
+            backgroundColor: '#EA6969 !important',
+            color: 'white !important',
+            border: '1px solid #555a70',
+        },
     },
     paymentWrapper: {
         display: 'flex',
@@ -554,7 +557,8 @@ const Homepage = () => {
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [orders, setOrders] = useState(orderingItems);
+    const [expandedDishName, setExpandedDishName] = useState(null);
+
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -562,7 +566,7 @@ const Homepage = () => {
         setAnchorEl(event.currentTarget);
     };
     // text field
-    const [name, setName] = React.useState('Cat in the Hat');
+    const [name, setName] = React.useState('');
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -584,10 +588,15 @@ const Homepage = () => {
         newRows[index].textboxValue = event.target.value;
         setRows(newRows);
     };
+    // Handle DishnMain
+    const handleDishName = (index) => {
+        setExpandedDishName(index === expandedDishName ? null : index);
+    };
 
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
+
                 {/* SIDE-BAR */}
                 <CardContent className={classes.sideBar}>
                     <div className={classes.sideBarIcons}>
@@ -601,6 +610,7 @@ const Homepage = () => {
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
                 </CardContent>
+
                 {/* MAIN BAR */}
                 <CardContent className={classes.mainBar}>
                     <div className={classes.mainBarChildren}>
@@ -680,7 +690,7 @@ const Homepage = () => {
                                 <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
                             </ul>
                         </div>
-                        {/* <hr className={classes.hrLine} /> */}
+
                         <div className={classes.navBar3}>
                             <div>
                                 <Typography className={classes.chooseDishTypo} sx={{ fontSize: '18px' }}>
@@ -719,6 +729,7 @@ const Homepage = () => {
                                 </Menu>
                             </div>
                         </div>
+
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             {
@@ -746,6 +757,7 @@ const Homepage = () => {
                         </div>
                     </div>
                 </CardContent>
+
                 {/* RIGHT-BAR */}
                 <CardContent className={classes.rightBar}>
                     <div className={classes.rightBarChildren}>
@@ -799,12 +811,21 @@ const Homepage = () => {
                                                                 className={classes.dishImg}
                                                             />
                                                             <div>
-                                                                <Typography sx={{ fontFamily: 'Quicksand', fontSize: '18px', color: 'white', }}>
+                                                                <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText} 
+                                                                
+                                                                sx={{ 
+                                                                    fontFamily: 'Quicksand', fontSize: '18px', 
+                                                                    color: 'white' }}
+
+                                                                onClick={() => handleDishName(index)}
+                                                                >
                                                                     {dish.name}
                                                                 </Typography>
 
                                                                 <span>
-                                                                    <Typography className={classes.tableBodyPriceCell} sx={{ fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce', }}>{dish.price}
+                                                                    <Typography className={classes.tableBodyPriceCell} sx={{
+                                                                        fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce',
+                                                                    }}>{dish.price}
                                                                     </Typography>
                                                                 </span>
                                                             </div>
@@ -897,16 +918,16 @@ const Homepage = () => {
                                                             />
                                                         </TableCell>
                                                         <TableCell className={classes.deleteBtnCell}>
-                                                            
+
                                                             <Button className={classes.deleteBtn} variant="outlined" href="#outlined-buttons"
-                                                            sx={{
-                                                                border: '1px solid #EA6969',
-                                                                borderRadius: '10px',
-                                                                padding: '14px 14px',
-                                                                color: '#EA6969',
-                                                                minWidth: 'unset',
-                                                            }}>
-                                                            <DeleteOutlineOutlinedIcon />
+                                                                sx={{
+                                                                    border: '1px solid #EA6969',
+                                                                    borderRadius: '10px',
+                                                                    padding: '14px 14px',
+                                                                    color: '#EA6969',
+                                                                    minWidth: 'unset',
+                                                                }}>
+                                                                <DeleteOutlineOutlinedIcon />
                                                             </Button>
                                                         </TableCell>
 
