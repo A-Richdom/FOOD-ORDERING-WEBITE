@@ -588,7 +588,7 @@ const Homepage = () => {
         newRows[index].textboxValue = event.target.value;
         setRows(newRows);
     };
-    // Handle DishName...//
+    // Handle Truncating of the DishName...//
     const handleDishName = (index) => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
