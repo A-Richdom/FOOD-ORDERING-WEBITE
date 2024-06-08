@@ -153,6 +153,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
 const useStyles = makeStyles((theme) => ({
     cardWrapper: {
         width: '100%',
@@ -351,8 +352,8 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
     },
     dishImg: {
-        width: '100px',
-        height: '100px',
+        width: '100px !important',
+        height: '100px !important',
         '@media (max-width: 600px)': {
             width: '80px',
             height: '80px'
@@ -468,7 +469,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: '0 !important',
         padding: '4px 8px !important',
     },
-    dishImg: {
+    dishImgOrdering: {
         width: '40px',
         height: '40px',
     },
@@ -808,7 +809,7 @@ const Homepage = () => {
                                                     <TableRow className={classes.tableBodyRow}>
                                                         <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
                                                             <img src={dish.imgSrc} alt={dish.name}
-                                                                className={classes.dishImg}
+                                                                className={classes.dishImgOrdering}
                                                             />
                                                             <div>
                                                                 <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText} 
