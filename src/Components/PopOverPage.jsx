@@ -125,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
   },
   confirmationPageChildren: {
     width: '100%',
-    border: '1px solid red',
   },
   navBar: {
     display: 'flex',
@@ -155,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap !important',
     flexDirection: 'column',
     gap: '10px',
-    paddingTop: '20px',
+    paddingTop: '25px',
     '@media (max-width: 600px)': {
       fontSize: '12px',
       padding: '8px',
@@ -216,7 +215,7 @@ const PopOverPage = () => {
               sx={{
                 color: 'white',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease-in-out',
+                transition: 'all 0.4s ease-in-out',
                 '&:hover': {
                   color: '#f97f7f', 
                   transform: 'scale(1.4)',
