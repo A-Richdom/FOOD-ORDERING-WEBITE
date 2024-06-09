@@ -5,7 +5,7 @@ import { makeStyles } from '@mui/styles';
 
 
 const useStyles = makeStyles((theme) => ({
-    
+
      rightBar: {
         width: '35%',
         backgroundColor: '#1F1D2B !important',
@@ -170,30 +170,6 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid #555a70',
         },
     },
-    paymentWrapper: {
-        display: 'flex',
-        flexWrap: 'wrap !important',
-        flexDirection: 'column',
-        gap: '10px',
-        '@media (max-width: 600px)': {
-            fontSize: '12px',
-            padding: '8px',
-        },
-        '@media (max-width: 400px)': {
-            fontSize: '10px',
-            padding: '6px',
-        },
-    },
-    discount: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    },
-    subTotal: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    }
 
 }));
 

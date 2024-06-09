@@ -22,7 +22,6 @@ import zIndex from '@mui/material/styles/zIndex';
 import DishesOrdering from './DishesOrdering';
 
 
-
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -595,7 +594,6 @@ const Homepage = () => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
 
-
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
@@ -863,6 +861,7 @@ const Homepage = () => {
                             <Button
                                 sx={{
                                     backgroundColor: '#f97f7f',
+                                    borderRadius: '10px',
                                     color: 'white',
                                     padding: '10px',
                                     textTransform: 'none',
