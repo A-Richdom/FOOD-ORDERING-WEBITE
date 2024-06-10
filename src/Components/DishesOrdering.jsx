@@ -94,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100% !important',
         backgroundColor: '#1F1D2B !important',
         borderBottom: '1px solid #555a70 !important',
+        paddingRight: '0 !important',
         // border: 'none !important',
         '& .MuiTableCell-root': {
             color: '#c9cdce !important',
@@ -270,7 +271,6 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
                                     </TableRow>
 
                                     <TableRow className={classes.textFieldRow}>
-
                                         <TableCell className={classes.textFieldCell} colSpan={2} sx={{ paddingLeft: '0px' }}>
                                             <TextField
                                                 className={classes.textField}
@@ -312,9 +312,10 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
 
                                             <Button className={classes.deleteBtn} variant="outlined" href="#outlined-buttons"
                                                 sx={{
+                                                    display: 'flex',
                                                     border: '1px solid #EA6969',
                                                     borderRadius: '10px',
-                                                    padding: '14px 14px',
+                                                    padding: '16px 14px',
                                                     color: '#EA6969',
                                                     minWidth: 'unset',
                                                 }}>

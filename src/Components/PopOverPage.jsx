@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Card, CardContent, Typography, Button } from '@mui/material'
+import { Card, CardContent, Typography, Button, TextField, Menu, MenuItem, Fade } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import DishesOrdering from './DishesOrdering';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 
 
 const dishes = [
   {
     imgSrc: 'DishImages/img1.png',
-    name: 'Salted Pasta Seasoning',
+    name: 'Salted Pesta Seasoningg',
     price: '$3.42',
     unitAvailable: '20 Bowls Available',
     quantity: '3',
@@ -17,7 +20,7 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img2.png',
-    name: 'Ice cream sandwich',
+    name: 'Ice creem sandwich',
     price: '$1.06',
     unitAvailable: '10 Bowls Available',
     quantity: '6',
@@ -41,7 +44,7 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img5.png',
-    name: 'Salted pasta with assorted meat',
+    name: 'Salted pasta with asorted meat',
     price: '$2.33',
     unitAvailable: '15 Bowls Available',
     quantity: '35',
@@ -57,7 +60,7 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img1.png',
-    name: 'Salted Pasta Seasoning',
+    name: 'Salted Pasta Seasooning',
     price: '$3.42',
     unitAvailable: '20 Bowls Available',
     quantity: '120',
@@ -81,7 +84,7 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img4.png',
-    name: 'Fresh Youghout',
+    name: 'Fresh Yooughout',
     price: '$3.33',
     unitAvailable: '20 Bowl Available',
     quantity: '3',
@@ -89,7 +92,7 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img5.png',
-    name: 'Salted pasta with assorted meat',
+    name: 'Salted pasta with assorted fish',
     price: '$2.33',
     unitAvailable: '20 Bowl Available',
     quantity: '10',
@@ -97,13 +100,16 @@ const dishes = [
   },
   {
     imgSrc: 'DishImages/img5.png',
-    name: 'Salted pasta with assorted meat',
+    name: 'Salted pastaa with assorted meat',
     price: '$2.33',
     unitAvailable: '15 Bowls Available',
     quantity: '11',
     totalPrice: '$22.33',
   },
 ];
+
+
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -112,6 +118,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     display: 'flex',
     borderRadius: '15px !important',
+    '@media (max-width: 960px)': {
+      width: '100%'
+    }
   },
   // CONFIRMATION PAGE..//
   confirmationPage: {
@@ -122,6 +131,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     backgroundColor: '#1f1d2b',
     borderRight: '1.2px solid #555a70',
+    '@media (max-width: 960px)': {
+      width: '40%',
+      borderRight: 'none',
+    },
   },
   confirmationPageChildren: {
     width: '100%',
@@ -158,10 +171,12 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       fontSize: '12px',
       padding: '8px',
+      paddingToP: '35px'
     },
     '@media (max-width: 400px)': {
       fontSize: '10px',
       padding: '6px',
+      paddingToP: '35px'
     },
   },
   discount: {
@@ -180,8 +195,147 @@ const useStyles = makeStyles((theme) => ({
   paymentPage: {
     width: '50%',
     height: '100%',
+    display: 'flex !important',
+    flexDirection: 'column',
+    alignItems: 'center',
     backgroundColor: '#1f1d2b',
+    '@media (max-width: 960px)': {
+      width: '60%',
+    },
   },
+  paymentPageChildren: {
+    width: '100%',
+    paddingToP: '20px !important',
+  },
+  paymentPageNav: {
+    paddingToP: '50px !important',
+    borderBottom: '1px solid #555a70 !important',
+  },
+  paymentMethodBtns: {
+    display: 'flex',
+    gap: '10px',
+    paddingBottom: '5px'
+  },
+  paymentMethodBtn: {
+    border: '1px solid #393c49 !important',
+    borderRadius: '10px !important',
+    padding: '7px 12px !important',
+    color: '#abbbc2 !important',
+    transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+    // padding: theme.spacing(1),
+    '&:hover': {
+      border: '1.4px solid #abbbc2 !important',
+      backgroundColor: 'inherit !important',
+      color: 'white !important',
+    },
+    '&:focus': {
+      color: 'white !important',
+      border: '1.4px solid #abbbc2 !important',
+    },
+  },
+  creditCardBtn: {
+    padding: '7px 12px !important',
+  },
+  paypalBtn: {
+    padding: '7px 18px !important',
+  },
+  cashBtn: {
+    padding: '7px 22px !important',
+  },
+  creditCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap !important',
+    alignItems: 'center',
+  },
+  paypal: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap !important',
+    alignItems: 'center',
+  },
+  cash: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap !important',
+    alignItems: 'center',
+  },
+  cardName: {
+    paddingBottom: '10px',
+    // paddingToP: '20px !important'
+  },
+  cardNumber: {
+    paddingBottom: '10px !important',
+  },
+  expCvvWrapper: {
+    display: 'flex',
+    // flexWrap: 'wrap',
+    gap: '10px',
+    paddingBottom: '10px'
+  },
+  orderTypeTableWrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '30px'
+  },
+  orderType: {
+    paddingToP: '10px',
+  },
+  dineInIcon: {
+    transition: 'transform 0.5s ease !important',
+  },
+  dineInButton: {
+    textTransform: 'none !important',
+    backgroundColor: '#1F1D2B !important',
+    padding: '4px 3px !important',
+    border: '1px solid #393c49 !important',
+    '&:hover': {
+      backgroundColor: '#393C49 !important'
+    },
+    '&:focus $dineInIcon': {
+      transform: 'rotate(180deg)',
+    },
+  },
+  dineInItem: {
+    fontSize: '12px !important',
+    fontFamily: 'Quicksand',
+    // paddingToP: '20px',
+    '&:hover': {
+      backgroundColor: '#393C49 !important',
+      color: 'white',
+      borderRadius: '3px',
+      padding: theme.spacing(1, 2)
+    },
+  },
+  textField: {
+    '@media (max-width: 600px)': {
+      '& .MuiOutlinedInput-root': {
+        '& .MuiInputBase-input': {
+          fontSize: '14px',  // Smaller font size on small screens
+          padding: '6px',   // Adjust padding on small screens
+        },
+      },
+      // Media query for medium screens
+      '@media (max-width: 400px)': {
+        '& .MuiOutlinedInput-root': {
+          '& .MuiInputBase-input': {
+            fontSize: '15px',  // Medium font size on medium screens
+            padding: '7px',   // Adjust padding on medium screens
+          },
+        },
+      },
+      // Media query for large screens
+      // '@media (min-width: 960px)': {
+      //   '& .MuiOutlinedInput-root': {
+      //     '& .MuiInputBase-input': {
+      //       fontSize: '17px',  // Larger font size on large screens
+      //       padding: '8px',   // Adjust padding on large screens
+      //     },
+      //   },
+      // },
+    }
+  }
+
 
 }));
 
@@ -191,6 +345,15 @@ const PopOverPage = () => {
   const classes = useStyles();
   const [expandedDishName, setExpandedDishName] = useState(null);
 
+  // Dine in Button Function
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   // RIGHT BAR...//
   const handleTextboxChange = (index) => (event) => {
     const newRows = [...rows];
@@ -217,7 +380,7 @@ const PopOverPage = () => {
                 cursor: 'pointer',
                 transition: 'all 0.4s ease-in-out',
                 '&:hover': {
-                  color: '#f97f7f', 
+                  color: '#f97f7f',
                   transform: 'scale(1.4)',
                 },
               }} />
@@ -262,6 +425,7 @@ const PopOverPage = () => {
             </div>
 
             <DishesOrdering
+              className={classes.dishesOrdering}
               dishes={dishes}
               handleTextboxChange={handleTextboxChange}
               handleDishName={handleDishName}
@@ -338,20 +502,420 @@ const PopOverPage = () => {
         {/* PAYMENT PAGE */}
         <CardContent className={classes.paymentPage}>
           <div className={classes.paymentPageChildren}>
-            <Typography sx={{
-              fontSize: {
-                xs: '14px',
-                sm: '16px',
-                md: '18px',
-                lg: '25px',
-                xl: '24px',
-              },
-              fontFamily: 'Roboto',
-              fontWeight: '400',
-              color: 'white',
-            }}>
-              Payment
-            </Typography>
+
+            <div className={classes.paymentPageNav}>
+              <Typography sx={{
+                fontSize: {
+                  xs: '14px',
+                  sm: '16px',
+                  md: '18px',
+                  lg: '25px',
+                  xl: '24px',
+                },
+                fontFamily: 'Roboto',
+                fontWeight: '400',
+                color: 'white',
+              }}>
+                Payment
+              </Typography>
+              <Typography sx={{
+                fontSize: '14px',
+                color: '#c9cdce',
+                fontFamily: 'Roboto',
+                paddingTop: '5px',
+                paddingBottom: '5px'
+              }}>
+                3 payment method available
+              </Typography>
+            </div>
+
+            <div className={classes.paymentPageBody}>
+              <Typography sx={{
+                fontSize: {
+                  xs: '14px',
+                  sm: '16px',
+                  md: '18px',
+                  lg: '20px',
+                  xl: '24px',
+                },
+                fontFamily: 'Roboto',
+                fontWeight: '400',
+                color: 'white',
+                paddingTop: '10px'
+              }}>
+                Payment Method
+              </Typography>
+
+              <div className={classes.paymentMethodBtns}>
+                <Button className={`${classes.paymentMethodBtn} ${classes.creditCardBtn}`}
+                  variant="outlined"
+                  href="#outlined-buttons"
+                  sx={{
+                    minWidth: 'unset',
+                    textTransform: 'none',
+                    fontSize: '14px',
+                    fontFamily: 'Quicksand'
+                  }}>
+                  <span className={classes.creditCard}>
+                    <CreditCardOutlinedIcon />
+                    Credit Card
+                  </span>
+                </Button>
+                <Button className={`${classes.paymentMethodBtn} ${classes.paypalBtn}`}
+                  variant="outlined"
+                  href="#outlined-buttons"
+                  sx={{
+                    minWidth: 'unset',
+                    textTransform: 'none',
+                    fontSize: '14px',
+                    fontFamily: 'Quicksand'
+                  }}>
+                  <span className={classes.paypal}>
+                    <CreditCardOutlinedIcon />
+                    Paypal
+                  </span>
+                </Button>
+                <Button className={`${classes.paymentMethodBtn} ${classes.cashBtn}`}
+                  variant="outlined"
+                  href="#outlined-buttons"
+                  sx={{
+                    minWidth: 'unset',
+                    textTransform: 'none',
+                    fontSize: '14px',
+                    fontFamily: 'Quicksand'
+                  }}>
+                  <span className={classes.cash}>
+                    <CreditCardOutlinedIcon />
+                    Cash
+                  </span>
+                </Button>
+              </div>
+
+              <div className={classes.cardName}>
+                <Typography sx={{
+                  fontSize: {
+                    xs: '8px',
+                    sm: '10px',
+                    md: '13px',
+                    lg: '15px',
+                    xl: '24px',
+                  },
+                  fontFamily: 'Quicksand',
+                  fontWeight: '500',
+                  color: 'white',
+                }}>
+                  Cardholder Name
+                </Typography>
+                <TextField
+                  className={classes.textField}
+                  fullWidth
+                  // value={dish.textboxValue}
+                  // onChange={handleTextboxChange(index)}
+                  placeholder="Ridwan Olalekan..."
+                  variant="outlined"
+                  size="small"
+                  InputProps={{
+                    style: {
+                      color: 'white',
+                      backgroundColor: '#393C49',
+                      fontFamily: 'Quicksand',
+                      fontSize: '17px',
+                      borderRadius: '10px',
+                    },
+                  }}
+                  sx={{
+                    paddingTop: '5px',
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&.Mui-focused fieldset': {
+                        border: '1px solid white',
+                        borderColor: 'white',
+                      },
+                      '& .MuiInputBase-input': {
+                        width: '100%',
+
+                      },
+                    },
+                  }}
+                />
+              </div>
+
+              <div className={classes.cardNumber}>
+                <Typography sx={{
+                  fontSize: {
+                    xs: '8px',
+                    sm: '10px',
+                    md: '13px',
+                    lg: '15px',
+                    xl: '24px',
+                  },
+                  fontFamily: 'Quicksand',
+                  fontWeight: '500',
+                  color: 'white',
+                }}>
+                  Card Number
+                </Typography>
+                <TextField
+                  className={classes.textField}
+                  fullWidth
+                  // value={dish.textboxValue}
+                  // onChange={handleTextboxChange(index)}
+                  placeholder="1234567890..."
+                  variant="outlined"
+                  size="small"
+                  InputProps={{
+                    style: {
+                      color: 'white',
+                      backgroundColor: '#393C49',
+                      fontFamily: 'Quicksand', fontSize: '17px',
+                      borderRadius: '10px',
+                    },
+                  }}
+                  sx={{
+                    paddingTop: '5px',
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&.Mui-focused fieldset': {
+                        border: '1px solid white',
+                        borderColor: 'white',
+                      },
+                      '& .MuiInputBase-input': {
+                        width: '100%',
+                        backgroundColor: '#393C49',
+                      },
+                    },
+                  }}
+                />
+              </div>
+
+              <div className={classes.expCvvWrapper}>
+                <div className={classes.expDate}>
+                  <Typography sx={{
+                    fontSize: {
+                      xs: '8px',
+                      sm: '10px',
+                      md: '13px',
+                      lg: '15px',
+                      xl: '24px',
+                    },
+                    fontFamily: 'Quicksand',
+                    fontWeight: '500',
+                    color: 'white',
+                  }}>
+                    Expiration Date
+                  </Typography>
+                  <TextField
+                    className={classes.textField}
+                    // fullWidth
+                    // value={dish.textboxValue}
+                    // onChange={handleTextboxChange(index)}
+                    type="date"
+                    placeholder="Ridwan Olalekan..."
+                    variant="outlined"
+                    size="small"
+                    
+                    InputProps={{
+                      style: {
+                        color: 'white',
+                        backgroundColor: '#393C49',
+                        fontFamily: 'Quicksand', fontSize: '17px',
+                        borderRadius: '10px',
+                      },
+                    }}
+                    sx={{
+                    width: '50',
+                      paddingTop: '5px',
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&.Mui-focused fieldset': {
+                          border: '1px solid white',
+                          borderColor: 'white',
+                        },
+                        '& .MuiInputBase-input': {
+                          width: '100%',
+
+                        },
+                      },
+                    }}
+                  />
+                </div>
+                <div className={classes.cvv}>
+                  <Typography sx={{
+                    fontSize: {
+                      xs: '8px',
+                      sm: '10px',
+                      md: '13px',
+                      lg: '15px',
+                      xl: '24px',
+                    },
+                    fontFamily: 'Quicksand',
+                    fontWeight: '500',
+                    color: 'white',
+                  }}>
+                    CVV
+                  </Typography>
+                  <TextField
+                    className={classes.textField}
+                    // fullWidth
+                    // value={dish.textboxValue}
+                    // onChange={handleTextboxChange(index)}
+                    type="password"
+                    placeholder="123..."
+                    variant="outlined"
+                    size="small"
+                    InputProps={{
+                      style: {
+                        color: 'white',
+                        backgroundColor: '#393C49',
+                        fontFamily: 'Quicksand',
+                        fontSize: '17px',
+                        borderRadius: '10px',
+                      },
+                    }}
+                    sx={{
+                      paddingTop: '5px',
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&.Mui-focused fieldset': {
+                          border: '1px solid white',
+                          borderColor: 'white',
+                        },
+                        '& .MuiInputBase-input': {
+                          width: '100%',
+                          backgroundColor: '#393C49',
+                        },
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className={classes.orderTypeTableWrapper}>
+                <div className={classes.orderType}>
+                  <Typography sx={{
+                    fontSize: {
+                      xs: '8px',
+                      sm: '10px',
+                      md: '13px',
+                      lg: '15px',
+                      xl: '24px',
+                    },
+                    fontFamily: 'Quicksand',
+                    fontWeight: '500',
+                    color: 'white',
+                    paddingBottom: '8px'
+                  }}>
+                    Order Type
+                  </Typography>
+                  <Button
+                    id="fade-button"
+                    aria-controls={open ? 'fade-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    className={classes.dineInButton}
+                  >
+                    <Typography sx={{ fontSize: '12px', color: 'white', fontFamily: 'Quicksand', display: 'flex', alignItems: 'center', gap: '3px', padding: '0px 5px' }}>
+                      <KeyboardArrowDownIcon className={classes.dineInIcon} />
+                      Dine in
+                    </Typography>
+                  </Button>
+                  <Menu
+                    id="fade-menu"
+                    MenuListProps={{
+                      'aria-labelledby': 'fade-button',
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={Fade}
+                    className={classes.dineInList}
+                    sx={{ width: '120px', paddingBottom: '0px' }}
+                  >
+                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose} className={classes.dineInItem}>My account</MenuItem>
+                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Logout</MenuItem>
+                  </Menu>
+                </div>
+
+                <div className={classes.tableNo}>
+                  <Typography sx={{
+                    fontSize: {
+                      xs: '8px',
+                      sm: '10px',
+                      md: '13px',
+                      lg: '15px',
+                      xl: '24px',
+                    },
+                    fontFamily: 'Quicksand',
+                    fontWeight: '500',
+                    color: 'white',
+                  }}>
+                    Table no.
+                  </Typography>
+                  <TextField
+                    className={classes.textField}
+                    // fullWidth
+                    // value={dish.textboxValue}
+                    // onChange={handleTextboxChange(index)}
+                    type="number"
+                    placeholder="Table no.."
+                    variant="outlined"
+                    size="small"
+                    InputProps={{
+                      style: {
+                        color: 'white',
+                        backgroundColor: '#393C49',
+                        fontFamily: 'Quicksand',
+                        fontSize: '17px',
+                        borderRadius: '10px',
+                      },
+                    }}
+                    sx={{
+                      paddingTop: '5px',
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&:hover fieldset': {
+                          borderColor: '#555a70',
+                        },
+                        '&.Mui-focused fieldset': {
+                          border: '1px solid white',
+                          borderColor: 'white',
+                        },
+                        '& .MuiInputBase-input': {
+                          width: '100%',
+                        },
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div></div>
+            </div>
+
           </div>
         </CardContent>
       </Card>

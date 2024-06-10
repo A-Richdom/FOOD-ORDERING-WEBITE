@@ -32,7 +32,7 @@ function createData(item, amount, quantity, price, textboxValue) {
 const dishes = [
     {
         imgSrc: 'DishImages/img1.png',
-        name: 'Salted Pasta Seasoning',
+        name: 'Salted Pesta Seasoningg',
         price: '$3.42',
         unitAvailable: '20 Bowls Available',
         quantity: '3',
@@ -40,7 +40,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img2.png',
-        name: 'Ice cream sandwich',
+        name: 'Ice creem sandwich',
         price: '$1.06',
         unitAvailable: '10 Bowls Available',
         quantity: '6',
@@ -64,7 +64,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img5.png',
-        name: 'Salted pasta with assorted meat',
+        name: 'Salted pasta with asorted meat',
         price: '$2.33',
         unitAvailable: '15 Bowls Available',
         quantity: '35',
@@ -80,7 +80,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img1.png',
-        name: 'Salted Pasta Seasoning',
+        name: 'Salted Pasta Seasooning',
         price: '$3.42',
         unitAvailable: '20 Bowls Available',
         quantity: '120',
@@ -104,7 +104,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img4.png',
-        name: 'Fresh Youghout',
+        name: 'Fresh Yooughout',
         price: '$3.33',
         unitAvailable: '20 Bowl Available',
         quantity: '3',
@@ -112,7 +112,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img5.png',
-        name: 'Salted pasta with assorted meat',
+        name: 'Salted pasta with assorted fish',
         price: '$2.33',
         unitAvailable: '20 Bowl Available',
         quantity: '10',
@@ -120,7 +120,7 @@ const dishes = [
     },
     {
         imgSrc: 'DishImages/img5.png',
-        name: 'Salted pasta with assorted meat',
+        name: 'Salted pastaa with assorted meat',
         price: '$2.33',
         unitAvailable: '15 Bowls Available',
         quantity: '11',
