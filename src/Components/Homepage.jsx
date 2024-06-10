@@ -529,6 +529,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
+        paddingTop: '20px',
         gap: '10px',
         '@media (max-width: 600px)': {
             fontSize: '12px',
