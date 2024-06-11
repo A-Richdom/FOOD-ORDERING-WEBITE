@@ -137,7 +137,20 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   confirmationPageChildren: {
+    flex: 1
+,    width: '100%',
+    '@media (max-width: 400px)': {
+      display: 'flex',
+    flexDirection: 'column',
     width: '100%',
+    // height: '100%'
+    }
+    // // height: '100vh',
+    //     overflowY: 'scroll',
+    //     // overflowX: 'hidden',
+    //     '&::-webkit-scrollbar': {
+    //         display: 'none',
+    //     },
   },
   navBar: {
     display: 'flex',
@@ -167,7 +180,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap !important',
     flexDirection: 'column',
     gap: '10px',
-    paddingTop: '25px',
+    paddingTop: '50px !important',
     '@media (max-width: 600px)': {
       fontSize: '12px',
       padding: '8px',
@@ -206,6 +219,12 @@ const useStyles = makeStyles((theme) => ({
   paymentPageChildren: {
     width: '100%',
     paddingToP: '20px !important',
+    height: '100%',
+        overflowY: 'scroll',
+        overflowX: 'hidden',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
   },
   paymentPageNav: {
     paddingToP: '50px !important',
@@ -214,7 +233,12 @@ const useStyles = makeStyles((theme) => ({
   paymentMethodBtns: {
     display: 'flex',
     gap: '10px',
-    paddingBottom: '5px'
+    paddingBottom: '5px',
+    width: '100%',
+    overflowX: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+  },
   },
   paymentMethodBtn: {
     border: '1px solid #393c49 !important',
@@ -269,14 +293,26 @@ const useStyles = makeStyles((theme) => ({
   },
   expCvvWrapper: {
     display: 'flex',
-    // flexWrap: 'wrap',
+    flexWrap: 'nowrap',
     gap: '10px',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
+    '@media (max-width: 600px)': {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    '@media (max-width: 400px)': {
+      display: 'flex',
+      flexWrap: 'wrap',
+    }
   },
   orderTypeTableWrapper: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '30px'
+    alignItems: 'center',
+    gap: '30px',
+    '@media (max-width: 400px)': {
+      gap: '15px',
+    }
   },
   orderType: {
     paddingToP: '10px',
@@ -311,30 +347,35 @@ const useStyles = makeStyles((theme) => ({
     '@media (max-width: 600px)': {
       '& .MuiOutlinedInput-root': {
         '& .MuiInputBase-input': {
-          fontSize: '14px',  // Smaller font size on small screens
-          padding: '6px',   // Adjust padding on small screens
+          fontSize: '14px',
+          padding: '6px',
         },
       },
       // Media query for medium screens
       '@media (max-width: 400px)': {
         '& .MuiOutlinedInput-root': {
           '& .MuiInputBase-input': {
-            fontSize: '15px',  // Medium font size on medium screens
-            padding: '7px',   // Adjust padding on medium screens
+            fontSize: '15px',
+            padding: '7px',
           },
         },
       },
-      // Media query for large screens
-      // '@media (min-width: 960px)': {
-      //   '& .MuiOutlinedInput-root': {
-      //     '& .MuiInputBase-input': {
-      //       fontSize: '17px',  // Larger font size on large screens
-      //       padding: '8px',   // Adjust padding on large screens
-      //     },
-      //   },
-      // },
     }
-  }
+  },
+  continuePaymentWrapper: {
+    display: 'flex',
+    gap: '15px',
+    paddingTop: '25px',
+    '@media (max-width: 600px)': {
+     display: 'flex',
+     gap: '20px',
+    },
+    '@media (max-width: 400px)': {
+    display: 'flex',
+    gap: '25px',
+    paddingBottom: '25px'
+    },
+  },
 
 
 }));
@@ -523,7 +564,10 @@ const PopOverPage = () => {
                 color: '#c9cdce',
                 fontFamily: 'Roboto',
                 paddingTop: '5px',
-                paddingBottom: '5px'
+                paddingBottom: '5px',
+                '@media (max-width: 400px)': {
+                  fontSize: '12px'
+                }
               }}>
                 3 payment method available
               </Typography>
@@ -603,6 +647,9 @@ const PopOverPage = () => {
                   fontFamily: 'Quicksand',
                   fontWeight: '500',
                   color: 'white',
+                  '@media (max-width: 400px)': {
+                    fontSize: '12px'
+                  }
                 }}>
                   Cardholder Name
                 </Typography>
@@ -638,7 +685,12 @@ const PopOverPage = () => {
                       },
                       '& .MuiInputBase-input': {
                         width: '100%',
-
+                      },
+                      '@media (max-width: 600px)': {
+                        width: '80%'
+                      },
+                      '@media (max-width: 400px)': {
+                        width: '70%'
                       },
                     },
                   }}
@@ -657,6 +709,9 @@ const PopOverPage = () => {
                   fontFamily: 'Quicksand',
                   fontWeight: '500',
                   color: 'white',
+                  '@media (max-width: 400px)': {
+                    fontSize: '12px'
+                  },
                 }}>
                   Card Number
                 </Typography>
@@ -666,6 +721,7 @@ const PopOverPage = () => {
                   // value={dish.textboxValue}
                   // onChange={handleTextboxChange(index)}
                   placeholder="1234567890..."
+                  autoComplete='off'
                   variant="outlined"
                   size="small"
                   InputProps={{
@@ -674,6 +730,9 @@ const PopOverPage = () => {
                       backgroundColor: '#393C49',
                       fontFamily: 'Quicksand', fontSize: '17px',
                       borderRadius: '10px',
+                    },
+                    inputProps: {
+                      autoComplete: 'new-password', // Use a different value
                     },
                   }}
                   sx={{
@@ -693,6 +752,12 @@ const PopOverPage = () => {
                         width: '100%',
                         backgroundColor: '#393C49',
                       },
+                      '@media (max-width: 600px)': {
+                        width: '80%'
+                      },
+                      '@media (max-width: 400px)': {
+                        width: '70%'
+                      },
                     },
                   }}
                 />
@@ -711,6 +776,9 @@ const PopOverPage = () => {
                     fontFamily: 'Quicksand',
                     fontWeight: '500',
                     color: 'white',
+                    '@media (max-width: 400px)': {
+                      fontSize: '12px'
+                    }
                   }}>
                     Expiration Date
                   </Typography>
@@ -723,7 +791,7 @@ const PopOverPage = () => {
                     placeholder="Ridwan Olalekan..."
                     variant="outlined"
                     size="small"
-                    
+
                     InputProps={{
                       style: {
                         color: 'white',
@@ -733,7 +801,7 @@ const PopOverPage = () => {
                       },
                     }}
                     sx={{
-                    width: '50',
+                      width: '95%',
                       paddingTop: '5px',
                       '& .MuiOutlinedInput-root': {
                         '& fieldset': {
@@ -748,8 +816,18 @@ const PopOverPage = () => {
                         },
                         '& .MuiInputBase-input': {
                           width: '100%',
-
                         },
+                      },
+                      '@media (max-width: 600px)': {
+                        width: '80%',
+                        fontSize: '8px',
+                        padding: '7px',
+                      },
+                      '@media (max-width: 400px)': {
+                        width: '100%',
+                        fontSize: '10px',
+                        // padding: '1px',
+                        padding: '2px',
                       },
                     }}
                   />
@@ -766,6 +844,9 @@ const PopOverPage = () => {
                     fontFamily: 'Quicksand',
                     fontWeight: '500',
                     color: 'white',
+                    '@media (max-width: 400px)': {
+                      fontSize: '12px'
+                    }
                   }}>
                     CVV
                   </Typography>
@@ -778,6 +859,7 @@ const PopOverPage = () => {
                     placeholder="123..."
                     variant="outlined"
                     size="small"
+                    autoComplete="off"
                     InputProps={{
                       style: {
                         color: 'white',
@@ -785,9 +867,14 @@ const PopOverPage = () => {
                         fontFamily: 'Quicksand',
                         fontSize: '17px',
                         borderRadius: '10px',
+                        autoComplete: 'none',
+                      },
+                      inputProps: {
+                        autoComplete: 'new-password', // Use a different value
                       },
                     }}
                     sx={{
+                      width: '95%',
                       paddingTop: '5px',
                       '& .MuiOutlinedInput-root': {
                         '& fieldset': {
@@ -804,6 +891,17 @@ const PopOverPage = () => {
                           width: '100%',
                           backgroundColor: '#393C49',
                         },
+                        '@media (max-width: 600px)': {
+                          width: '100%',
+                          fontSize: '8px',
+                          padding: '7px',
+                        },
+                        '@media (max-width: 400px)': {
+                          width: '90%',
+                          fontSize: '10px',
+                          paddingLeft: '1px',
+                          padding: '2px',
+                        },
                       },
                     }}
                   />
@@ -813,6 +911,7 @@ const PopOverPage = () => {
               <div className={classes.orderTypeTableWrapper}>
                 <div className={classes.orderType}>
                   <Typography sx={{
+                    height: '50%',
                     fontSize: {
                       xs: '8px',
                       sm: '10px',
@@ -823,7 +922,10 @@ const PopOverPage = () => {
                     fontFamily: 'Quicksand',
                     fontWeight: '500',
                     color: 'white',
-                    paddingBottom: '8px'
+                    paddingBottom: '8px',
+                    '@media (max-width: 400px)': {
+                      fontSize: '12px'
+                    }
                   }}>
                     Order Type
                   </Typography>
@@ -870,6 +972,9 @@ const PopOverPage = () => {
                     fontFamily: 'Quicksand',
                     fontWeight: '500',
                     color: 'white',
+                    '@media (max-width: 400px)': {
+                      fontSize: '12px'
+                    }
                   }}>
                     Table no.
                   </Typography>
@@ -913,7 +1018,61 @@ const PopOverPage = () => {
                 </div>
               </div>
 
-              <div></div>
+              <div className={classes.continuePaymentWrapper}>
+                <Button
+                  sx={{
+                    width: '50%',
+                    border: '1px solid #f97f7f',
+                    borderRadius: '8px',
+                    color: 'white',
+                    padding: '10px',
+                    textTransform: 'none',
+                    fontFamily: 'Quicksand',
+                    fontSize: '12px',
+                    '&:hover': {
+                      backgroundColor: '#f97f7f',
+                    },
+                    // fontWeight: '600',
+                    '@media (max-width: 600px)': {
+                      fontSize: '8px',
+                      padding: '7px',
+                    },
+                    '@media (max-width: 400px)': {
+                      width: '30%',
+                      fontSize: '10px',
+                      // padding: '1px',
+                      padding: '2px',
+                    },
+                  }}>
+                  Cancel
+                </Button>
+                <Button
+                  sx={{
+                    width: '50%',
+                    border: '1px solid #f97f7f',
+                    borderRadius: '8px',
+                    color: 'white',
+                    padding: '10px',
+                    textTransform: 'none',
+                    fontFamily: 'Quicksand',
+                    fontSize: '12px',
+                    '&:hover': {
+                      backgroundColor: '#f97f7f',
+                    },
+                    '@media (max-width: 600px)': {
+                      fontSize: '8px',
+                      padding: '7px',
+                    },
+                    '@media (max-width: 400px)': {
+                      width: '30%',
+                      fontSize: '10px',
+                      // padding: '1px',
+                      padding: '1px',
+                    },
+                  }}>
+                  Continue Payment
+                </Button>
+              </div>
             </div>
 
           </div>
