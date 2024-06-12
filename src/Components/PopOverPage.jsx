@@ -138,12 +138,12 @@ const useStyles = makeStyles((theme) => ({
   },
   confirmationPageChildren: {
     flex: 1
-,    width: '100%',
+    , width: '100%',
     '@media (max-width: 400px)': {
       display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    // height: '100%'
+      flexDirection: 'column',
+      width: '100%',
+      // height: '100%'
     }
     // // height: '100vh',
     //     overflowY: 'scroll',
@@ -220,11 +220,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     paddingToP: '20px !important',
     height: '100%',
-        overflowY: 'scroll',
-        overflowX: 'hidden',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   paymentPageNav: {
     paddingToP: '50px !important',
@@ -238,7 +238,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'scroll',
     '&::-webkit-scrollbar': {
       display: 'none',
-  },
+    },
   },
   paymentMethodBtn: {
     border: '1px solid #393c49 !important',
@@ -367,13 +367,13 @@ const useStyles = makeStyles((theme) => ({
     gap: '15px',
     paddingTop: '25px',
     '@media (max-width: 600px)': {
-     display: 'flex',
-     gap: '20px',
+      display: 'flex',
+      gap: '20px',
     },
     '@media (max-width: 400px)': {
-    display: 'flex',
-    gap: '25px',
-    paddingBottom: '25px'
+      display: 'flex',
+      gap: '25px',
+      paddingBottom: '25px'
     },
   },
 
