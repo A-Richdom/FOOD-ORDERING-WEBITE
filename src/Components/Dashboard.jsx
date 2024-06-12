@@ -17,6 +17,8 @@ import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlin
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         gap: '15px'
+    },
+    reportNav1: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    },
+    filterOrder: {
+        display: 'flex',
+        gap: '5px',
     },
 
     //Right Bar...//
@@ -209,7 +219,11 @@ const Dashboard = () => {
                             </Card>
                         </div>
 
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '100%', borderRadius: '10px', }}>
+                        <Card sx={{
+                            backgroundColor: '#1F1D2B', width: '100%', height: '85%', borderRadius: '10px', overflowY: 'scroll', '&::-webkit-scrollbar': {
+                                display: 'none',
+                            },
+                        }}>
                             <CardContent>
                                 <div className={classes.reportNav1}>
                                     <Typography sx={{
@@ -225,7 +239,40 @@ const Dashboard = () => {
                                         color: 'white',
                                     }}>Order Report
                                     </Typography>
-                                    
+                                    <Button
+                                        variant="outlined"
+                                        href="#outlined-buttons"
+                                        sx={{
+                                            minWidth: 'unset',
+                                            textTransform: 'none',
+                                            fontSize: '14px',
+                                            fontFamily: 'Quicksand',
+                                            border: '1px solid #393c49 !important',
+                                            borderRadius: '10px !important',
+                                            padding: '7px 12px !important',
+                                            color: '#abbbc2 !important',
+                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                            // padding: theme.spacing(1),
+                                            '&:hover': {
+                                                border: '1.4px solid #abbbc2 !important',
+                                                backgroundColor: 'inherit !important',
+                                                color: 'white !important',
+                                            },
+                                            '&:focus': {
+                                                color: 'white !important',
+                                                border: '1.4px solid #abbbc2 !important',
+                                            },
+                                        }}>
+                                        <span className={classes.filterOrder}>
+                                            <TuneOutlinedIcon />
+                                            Filter Order
+                                        </span>
+                                    </Button>
+
+                                </div>
+
+                                <div className={classes.reportNav2}>
+
                                 </div>
                             </CardContent>
 
@@ -237,8 +284,8 @@ const Dashboard = () => {
                 {/* RIGHT-BAR */}
                 <CardContent className={classes.rightBar}>
                     <div className={classes.rightBarChildren}>
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '55%', borderRadius: '10px' }}></Card>
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '45%', borderRadius: '10px', }}></Card>
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '60%', borderRadius: '10px' }}></Card>
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '40%', borderRadius: '10px',  }}></Card>
                     </div>
                 </CardContent>
             </Card>
