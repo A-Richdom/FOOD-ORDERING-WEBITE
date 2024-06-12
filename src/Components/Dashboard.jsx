@@ -13,6 +13,10 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 // Main-Bar...//
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,9 +65,27 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#393C49',
         border: '1px solid red',
     },
+    header: {
+        borderBottom: '1px solid #555a70 !important',
+        paddingBottom: '20px'
+    },
+    metricsContainer: {
+        display: 'flex',
+        gap: '25px',
+        justifyContent: 'space-between',
+        // alignItems: 'center',
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        borderRadius: '10px',
+    },
+    metricItem: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '15px'
+    },
 
-     //Right Bar...//
-     rightBar: {
+    //Right Bar...//
+    rightBar: {
         width: '30%',
         display: 'flex !important',
         flexDirection: 'column',
@@ -124,16 +146,99 @@ const Dashboard = () => {
                             </div>
                         </div>
 
+                        <div className={classes.metricsContainer}>
+                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                                <div className={classes.metricItem}>
+                                    <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#50d1aa', }}
+                                    >+32.39%</Typography>
+                                    <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#384c43', color: '#50d1aa', borderRadius: '20px', padding: '5px' }} />
+                                </div>
+                                <Typography sx={{
+                                    fontSize: {
+                                        xs: '14px',
+                                        sm: '16px',
+                                        md: '18px',
+                                        lg: '20px',
+                                        xl: '24px',
+                                    }, color: 'white', fontFamily: 'Quicksand', fontWeight: '600', paddingTop: '15px'
+                                }}>$10,243.00</Typography>
+
+                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Revenue</Typography>
+
+                            </Card>
+                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                                <div className={classes.metricItem}>
+                                    <BookmarkBorderOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#ffb572', borderRadius: '8px', padding: '10px' }} />
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ff7ca3', }}
+                                    >-12.01%</Typography>
+                                    <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#552e3c', color: '#ff7ca3', borderRadius: '20px', padding: '5px' }} />
+                                </div>
+                                <Typography sx={{
+                                    fontSize: {
+                                        xs: '14px',
+                                        sm: '16px',
+                                        md: '18px',
+                                        lg: '20px',
+                                        xl: '24px',
+                                    }, color: 'white', fontFamily: 'Quicksand', fontWeight: '600', paddingTop: '15px'
+                                }}>$23,113.60</Typography>
+
+                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Dish Ordered</Typography>
+
+                            </Card>
+                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                                <div className={classes.metricItem}>
+                                    <PeopleAltOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#65b0f6', borderRadius: '8px', padding: '10px' }} />
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ffb572', }}
+                                    >+2.72%</Typography>
+                                    <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#686767', color: '#ffb572', borderRadius: '20px', padding: '5px' }} />
+                                </div>
+                                <Typography sx={{
+                                    fontSize: {
+                                        xs: '14px',
+                                        sm: '16px',
+                                        md: '18px',
+                                        lg: '20px',
+                                        xl: '24px',
+                                    }, color: 'white', fontFamily: 'Quicksand', fontWeight: '600', paddingTop: '15px'
+                                }}>$1,234</Typography>
+
+                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Customer</Typography>
+
+                            </Card>
+                        </div>
+
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '100%', borderRadius: '10px', }}>
+                            <CardContent>
+                                <div className={classes.reportNav1}>
+                                    <Typography sx={{
+                                        fontSize: {
+                                            xs: '12px',
+                                            sm: '14px',
+                                            md: '17px',
+                                            lg: '20px',
+                                            xl: '24px',
+                                        },
+                                        fontFamily: 'Roboto',
+                                        fontWeight: '400',
+                                        color: 'white',
+                                    }}>Order Report
+                                    </Typography>
+                                    
+                                </div>
+                            </CardContent>
+
+                        </Card>
+
                     </div>
                 </CardContent>
 
                 {/* RIGHT-BAR */}
                 <CardContent className={classes.rightBar}>
                     <div className={classes.rightBarChildren}>
-                        <Card sx={{ backgroundColor:  '#1F1D2B', width: '100%', height: '60%', borderRadius: '10px'}}>
-fgggg
-                        </Card>
-                        <Card sx={{ backgroundColor:  '#1F1D2B', width: '100%', height: '40%', borderRadius: '10px', }}>sdsdsd</Card>
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '55%', borderRadius: '10px' }}></Card>
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '45%', borderRadius: '10px', }}></Card>
                     </div>
                 </CardContent>
             </Card>
