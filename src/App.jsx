@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider  } from '@mui/material';
 import PopOverPage from './Components/PopOverPage';
 import Dashboard from './Components/Dashboard';
 import DishReport from './Components/DishReport';
+import Report from './Components/Report';
 
 const router = createBrowserRouter([
 
@@ -16,6 +17,8 @@ const router = createBrowserRouter([
   { path: 'dashboard', element: <Dashboard /> },
 
   { path: 'dishReport', element: <DishReport /> },
+
+  { path: 'report', element: <Report /> },
 
 ]);
 

@@ -8,7 +8,6 @@ import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
-
 const dishes = [
   {
     imgSrc: 'DishImages/img1.png',
@@ -107,9 +106,6 @@ const dishes = [
     totalPrice: '$22.33',
   },
 ];
-
-
-
 
 const useStyles = makeStyles((theme) => ({
 
