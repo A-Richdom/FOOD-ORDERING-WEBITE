@@ -7,6 +7,8 @@ import PopOverPage from './Components/PopOverPage';
 import Dashboard from './Components/Dashboard';
 import DishReport from './Components/DishReport';
 import Report from './Components/Report';
+import Settings from './Components/Settings';
+
 
 const router = createBrowserRouter([
 
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
   { path: 'dishReport', element: <DishReport /> },
 
   { path: 'report', element: <Report /> },
+
+  { path: 'settings', element: <Settings/> },
 
 ]);
 
