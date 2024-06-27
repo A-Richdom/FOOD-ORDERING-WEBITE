@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Card, CardContent, Box, styled, Button, Menu, MenuItem, Fade, Typography,
     TableContainer,
     Table,
+    TableBody,
+    TableRow,
+    TableCell,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -27,7 +30,7 @@ import zIndex from '@mui/material/styles/zIndex';
 const dishes = [
     {
         customer: 'Harry Richdom01',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img1.png',
         name: 'Salted Pesta Seasoningg',
         price: '$3.42',
         unitAvailable: '20 Bowls Available',
@@ -36,7 +39,7 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom02',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img2.png',
         name: 'Ice creem sandwich',
         price: '$1.06',
         unitAvailable: '10 Bowls Available',
@@ -45,7 +48,7 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom03',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img3.png',
         name: 'Spicy Instant Noodles',
         price: '$1.33',
         unitAvailable: '5 Bowls Available',
@@ -54,7 +57,7 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom04',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img4.png',
         name: 'Fresh Youghout',
         price: '$3.33',
         unitAvailable: '4 Bowls Available',
@@ -63,7 +66,7 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom05',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img4.png',
         name: 'Salted pasta with asorted meat',
         price: '$2.33',
         unitAvailable: '15 Bowls Available',
@@ -72,7 +75,7 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom06',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img5.png',
         name: 'Instant Noodles with egg',
         price: '$10.33',
         unitAvailable: '10 Bowls Available',
@@ -81,57 +84,12 @@ const dishes = [
     },
     {
         customer: 'Harry Richdom07',
-        imgSrc: 'CustomerImages/customer.jpg',
+        imgSrc: 'DishImages/img6.png',
         name: 'Salted Pasta Seasooning',
         price: '$3.42',
         unitAvailable: '20 Bowls Available',
         quantity: '120',
         totalPrice: '$490.45',
-    },
-    {
-        customer: 'Harry Richdom08',
-        imgSrc: 'CustomerImages/customer.jpg',
-        name: 'Ice cream sandwich',
-        price: '$1.06',
-        unitAvailable: '3 Bowls Available',
-        quantity: '3',
-        totalPrice: '$23.11',
-    },
-    {
-        customer: 'Harry Richdom09',
-        imgSrc: 'CustomerImages/customer.jpg',
-        name: 'Spicy Instant Noodles',
-        price: '$1.33',
-        unitAvailable: '10 Bowls Available',
-        quantity: '25',
-        totalPrice: '$24.33',
-    },
-    {
-        customer: 'Harry Richdom10',
-        imgSrc: 'CustomerImages/customer.jpg',
-        name: 'Fresh Yooughout',
-        price: '$3.33',
-        unitAvailable: '20 Bowl Available',
-        quantity: '3',
-        totalPrice: '$10.11',
-    },
-    {
-        customer: 'Harry Richdom11',
-        imgSrc: 'CustomerImages/customer.jpg',
-        name: 'Salted pasta with assorted fish',
-        price: '$2.33',
-        unitAvailable: '20 Bowl Available',
-        quantity: '10',
-        totalPrice: '$4.76',
-    },
-    {
-        customer: 'Harry Richdom12',
-        imgSrc: 'CustomerImages/customer.jpg',
-        name: 'Salted pastaa with assorted meat',
-        price: '$2.33',
-        unitAvailable: '15 Bowls Available',
-        quantity: '11',
-        totalPrice: '$22.33',
     },
 ];
 
@@ -234,15 +192,53 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '15px',
         borderBottom: '1px solid #555a70 !important',
     },
+    dishImgOrdering: {
+        width: '40px',
+        height: '40px',
+    },
     todayBtn: {
         display: 'flex',
         alignItems: 'center',
-    }
+    },
+    tableContainer: {
+        height: '100%',
+        overflowY: 'scroll',
+        border: 'none !important',
+        // borderBottom: '1px solid #555a70',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
+
+    table: {
+        width: '100% !important',
+        borderCollapse: 'collapse !imporant'
+    },
+    tableBody: {
+        border: 'none !important'
+    },
+    tableBodyRow: {
+        borderCollapse: 'collapse'
+    },
+    dishImg: {
+        width: '100px !important',
+        height: '100px !important',
+        '@media (max-width: 600px)': {
+            width: '80px',
+            height: '80px'
+        },
+        '@media (max-width: 400px)': {
+            width: '60px',
+            height: '60px'
+        }
+    },
 
 }));
 
 const Dashboard = () => {
     const classes = useStyles();
+    const [expandedDishName, setExpandedDishName] = useState(null);
+
 
     return (
         <div className={classes.divContainer}>
@@ -410,7 +406,7 @@ const Dashboard = () => {
                 <CardContent className={classes.rightBar}>
                     <div className={classes.rightBarChildren}>
                         <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '60%', borderRadius: '10px', padding: '10px' }}>
-                            <CardContent sx={{ padding: '10px'}}>
+                            <CardContent sx={{ padding: '10px' }}>
                                 <div className={classes.mostOrderNav}>
                                     <Typography sx={{
                                         fontSize: {
@@ -455,19 +451,97 @@ const Dashboard = () => {
                                     </Button>
 
                                 </div>
-                            
-                                <TableContainer>
-                                    <Table>
-                                        
+
+                                <TableContainer className={classes.tableContainer}>
+                                    <Table className={classes.table}>
+                                        <TableBody className={classes.tableBody}>
+                                            {
+                                                dishes.map((dish, index) => (
+                                                    <React.Fragment key={dish.name}>
+                                                        <TableRow className={classes.tableBodyRow}>
+                                                            <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
+                                                                <img src={dish.imgSrc} alt={dish.name}
+                                                                    className={classes.dishImgOrdering}
+                                                                />
+                                                                <div>
+                                                                    <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText}
+
+                                                                        sx={{
+                                                                            fontFamily: 'Quicksand', fontSize: '18px',
+                                                                            color: 'white'
+                                                                        }}
+
+                                                                        onClick={() => handleDishName(index)}
+                                                                    >
+                                                                        {dish.name}
+                                                                    </Typography>
+
+                                                                    <span>
+                                                                        <Typography className={classes.tableBodyPriceCell} sx={{
+                                                                            fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce',
+                                                                        }}>{dish.price}
+                                                                        </Typography>
+                                                                    </span>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRow>
+                                                    </React.Fragment>
+                                                ))};
+                                        </TableBody>
                                     </Table>
                                 </TableContainer>
 
                             </CardContent>
-
-
-
                         </Card>
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '40%', borderRadius: '10px', }}></Card>
+
+                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '40%', borderRadius: '10px', }}>
+                            <CardContent sx={{ padding: '10px' }}>
+                            <div className={classes.mostOrderNav}>
+                                    <Typography sx={{
+                                        fontSize: {
+                                            xs: '12px',
+                                            sm: '14px',
+                                            md: '17px',
+                                            lg: '17px',
+                                            xl: '24px',
+                                        },
+                                        fontFamily: 'Roboto',
+                                        fontWeight: '400',
+                                        color: 'white',
+                                    }}>Most Ordered
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        href="#outlined-buttons"
+                                        sx={{
+                                            minWidth: 'unset',
+                                            textTransform: 'none',
+                                            fontSize: '12px',
+                                            fontFamily: 'Quicksand',
+                                            border: '1px solid #393c49 !important',
+                                            borderRadius: '10px !important',
+                                            padding: '7px 12px !important',
+                                            color: '#abbbc2 !important',
+                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                            '&:hover': {
+                                                border: '1.4px solid #abbbc2 !important',
+                                                backgroundColor: 'inherit !important',
+                                                color: 'white !important',
+                                            },
+                                            '&:focus': {
+                                                color: 'white !important',
+                                                border: '1.4px solid #abbbc2 !important',
+                                            },
+                                        }}>
+                                        <span className={classes.todayBtn}>
+                                            <ExpandMoreIcon />
+                                            Today
+                                        </span>
+                                    </Button>
+
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </CardContent>
             </Card>
