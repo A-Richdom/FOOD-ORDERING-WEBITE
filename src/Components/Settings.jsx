@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@mui/styles'
-import { Card, CardContent, Typography } from '@mui/material';
+import { Button, Card, CardContent, Typography } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RamenDiningOutlinedIcon from '@mui/icons-material/RamenDiningOutlined';
@@ -9,7 +9,111 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
+import CircleIcon from '@mui/icons-material/Circle';
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 
+const dishes = [
+    {
+        imgSrc: 'DishImages/img1.png',
+        name: 'Salted Pesta Seasoningg',
+        price: '$3.42',
+        unitAvailable: '20 Bowls',
+        quantity: '3',
+        totalPrice: '$10.26',
+    },
+    {
+        imgSrc: 'DishImages/img2.png',
+        name: 'Ice creem sandwich',
+        price: '$1.06',
+        unitAvailable: '10 Bowls',
+        quantity: '6',
+        totalPrice: '$20.56',
+    },
+    {
+        imgSrc: 'DishImages/img3.png',
+        name: 'Spicy Instant Noodles',
+        price: '$1.33',
+        unitAvailable: '5 Bowls',
+        quantity: '9',
+        totalPrice: '$105.50',
+    },
+    {
+        imgSrc: 'DishImages/img4.png',
+        name: 'Fresh Youghout',
+        price: '$3.33',
+        unitAvailable: '4 Bowls',
+        quantity: '2',
+        totalPrice: '$20.89',
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pasta with asorted meat',
+        price: '$2.33',
+        unitAvailable: '15 Bowls',
+        quantity: '35',
+        totalPrice: '$70.00',
+    },
+    {
+        imgSrc: 'DishImages/img6.png',
+        name: 'Instant Noodles with egg',
+        price: '$10.33',
+        unitAvailable: '10 Bowls',
+        quantity: '1',
+        totalPrice: '$10.56',
+    },
+    {
+        imgSrc: 'DishImages/img1.png',
+        name: 'Salted Pasta Seasooning',
+        price: '$3.42',
+        unitAvailable: '20 Bowls',
+        quantity: '120',
+        totalPrice: '$490.45',
+    },
+    {
+        imgSrc: 'DishImages/img2.png',
+        name: 'Ice cream sandwich',
+        price: '$1.06',
+        unitAvailable: '3 Bowls',
+        quantity: '3',
+        totalPrice: '$23.11',
+    },
+    {
+        imgSrc: 'DishImages/img3.png',
+        name: 'Spicy Instant Noodles',
+        price: '$1.33',
+        unitAvailable: '10 Bowls',
+        quantity: '25',
+        totalPrice: '$24.33',
+    },
+    {
+        imgSrc: 'DishImages/img4.png',
+        name: 'Fresh Yooughout',
+        price: '$3.33',
+        unitAvailable: '20 Bowl',
+        quantity: '3',
+        totalPrice: '$10.11',
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pasta with assorted fish',
+        price: '$2.33',
+        unitAvailable: '20 Bowl',
+        quantity: '10',
+        totalPrice: '$4.76',
+    },
+    {
+        imgSrc: 'DishImages/img5.png',
+        name: 'Salted pastaa with assorted meat',
+        price: '$2.33',
+        unitAvailable: '15 Bowls',
+        quantity: '11',
+        totalPrice: '$22.33',
+    },
+];
 
 const useStyles = makeStyles((theme) => ({
     cardWrapper: {
@@ -56,16 +160,151 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#393C49',
     },
     header: {
-        // borderBottom: '1px solid #555a70 !important',
-        paddingBottom: '20px'
+        paddingBottom: '15px'
     },
     mainBarBodies: {
         display: 'flex !important',
-        gap: '10px',
+        gap: '20px',
     },
-    mainBarBody1: {
 
+    body1Content: {
+        width: '100%',
+        display: 'flex',
+        gap: '6px',
+        padding: '20px',
+        paddingTop: '20px',
+        paddingBottom: '20px',
+        boxSizing: 'border-box',
+        position: 'relative',
+        '&:hover': {
+            backgroundColor: '#54363B',
+            '& svg': {
+                color: '#EA6969',
+            },
+            '& p:first-of-type': {
+                color: '#EA6969',
+            },
+            '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: '50%',
+                right: '0',
+                transform: 'translateY(-50%)',
+                width: '4px',
+                height: '45%',
+                backgroundColor: '#EA6969'
+            }
+        }
     },
+    nav1: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingTop: '10px',
+        top: 0,
+        zIndex: 1,
+    },
+    manageCategory: {
+        display: 'flex',
+        gap: '5px',
+        color: 'white'
+    },
+    nav2Children: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        listStyle: 'none',
+        padding: 12,
+        paddingBottom: '20px',
+        borderBottom: '1px solid #555a70 !important',
+        '& li': {
+            marginRight: theme.spacing(6),
+            '& a': {
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: 'Quicksand',
+                '&:hover': {
+                    color: '#EA6969',
+                },
+            },
+        },
+    },
+    navItem: {
+        position: 'relative',
+        display: 'inline-block',
+        textDecoration: 'none',
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            height: '2px',
+            marginBottom: '-5px',
+            backgroundColor: '#EA6969 !important',
+            transform: 'scaleX(0)',
+            transition: 'transform 0.3s ease',
+        },
+        '&:hover::after': {
+            transform: 'scaleX(1)',
+        },
+    },
+    navLink: {
+        '&:hover': {
+            color: '#EA6969',
+        },
+    },
+    dishesWrapper: {
+        display: 'flex !important',
+        flexWrap: 'wrap',
+        gap: '15px',
+        textAlign: 'center',
+        justifyContent: 'space-between',
+        height: '60%',
+        '@media (max-width: 400px)': {
+            height: '15%'
+        },
+        overflowY: 'scroll !important',
+        // borderBottom: '1px solid #555a70',
+        '&::-webkit-scrollbar': {
+            display: 'none',
+        },
+    },
+    dishCard: {
+        width: '20%',
+        border: '1px solid #555a70',
+        '@media (max-width: 600px)': {
+            width: '30%'
+        },
+        '@media (max-width: 400px)': {
+            width: '60%'
+        },
+        backgroundColor: '#1F1D2B !important',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+        borderRadius: '20px !important',
+        cursor: 'pointer',
+    },
+    dishImg: {
+        width: '100px !important',
+        height: '100px !important',
+        '@media (max-width: 600px)': {
+            width: '80px',
+            height: '80px'
+        },
+        '@media (max-width: 400px)': {
+            width: '60px',
+            height: '60px'
+        }
+    },
+    priceQuantity: {
+        display: 'flex !important',
+        gap: '10px'
+    },
+
 }));
 
 const Settings = () => {
@@ -109,8 +348,225 @@ const Settings = () => {
                         </div>
 
                         <div className={classes.mainBarBodies}>
-                            <CardContent sx={{ width: '20%', height: '100vh', backgroundColor: '#1F1D2B', }} className={classes.mainBarBody1}></CardContent>
-                            <CardContent sx={{ width: '70%', height: '100vh', backgroundColor: '#1F1D2B', }} className={classes.mainBarBody2}></CardContent>
+                            <CardContent sx={{ width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0' }}>
+                                <div className={classes.body1Content}>
+                                    <FavoriteBorderIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> Appearance </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Dark and Light mode, Font size</Typography>
+                                    </div>
+                                </div>
+                                <div className={classes.body1Content}>
+                                    <StorefrontIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> Your Restaurant </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Dark and Light mode, Font size</Typography>
+                                    </div>
+                                </div>
+                                <div className={classes.body1Content}>
+                                    <RamenDiningOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> Products Management </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Mange your products, pricing etc</Typography>
+                                    </div>
+                                </div>
+                                <div className={classes.body1Content}>
+                                    <NotificationsNoneOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> Notifications </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Customize your notifications</Typography>
+                                    </div>
+                                </div>
+                                <div className={classes.body1Content}>
+                                    <LockOpenOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> Security </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Configure Password, PIN, etc</Typography>
+                                    </div>
+                                </div>
+                                <div className={classes.body1Content}>
+                                    <InfoOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
+                                    <div>
+                                        <Typography sx={{
+                                            fontSize: {
+                                                xs: '12px',
+                                                sm: '14px',
+                                                md: '17px',
+                                                lg: '14px',
+                                                xl: '24px',
+                                            },
+                                            fontFamily: 'Quicksand',
+                                            fontWeight: '500',
+                                            color: 'white',
+                                        }}> About Us </Typography>
+                                        <Typography sx={{
+                                            fontSize: '11px',
+                                            fontFamily: 'Quicksand',
+                                            color: '#c9cdce',
+                                        }}>Find out more about us</Typography>
+                                    </div>
+                                </div>
+                            </CardContent>
+
+                            <CardContent sx={{ width: '80%', height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
+                                <div className={classes.nav1}>
+                                    <Typography sx={{
+                                        fontSize: {
+                                            xs: '14px',
+                                            sm: '16px',
+                                            md: '18px',
+                                            lg: '25px',
+                                            xl: '24px',
+                                        },
+                                        letterSpacing: '.1rem',
+                                        color: 'white',
+                                    }}>Products Management
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        href="#outlined-buttons"
+                                        sx={{
+                                            minWidth: 'unset',
+                                            textTransform: 'none',
+                                            fontSize: '14px',
+                                            fontFamily: 'Quicksand',
+                                            border: '1px solid #393c49 !important',
+                                            borderRadius: '10px !important',
+                                            padding: '7px 12px !important',
+                                            color: '#abbbc2 !important',
+                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                            '&:hover': {
+                                                border: '1.4px solid #abbbc2 !important',
+                                                backgroundColor: 'inherit !important',
+                                                color: 'white !important',
+                                            },
+                                            '&:focus': {
+                                                color: 'white !important',
+                                                border: '1.4px solid #abbbc2 !important',
+                                            },
+                                        }}>
+                                        <span className={classes.manageCategory}>
+                                            <TuneOutlinedIcon />
+                                            Manage Categories
+                                        </span>
+                                    </Button>
+
+                                </div>
+
+                                <div className={classes.nav2Wrapper}>
+                                    <ul className={classes.nav2Children}>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Hot Dishes</a></li>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Cold Dishes</a></li>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Soup</a></li>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Grill</a></li>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Appetizer</a></li>
+                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
+                                    </ul>
+                                </div>
+
+                                {/* Choose Dishes Menu */}
+                                <div className={classes.dishesWrapper}>
+                                    {
+                                        dishes.map((dish, index) => (
+                                            <Card key={index} className={classes.dishCard}>
+                                                <img src={dish.imgSrc} alt={dish.name}
+                                                    className={classes.dishImg}
+                                                />
+                                                <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                                    {dish.name}
+                                                </Typography>
+                                                <span className={classes.priceQuantity}>
+                                                    <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
+                                                        {dish.price}
+                                                    </Typography>
+                                                    <span><CircleIcon sx={{ color: 'white', fontSize: '7px'}}/></span>
+                                                    <Typography className={classes.dishQuantity} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                        {dish.unitAvailable}
+                                                    </Typography>
+                                                </span>
+                                                <span><DriveFileRenameOutlineOutlinedIcon />Edit dish</span>
+                                                
+                                            </Card>
+                                        ))
+                                    }
+                                </div>
+
+                            </CardContent>
                         </div>
 
                     </div>
