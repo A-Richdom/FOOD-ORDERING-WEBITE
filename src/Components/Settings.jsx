@@ -15,6 +15,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 const dishes = [
     {
@@ -256,9 +257,9 @@ const useStyles = makeStyles((theme) => ({
     dishesWrapper: {
         display: 'flex !important',
         flexWrap: 'wrap',
-        gap: '15px',
+        gap: '20px',
         textAlign: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         height: '60%',
         '@media (max-width: 400px)': {
             height: '15%'
@@ -268,6 +269,25 @@ const useStyles = makeStyles((theme) => ({
         '&::-webkit-scrollbar': {
             display: 'none',
         },
+    },
+    addNewDish: {
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        width: '20%',
+        border: '1px dashed #EA6969',
+        '@media (max-width: 600px)': {
+            width: '30%'
+        },
+        '@media (max-width: 400px)': {
+            width: '60%'
+        },
+        backgroundColor: '#1F1D2B !important',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+        borderRadius: '20px !important',
     },
     dishCard: {
         width: '20%',
@@ -304,7 +324,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex !important',
         gap: '10px'
     },
-
+    dishCardFooter: {
+    },
 }));
 
 const Settings = () => {
@@ -541,6 +562,16 @@ const Settings = () => {
 
                                 {/* Choose Dishes Menu */}
                                 <div className={classes.dishesWrapper}>
+
+                                    {/* ADD NEW DISH */}
+                                    <Card className={classes.addNewDish}>
+                                        <div className={`${`rotating-dotted-line`}`}></div>
+
+                                        <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontWeight: '600', color: '#EA6969', cursor: 'pointer', }}>Add new dish</Typography>
+                                    </Card>
+
+                                    {/* DISHES-ADDED */}
                                     {
                                         dishes.map((dish, index) => (
                                             <Card key={index} className={classes.dishCard}>
@@ -554,13 +585,15 @@ const Settings = () => {
                                                     <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
                                                         {dish.price}
                                                     </Typography>
-                                                    <span><CircleIcon sx={{ color: 'white', fontSize: '7px'}}/></span>
+                                                    <span><CircleIcon sx={{ color: 'white', fontSize: '7px' }} /></span>
                                                     <Typography className={classes.dishQuantity} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
                                                         {dish.unitAvailable}
                                                     </Typography>
                                                 </span>
-                                                <span><DriveFileRenameOutlineOutlinedIcon />Edit dish</span>
-                                                
+                                                <span className={classes.dishCardFooter}>
+                                                    <DriveFileRenameOutlineOutlinedIcon /> <Typography sx={{ fontFamily: 'Quicksand', fontSize: '20', fontWeight: '500', }}>Edit dish</Typography>
+                                                </span>
+
                                             </Card>
                                         ))
                                     }

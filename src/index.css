@@ -18,5 +18,28 @@
 header {
     display: none !important;
 }
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes colorChange {
+    0%, 100% { border-color: #555a70; }
+    25% { border-color: #FF5733; }
+    50% { border-color: #33FF57; }
+    75% { border-color: #3357FF; }
+  }
+  
+  .rotating-dotted-line {
+    border: 2px dotted #555a70;
+    animation: rotate 2s linear infinite, colorChange 1s linear infinite;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
 
 
