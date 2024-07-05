@@ -331,6 +331,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    btnsWrapper: {
+        display: 'flex',
+        gap: '10px',
+        paddingTop: '30px'
+    }
 }));
 
 const Settings = () => {
@@ -623,7 +628,37 @@ const Settings = () => {
                                     }
                                 </div>
 
-                                <div></div>
+                                <div className={classes.btnsWrapper}>
+                                    <Button variant="outlined" sx={{
+                                        textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '30px', paddingRight: '30px', border: '1px solid #EA6969',
+                                        '&:hover': {
+                                            border: 'none',
+                                            backgroundColor: '#EA6969',
+                                            '& .MuiSvgIcon-root': {
+                                                color: 'white',
+                                            },
+                                            '& .MuiTypography-root': {
+                                                color: 'white',
+                                            },
+                                        },
+                                    }}>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}> Cancel</Typography>
+                                    </Button>
+                                    <Button variant="outlined" sx={{
+                                        textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '20px', paddingRight: '20px', border: '1px solid #EA6969',
+                                        '&:hover': {
+                                            border: 'none',
+                                            backgroundColor: '#EA6969',
+                                            '& .MuiSvgIcon-root': {
+                                                color: 'white',
+                                            },
+                                            '& .MuiTypography-root': {
+                                                color: 'white',
+                                            },
+                                        },
+                                    }}>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}> Save Change</Typography>
+                                    </Button></div>
                             </CardContent>
                         </div>
 
