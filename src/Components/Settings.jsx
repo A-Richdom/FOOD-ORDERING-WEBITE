@@ -322,9 +322,14 @@ const useStyles = makeStyles((theme) => ({
     },
     priceQuantity: {
         display: 'flex !important',
+        alignItems: 'center',
+        justifyContent: 'center',
         gap: '10px'
     },
     dishCardFooter: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
 }));
 
@@ -505,6 +510,7 @@ const Settings = () => {
                             </CardContent>
 
                             <CardContent sx={{ width: '80%', height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
+
                                 <div className={classes.nav1}>
                                     <Typography sx={{
                                         fontSize: {
@@ -575,30 +581,49 @@ const Settings = () => {
                                     {
                                         dishes.map((dish, index) => (
                                             <Card key={index} className={classes.dishCard}>
-                                                <img src={dish.imgSrc} alt={dish.name}
-                                                    className={classes.dishImg}
-                                                />
-                                                <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
-                                                    {dish.name}
-                                                </Typography>
-                                                <span className={classes.priceQuantity}>
-                                                    <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
-                                                        {dish.price}
+                                                <div>
+                                                    <img src={dish.imgSrc} alt={dish.name}
+                                                        className={classes.dishImg}
+                                                    />
+                                                    <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                                        {dish.name}
                                                     </Typography>
-                                                    <span><CircleIcon sx={{ color: 'white', fontSize: '7px' }} /></span>
-                                                    <Typography className={classes.dishQuantity} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
-                                                        {dish.unitAvailable}
-                                                    </Typography>
-                                                </span>
-                                                <span className={classes.dishCardFooter}>
-                                                    <DriveFileRenameOutlineOutlinedIcon /> <Typography sx={{ fontFamily: 'Quicksand', fontSize: '20', fontWeight: '500', }}>Edit dish</Typography>
-                                                </span>
+                                                    <span className={classes.priceQuantity}>
+                                                        <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
+                                                            {dish.price}
+                                                        </Typography>
+                                                        <span><CircleIcon sx={{ color: 'white', fontSize: '7px' }} /></span>
+                                                        <Typography className={classes.dishQuantity} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                            {dish.unitAvailable}
+                                                        </Typography>
+                                                    </span>
+                                                </div>
+                                                <div className={classes.dishCardFooter}>
+
+                                                    <Button variant="outlined" sx={{
+                                                        textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
+                                                        '&:hover': {
+                                                            border: 'none',
+                                                            backgroundColor: '#54363B',
+                                                            '& .MuiSvgIcon-root': {
+                                                                color: 'white',
+                                                            },
+                                                            '& .MuiTypography-root': {
+                                                                color: 'white',
+                                                            },
+                                                        },
+                                                    }}>
+                                                        <DriveFileRenameOutlineOutlinedIcon sx={{ color: 'white', fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
+                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>Edit dish</Typography>
+                                                    </Button>
+                                                </div>
 
                                             </Card>
                                         ))
                                     }
                                 </div>
 
+                                <div></div>
                             </CardContent>
                         </div>
 
