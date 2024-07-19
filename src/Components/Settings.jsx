@@ -336,6 +336,7 @@ const useStyles = makeStyles((theme) => ({
         gap: '10px',
         paddingTop: '30px'
     }
+    
 }));
 
 const Settings = () => {
