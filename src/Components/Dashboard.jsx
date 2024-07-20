@@ -26,6 +26,7 @@ import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DishReport from './DishReport';
 import zIndex from '@mui/material/styles/zIndex';
+import { Link } from 'react-router-dom';
 
 const dishes = [
     {
@@ -248,12 +249,12 @@ const Dashboard = () => {
                 <CardContent className={classes.sideBar}>
                     <div className={classes.sideBarIcons}>
                         <StorefrontIcon className={classes.icon} />
-                        <HomeOutlinedIcon className={classes.icon} />
+                        <Link to="/"><HomeOutlinedIcon className={classes.icon} /></Link>
                         <RamenDiningOutlinedIcon className={classes.icon} />
-                        <DashboardCustomizeOutlinedIcon className={classes.icon} />
+                        <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
                         <EmailOutlinedIcon className={classes.icon} />
                         <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <SettingsOutlinedIcon className={classes.icon} />
+                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>         
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
                 </CardContent>

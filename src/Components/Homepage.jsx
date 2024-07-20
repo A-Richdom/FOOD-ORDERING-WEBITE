@@ -20,6 +20,7 @@ import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import zIndex from '@mui/material/styles/zIndex';
 import DishesOrdering from './DishesOrdering';
+import { Link } from 'react-router-dom';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -571,15 +572,15 @@ const Homepage = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+    // const handleOpenNavMenu = (event) => {
+    //     setAnchorElNav(event.currentTarget);
+    // };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+    // const handleCloseNavMenu = () => {
+    //     setAnchorElNav(null);
+    // };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
@@ -603,16 +604,16 @@ const Homepage = () => {
                 <CardContent className={classes.sideBar}>
                     <div className={classes.sideBarIcons}>
                         <StorefrontIcon className={classes.icon} />
-                        <HomeOutlinedIcon className={classes.icon} />
+                        <Link to="/"><HomeOutlinedIcon className={classes.icon} /></Link>
                         <RamenDiningOutlinedIcon className={classes.icon} />
-                        <DashboardCustomizeOutlinedIcon className={classes.icon} />
+                        <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
                         <EmailOutlinedIcon className={classes.icon} />
                         <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <SettingsOutlinedIcon className={classes.icon} />
+                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>         
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
                 </CardContent>
-
+                
                 {/* MAIN BAR */}
                 <CardContent className={classes.mainBar}>
                     <div className={classes.mainBarChildren}>
