@@ -337,7 +337,7 @@ const useStyles = makeStyles((theme) => ({
         gap: '10px',
         paddingTop: '30px'
     }
-    
+
 }));
 
 const Settings = () => {
@@ -356,7 +356,7 @@ const Settings = () => {
                         <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
                         <EmailOutlinedIcon className={classes.icon} />
                         <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>         
+                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
                 </CardContent>
@@ -620,8 +620,10 @@ const Settings = () => {
                                                             },
                                                         },
                                                     }}>
-                                                        <DriveFileRenameOutlineOutlinedIcon sx={{ color: 'white', fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
-                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>Edit dish</Typography>
+                                                        <DriveFileRenameOutlineOutlinedIcon sx={{ fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
+                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>
+                                                            Edit dish
+                                                        </Typography>
                                                     </Button>
                                                 </div>
 
@@ -644,7 +646,9 @@ const Settings = () => {
                                             },
                                         },
                                     }}>
-                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}> Cancel</Typography>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}>
+                                            Cancel
+                                        </Typography>
                                     </Button>
                                     <Button variant="outlined" sx={{
                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '20px', paddingRight: '20px', border: '1px solid #EA6969',
@@ -659,7 +663,9 @@ const Settings = () => {
                                             },
                                         },
                                     }}>
-                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}> Save Change</Typography>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}>
+                                            Save Change
+                                        </Typography>
                                     </Button></div>
                             </CardContent>
                         </div>
