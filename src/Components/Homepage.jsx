@@ -25,8 +25,6 @@ import { Link } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-
 function createData(item, amount, quantity, price, textboxValue) {
     return { item, amount, quantity, price, textboxValue };
 }
@@ -128,7 +126,6 @@ const dishes = [
         totalPrice: '$22.33',
     },
 ];
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'white',
     width: '100%',
@@ -182,7 +179,6 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: '5px',
         },
     },
-
     // Main Bar...//
     mainBar: {
         backgroundColor: '#393C49 !important',
@@ -360,7 +356,6 @@ const useStyles = makeStyles((theme) => ({
             height: '60px'
         }
     },
-
     //Right Bar...//
     rightBar: {
         width: '35%',
@@ -423,7 +418,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#1F1D2B !important',
         zIndex: '1',
         border: 'none !important',
-
         '& .MuiTableCell-root': {
             position: 'sticky',
             color: '#fff !important',
@@ -444,7 +438,6 @@ const useStyles = makeStyles((theme) => ({
         width: '100% !important',
         paddingRight: '0 !important'
     },
-
     // TABLE BODY...//
     tableBody: {
         width: '100% !important',
@@ -552,7 +545,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
     }
 }));
-
 const Homepage = () => {
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -560,7 +552,6 @@ const Homepage = () => {
     const [expandedDishName, setExpandedDishName] = useState(null);
     // text field
     const [name, setName] = React.useState('');
-
     // MAIN-BAR...//
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -568,9 +559,11 @@ const Homepage = () => {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
     };
     // const handleOpenNavMenu = (event) => {
     //     setAnchorElNav(event.currentTarget);
@@ -578,13 +571,15 @@ const Homepage = () => {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
     // const handleCloseNavMenu = () => {
     //     setAnchorElNav(null);
     // };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
     // RIGHT BAR...//
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
@@ -595,7 +590,6 @@ const Homepage = () => {
     const handleDishName = (index) => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
-
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
@@ -613,7 +607,7 @@ const Homepage = () => {
                         <ExitToAppOutlinedIcon className={classes.icon} />
                     </div>
                 </CardContent>
-                
+
                 {/* MAIN BAR */}
                 <CardContent className={classes.mainBar}>
                     <div className={classes.mainBarChildren}>
@@ -693,7 +687,6 @@ const Homepage = () => {
                                 <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
                             </ul>
                         </div>
-
                         <div className={classes.navBar3}>
                             <div>
                                 <Typography className={classes.chooseDishTypo} sx={{ fontSize: '18px' }}>
@@ -732,7 +725,6 @@ const Homepage = () => {
                                 </Menu>
                             </div>
                         </div>
-
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             {
@@ -788,7 +780,6 @@ const Homepage = () => {
                                 Delivery
                             </Button>
                         </div>
-
                         {/* Dishes-Ordering */}
                         <DishesOrdering
                             dishes={dishes}
@@ -796,7 +787,6 @@ const Homepage = () => {
                             handleDishName={handleDishName}
                             expandedDishName={expandedDishName}
                         />
-
                         {/* Payment Wrapper */}
                         <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
                             <div className={classes.discount}>
