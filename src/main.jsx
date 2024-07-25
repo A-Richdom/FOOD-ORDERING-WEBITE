@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
 
   </React.StrictMode>,
-)
+);
 
 
 // import React from 'react';

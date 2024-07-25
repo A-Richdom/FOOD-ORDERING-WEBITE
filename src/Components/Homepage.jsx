@@ -15,7 +15,10 @@ import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material'
+import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { addDish } from './FEATURES/DishesSlice';
+
 //// Search Box..//
 import SearchIcon from '@mui/icons-material/Search';
 import zIndex from '@mui/material/styles/zIndex';
@@ -28,6 +31,7 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function createData(item, amount, quantity, price, textboxValue) {
     return { item, amount, quantity, price, textboxValue };
 }
+
 const dishes = [
     {
         imgSrc: 'DishImages/img1.png',
@@ -546,12 +550,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 const Homepage = () => {
+
     const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [expandedDishName, setExpandedDishName] = useState(null);
     // text field
     const [name, setName] = React.useState('');
+
     // MAIN-BAR...//
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -580,6 +586,13 @@ const Homepage = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    //Update Using Redux..//
+    const dispatch = useDispatch();
+    const handleDishClick = (dish) => {
+        dispatch(addDish(dish))
+    };
+
     // RIGHT BAR...//
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
@@ -730,7 +743,7 @@ const Homepage = () => {
                         <div className={classes.dishesWrapper}>
                             {
                                 dishes.map((dish, index) => (
-                                    <Card key={index} className={classes.dishCard}>
+                                    <Card key={index} className={classes.dishCard} onClick={() => handleDishClick(dish)}>
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />
