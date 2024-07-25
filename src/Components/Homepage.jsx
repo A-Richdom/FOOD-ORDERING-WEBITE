@@ -725,6 +725,7 @@ const Homepage = () => {
                                 </Menu>
                             </div>
                         </div>
+
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             {
@@ -780,6 +781,7 @@ const Homepage = () => {
                                 Delivery
                             </Button>
                         </div>
+                        
                         {/* Dishes-Ordering */}
                         <DishesOrdering
                             dishes={dishes}
