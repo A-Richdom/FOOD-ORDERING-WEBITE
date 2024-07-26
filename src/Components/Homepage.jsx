@@ -26,11 +26,11 @@ import DishesOrdering from './DishesOrdering';
 import { Link } from 'react-router-dom';
 
 
-const pages = ['Products', 'Pricing', 'Blog'];
+// const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-function createData(item, amount, quantity, price, textboxValue) {
-    return { item, amount, quantity, price, textboxValue };
-}
+// function createData(item, amount, quantity, price, textboxValue) {
+//     return { item, amount, quantity, price, textboxValue };
+// }
 
 const dishes = [
     {
@@ -130,6 +130,7 @@ const dishes = [
         totalPrice: '$22.33',
     },
 ];
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'white',
     width: '100%',
@@ -528,6 +529,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap !important',
         flexDirection: 'column',
         paddingTop: '20px',
+        marginBottom: '15px',
         gap: '10px',
         '@media (max-width: 600px)': {
             fontSize: '12px',
@@ -587,7 +589,7 @@ const Homepage = () => {
         setAnchorElUser(null);
     };
 
-    //Update Using Redux..//
+    //Update State Using Redux..//
     const dispatch = useDispatch();
     const handleDishClick = (dish) => {
         dispatch(addDish(dish))
@@ -638,7 +640,7 @@ const Homepage = () => {
                                         },
                                         letterSpacing: '.1rem'
                                     }}>
-                                        A-Richdom
+                                        Richdom Foodie
                                     </Typography>
                                     <div>
                                         <DigitalClock />
@@ -795,7 +797,7 @@ const Homepage = () => {
                             </Button>
                         </div>
                         
-                        {/* Dishes-Ordering */}
+                        {/* Dishes-Ordering Component */}
                         <DishesOrdering
                             dishes={dishes}
                             handleTextboxChange={handleTextboxChange}
@@ -803,7 +805,7 @@ const Homepage = () => {
                             expandedDishName={expandedDishName}
                         />
                         {/* Payment Wrapper */}
-                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
+                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px', position: 'fixed' }}>
                             <div className={classes.discount}>
                                 <Typography sx={{
                                     fontSize: '15px',
@@ -834,6 +836,7 @@ const Homepage = () => {
                                     </Typography>
                                 </span>
                             </div>
+
                             <div className={classes.subTotal}>
                                 <Typography
                                     sx={{

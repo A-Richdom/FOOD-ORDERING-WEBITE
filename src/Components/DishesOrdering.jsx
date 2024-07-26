@@ -2,6 +2,7 @@ import React from 'react'
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typography, Box, TextField, Button } from '@mui/material';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -176,6 +177,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedDishName }) => {
     const classes = useStyles();
+    const orderedDishes = useSelector((state) => state.dishes.orderedDishes)
 
     return (
         <div className={classes.dishesOrdering}>
@@ -194,7 +196,7 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
                     {/* TABLE BODY */}
                     <TableBody className={classes.tableBody}>
                         {
-                            dishes.map((dish, index) => (
+                            orderedDishes.map((dish, index) => (
                                 <React.Fragment key={dish.name}>
                                     <TableRow className={classes.tableBodyRow}>
                                         <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
