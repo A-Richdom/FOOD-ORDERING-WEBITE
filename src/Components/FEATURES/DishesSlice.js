@@ -11,7 +11,7 @@ const dishesSlice = createSlice({
     initialState,
     reducers: {
         addDish: (state, action) => {
-            state.orderedDishes.push(action.payload);
+            state.dishes.push(action.payload);
         },
         setLoading: (state, action) => {
             state.isLoading = action.payload;

@@ -17,6 +17,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const dishes = [
     {
@@ -343,6 +344,12 @@ const useStyles = makeStyles((theme) => ({
 const Settings = () => {
     const classes = useStyles();
 
+    //Update State Using Redux..//
+    const dispatch = useDispatch();
+    const handleAddNewDish = (dish) => {
+        dispatch(addDish(dish))
+    };
+
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
@@ -577,7 +584,7 @@ const Settings = () => {
                                 <div className={classes.dishesWrapper}>
 
                                     {/* ADD NEW DISH */}
-                                    <Card className={classes.addNewDish}>
+                                    <Card className={classes.addNewDish} onClick={() => handleAddNewDish(dish)}>
                                         <div className={`${`rotating-dotted-line`}`}></div>
 
                                         <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />

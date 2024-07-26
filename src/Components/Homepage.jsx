@@ -745,7 +745,7 @@ const Homepage = () => {
                         <div className={classes.dishesWrapper}>
                             {
                                 dishes.map((dish, index) => (
-                                    <Card key={index} className={classes.dishCard} onClick={() => handleDishClick(dish)}>
+                                    <Card key={index} className={classes.dishCard} >
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />

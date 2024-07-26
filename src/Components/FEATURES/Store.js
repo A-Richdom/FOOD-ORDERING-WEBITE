@@ -8,5 +8,10 @@ export const store = configureStore({
     },
 });
 
+//Subscribe to the store to log state changes
+store.subscribe(() => {
+    console.log(store.getState());
+});
+
 
 export default store;
