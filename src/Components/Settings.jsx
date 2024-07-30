@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -18,6 +18,7 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import AddNewDishModal from './AddNewDishModal';
 
 const dishes = [
     {
@@ -346,6 +347,16 @@ const Settings = () => {
 
     //Update State Using Redux..//
     const dispatch = useDispatch();
+    const dishesData = useSelector((state) => state.dishes);
+    console.log(dishesData);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
     const handleAddNewDish = (dish) => {
         dispatch(addDish(dish))
     };
@@ -593,7 +604,7 @@ const Settings = () => {
 
                                     {/* DISHES-ADDED */}
                                     {
-                                        dishes.map((dish, index) => (
+                                        dishesData.map((dish, index) => (
                                             <Card key={index} className={classes.dishCard}>
                                                 <div>
                                                     <img src={dish.imgSrc} alt={dish.name}
