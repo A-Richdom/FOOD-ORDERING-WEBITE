@@ -591,7 +591,7 @@ const Homepage = () => {
 
     //Redux......
     const dispatch = useDispatch();
-    const dishes = useSelector((state) => state.dishes);
+    const dishesData = useSelector((state) => state.dishes);
 
     const handleDishClick = (dish) => {
         dispatch(addDish(dish))
@@ -746,7 +746,7 @@ const Homepage = () => {
                         {/* Choose Dishes Menu */}
                         <div className={classes.dishesWrapper}>
                             {
-                                dishes.map((dish, index) => (
+                                dishesData.map((dish, index) => (
                                     <Card key={index} className={classes.dishCard} >
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
