@@ -543,7 +543,7 @@ const Homepage = () => {
                                         },
                                         letterSpacing: '.1rem'
                                     }}>
-                                        Richdom Foodie
+                                        Richdom's Kitchen
                                     </Typography>
                                     <div>
                                         <DigitalClock />
