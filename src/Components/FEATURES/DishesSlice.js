@@ -103,11 +103,13 @@ const initialState = {
     isError: '',
 };
 
+// console.log(initialState.dishes);
+
 const dishesSlice = createSlice({
     name: 'dishes',
     initialState,
     reducers: {
-        addDish: (state = initialState, action) => {
+        addDish: (state, action) => {
             state.dishes.push(action.payload);
         },
         setLoading: (state, action) => {

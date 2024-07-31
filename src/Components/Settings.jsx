@@ -20,104 +20,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import AddNewDishModal from './AddNewDishModal';
 
-const dishes = [
-    {
-        imgSrc: 'DishImages/img1.png',
-        name: 'Salted Pesta Seasoningg',
-        price: '$3.42',
-        unitAvailable: '20 Bowls',
-        quantity: '3',
-        totalPrice: '$10.26',
-    },
-    {
-        imgSrc: 'DishImages/img2.png',
-        name: 'Ice creem sandwich',
-        price: '$1.06',
-        unitAvailable: '10 Bowls',
-        quantity: '6',
-        totalPrice: '$20.56',
-    },
-    {
-        imgSrc: 'DishImages/img3.png',
-        name: 'Spicy Instant Noodles',
-        price: '$1.33',
-        unitAvailable: '5 Bowls',
-        quantity: '9',
-        totalPrice: '$105.50',
-    },
-    {
-        imgSrc: 'DishImages/img4.png',
-        name: 'Fresh Youghout',
-        price: '$3.33',
-        unitAvailable: '4 Bowls',
-        quantity: '2',
-        totalPrice: '$20.89',
-    },
-    {
-        imgSrc: 'DishImages/img5.png',
-        name: 'Salted pasta with asorted meat',
-        price: '$2.33',
-        unitAvailable: '15 Bowls',
-        quantity: '35',
-        totalPrice: '$70.00',
-    },
-    {
-        imgSrc: 'DishImages/img6.png',
-        name: 'Instant Noodles with egg',
-        price: '$10.33',
-        unitAvailable: '10 Bowls',
-        quantity: '1',
-        totalPrice: '$10.56',
-    },
-    {
-        imgSrc: 'DishImages/img1.png',
-        name: 'Salted Pasta Seasooning',
-        price: '$3.42',
-        unitAvailable: '20 Bowls',
-        quantity: '120',
-        totalPrice: '$490.45',
-    },
-    {
-        imgSrc: 'DishImages/img2.png',
-        name: 'Ice cream sandwich',
-        price: '$1.06',
-        unitAvailable: '3 Bowls',
-        quantity: '3',
-        totalPrice: '$23.11',
-    },
-    {
-        imgSrc: 'DishImages/img3.png',
-        name: 'Spicy Instant Noodles',
-        price: '$1.33',
-        unitAvailable: '10 Bowls',
-        quantity: '25',
-        totalPrice: '$24.33',
-    },
-    {
-        imgSrc: 'DishImages/img4.png',
-        name: 'Fresh Yooughout',
-        price: '$3.33',
-        unitAvailable: '20 Bowl',
-        quantity: '3',
-        totalPrice: '$10.11',
-    },
-    {
-        imgSrc: 'DishImages/img5.png',
-        name: 'Salted pasta with assorted fish',
-        price: '$2.33',
-        unitAvailable: '20 Bowl',
-        quantity: '10',
-        totalPrice: '$4.76',
-    },
-    {
-        imgSrc: 'DishImages/img5.png',
-        name: 'Salted pastaa with assorted meat',
-        price: '$2.33',
-        unitAvailable: '15 Bowls',
-        quantity: '11',
-        totalPrice: '$22.33',
-    },
-];
 
 const useStyles = makeStyles((theme) => ({
     cardWrapper: {
@@ -347,8 +249,11 @@ const Settings = () => {
 
     //Update State Using Redux..//
     const dispatch = useDispatch();
-    const dishesData = useSelector((state) => state.dishes);
-    console.log(dishesData);
+    const dishesData = useSelector((state) => state.dishes.dishes);
+    // console.log(dishesData);
+    const isLoading = useSelector((state) => state.dishes.isLoading);
+    const isError = useSelector((state) => state.dishes.isError);
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleOpenModal = () => {
@@ -603,26 +508,29 @@ const Settings = () => {
                                     </Card>
 
                                     {/* DISHES-ADDED */}
-                                    {
-                                        dishesData.map((dish, index) => (
-                                            <Card key={index} className={classes.dishCard}>
-                                                <div>
-                                                    <img src={dish.imgSrc} alt={dish.name}
-                                                        className={classes.dishImg}
-                                                    />
-                                                    <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
-                                                        {dish.name}
+                                    {isLoading ? (
+                                        <Typography>Loading...</Typography>
+                                    ) : isError ? (
+                                        <Typography>Error loading dishes</Typography>
+                                    ) : (
+                                        dishesData && dishesData.map((dish, index) => (
+                                            <Card key={index} className={classes.dishCard} >
+                                                <img src={dish.imgSrc} alt={dish.name}
+                                                    className={classes.dishImg}
+                                                />
+                                                <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                                    {dish.name}
+                                                </Typography>
+                                                <span>
+                                                    <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>
+                                                        {dish.price}
                                                     </Typography>
-                                                    <span className={classes.priceQuantity}>
-                                                        <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
-                                                            {dish.price}
-                                                        </Typography>
-                                                        <span><CircleIcon sx={{ color: 'white', fontSize: '7px' }} /></span>
-                                                        <Typography className={classes.dishQuantity} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
-                                                            {dish.unitAvailable}
-                                                        </Typography>
-                                                    </span>
-                                                </div>
+                                                </span>
+                                                <span>
+                                                    <Typography className={classes.dishUnit} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                        {dish.unitAvailable}
+                                                    </Typography>
+                                                </span>
                                                 <div className={classes.dishCardFooter}>
 
                                                     <Button variant="outlined" sx={{
@@ -644,10 +552,9 @@ const Settings = () => {
                                                         </Typography>
                                                     </Button>
                                                 </div>
-
                                             </Card>
                                         ))
-                                    }
+                                    )}
                                 </div>
 
                                 <div className={classes.btnsWrapper}>

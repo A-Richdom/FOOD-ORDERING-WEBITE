@@ -177,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedDishName }) => {
     const classes = useStyles();
-    const orderedDishes = useSelector((state) => state.dishes.orderedDishes)
+    // const orderedDishes = useSelector((state) => state.dishes.orderedDishes)
 
     return (
         <div className={classes.dishesOrdering}>
@@ -196,7 +196,7 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
                     {/* TABLE BODY */}
                     <TableBody className={classes.tableBody}>
                         {
-                            orderedDishes.map((dish, index) => (
+                            dishes && dishes.map((dish, index) => (
                                 <React.Fragment key={dish.name}>
                                     <TableRow className={classes.tableBodyRow}>
                                         <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
