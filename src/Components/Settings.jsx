@@ -18,7 +18,8 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import AddNewDishModal from './AddNewDishModal';
+import { addDish } from './FEATURES/DishesSlice';
+import AddDishModal from './AddDishModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -262,7 +263,7 @@ const Settings = () => {
     const handleCloseModal = () => {
         setModalOpen(false);
     };
-    const handleAddNewDish = (dish) => {
+    const handleAddDish = (dish) => {
         dispatch(addDish(dish))
     };
 
@@ -500,7 +501,7 @@ const Settings = () => {
                                 <div className={classes.dishesWrapper}>
 
                                     {/* ADD NEW DISH */}
-                                    <Card className={classes.addNewDish} onClick={() => handleAddNewDish(dish)}>
+                                    <Card className={classes.addNewDish} onClick={() => handleAddDish(dish)}>
                                         <div className={`${`rotating-dotted-line`}`}></div>
 
                                         <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />
@@ -597,7 +598,8 @@ const Settings = () => {
 
                     </div>
                 </CardContent>
-            </Card>
+            </Card> 
+            <AddDishModal open={handleOpenModal} onClose={handleCloseModal} onAddDish={handleAddDish} />
         </div>
     )
 }

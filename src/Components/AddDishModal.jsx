@@ -3,10 +3,10 @@ import { Modal, Box, Typography, TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addDish } from './FEATURES/DishesSlice';
 
-const AddNewDishModal = ({ open, handleClose }) => {
+const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const dispatch = useDispatch();
-    const [dishData, setDishData] = useState({
+    const [dish, setDish] = useState({
         imgSrc: '',
         name: '',
         price: '',
@@ -17,37 +17,45 @@ const AddNewDishModal = ({ open, handleClose }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setDishData({ ...dishData, [name]: value });
+        setDish({ ...dish, [name]: value });
+    };
+    const handleSubmit = () => {
+        onAddDish(dish);
+        onClose();
     };
 
-    const handleAddDish = () => {
-        dispatch(addDish(dishData));
-        handleClose();
-    };
+    // const handleSubmit = () => {
+    //     dispatch(addDish(dishData));
+    //     handleClose();
+    // };
+
 
     return (
         <>
-            <Modal open={open} onClose={handleClose}>
+            <Modal open={open} onClose={onClose}>
                 <Box sx={{
                     position: 'absolute',
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: 400,
+                    width: 300,
+                    height: 300,
                     background: 'background.paper',
                     border: '2px solid #000',
-                    boxShadow: '24',
-                    padding: 4,
+                    boxShadow: 24,
+                    padding: 2,
+                    overflowY: 'scroll'
                 }}>
                     <Typography variant="h6" component="h2">
                         Add New Dish
                     </Typography>
+
                     <TextField
                         margin="normal"
                         label="Image URL"
                         fullWidth
                         name="imgSrc"
-                        value={dishData.imgSrc}
+                        value={dish.imgSrc}
                         onChange={handleChange}
                     />
                     <TextField
@@ -55,7 +63,7 @@ const AddNewDishModal = ({ open, handleClose }) => {
                         label="Name"
                         fullWidth
                         name="name"
-                        value={dishData.name}
+                        value={dish.name}
                         onChange={handleChange}
                     />
                     <TextField
@@ -63,7 +71,7 @@ const AddNewDishModal = ({ open, handleClose }) => {
                         label="Price"
                         fullWidth
                         name="price"
-                        value={dishData.price}
+                        value={dish.price}
                         onChange={handleChange}
                     />
                     <TextField
@@ -71,7 +79,7 @@ const AddNewDishModal = ({ open, handleClose }) => {
                         label="Units Available"
                         fullWidth
                         name="unitAvailable"
-                        value={dishData.unitAvailable}
+                        value={dish.unitAvailable}
                         onChange={handleChange}
                     />
                     <TextField
@@ -79,7 +87,7 @@ const AddNewDishModal = ({ open, handleClose }) => {
                         label="Quantity"
                         fullWidth
                         name="quantity"
-                        value={dishData.quantity}
+                        value={dish.quantity}
                         onChange={handleChange}
                     />
                     <TextField
@@ -87,10 +95,10 @@ const AddNewDishModal = ({ open, handleClose }) => {
                         label="Total Price"
                         fullWidth
                         name="totalPrice"
-                        value={dishData.totalPrice}
+                        value={dish.totalPrice}
                         onChange={handleChange}
                     />
-                    <Button onClick={handleAddDish} variant="contained" color="primary" sx={{ mt: 2 }}>
+                    <Button onClick={handleSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>
                         Add Dish
                     </Button>
 
@@ -101,4 +109,4 @@ const AddNewDishModal = ({ open, handleClose }) => {
     )
 }
 
-export default AddNewDishModal
+export default AddDishModal

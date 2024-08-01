@@ -8,6 +8,7 @@ import Dashboard from './Components/Dashboard';
 import DishReport from './Components/DishReport';
 import Report from './Components/Report';
 import Settings from './Components/Settings';
+import AddDishModal from './Components/AddDishModal';
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
   { path: 'report', element: <Report /> },
 
   { path: 'settings', element: <Settings/> },
+
+  { path: 'setting', element: <AddDishModal/> },
 
 ]);
 
