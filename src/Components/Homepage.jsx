@@ -457,7 +457,7 @@ const Homepage = () => {
     // text field
     const [name, setName] = React.useState('');
 
-    // MAIN-BAR...//
+    // MAIN-BAR....//
     // Dine in Button Function
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
