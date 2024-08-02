@@ -265,6 +265,7 @@ const Settings = () => {
     };
     const handleAddDish = (dish) => {
         dispatch(addDish(dish))
+        handleCloseModal();
     };
 
     return (
@@ -501,7 +502,7 @@ const Settings = () => {
                                 <div className={classes.dishesWrapper}>
 
                                     {/* ADD NEW DISH */}
-                                    <Card className={classes.addNewDish} onClick={() => handleAddDish(dish)}>
+                                    <Card className={classes.addNewDish} onClick={handleOpenModal}>
                                         <div className={`${`rotating-dotted-line`}`}></div>
 
                                         <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />
@@ -557,7 +558,7 @@ const Settings = () => {
                                         ))
                                     )}
                                 </div>
-                                    
+
                                 <div className={classes.btnsWrapper}>
                                     <Button variant="outlined" sx={{
                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '30px', paddingRight: '30px', border: '1px solid #EA6969',
@@ -599,7 +600,7 @@ const Settings = () => {
                     </div>
                 </CardContent>
             </Card> 
-            <AddDishModal open={handleOpenModal} onClose={handleCloseModal} onAddDish={handleAddDish} />
+            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} />
         </div>
     )
 }

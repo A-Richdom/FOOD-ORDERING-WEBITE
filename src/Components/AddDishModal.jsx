@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Modal, Box, Typography, TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { addDish } from './FEATURES/DishesSlice';
 
 const AddDishModal = ({ open, onClose, onAddDish }) => {
 
-    const dispatch = useDispatch();
     const [dish, setDish] = useState({
         imgSrc: '',
         name: '',
@@ -19,14 +17,10 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         const { name, value } = e.target;
         setDish({ ...dish, [name]: value });
     };
-    // const handleSubmit = () => {
-    //     onAddDish(dish);
-    //     onClose();
-    // };
 
     const handleSubmit = () => {
-        dispatch(addDish(dishData));
-        handleClose();
+        onAddDish(dish);
+        onClose();
     };
 
 
