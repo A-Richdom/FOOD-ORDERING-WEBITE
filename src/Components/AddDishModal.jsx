@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import { Modal, Box, Typography, TextField, Button, } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { makeStyles } from '@mui/styles';
 
 const AddDishModal = ({ open, onClose, onAddDish }) => {
 
@@ -13,6 +14,29 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         totalPrice: '',
     });
 
+    const useStyles = makeStyles((theme) => ({
+        textFieldBorder: {
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: '#555a70',
+                },
+                '&:hover fieldset': {
+                    borderColor: '#555a70',
+                },
+                '&.Mui-focused fieldset': {
+                    border: '1px solid white',
+                    borderColor: 'white',
+                },
+                '& .MuiInputBase-input': {
+                    textAlign: 'center',
+                },
+                '& .MuiTableCell-root': {
+                    border: 'none'
+                }
+            },
+        },
+    }));
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setDish({ ...dish, [name]: value });
@@ -23,10 +47,13 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         onClose();
     };
 
+    const classes = useStyles();
+
 
     return (
         <>
-            <Modal open={open} onClose={onClose}>
+            <Modal open={open} onClose={onClose}
+            >
                 <Box sx={{
                     position: 'absolute',
                     top: '50%',
@@ -39,6 +66,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     borderRadius: '15px',
                     boxShadow: 36,
                     padding: 2,
+
                     overflowY: 'scroll',
                     '&::-webkit-scrollbar': {
                         display: 'none',
@@ -48,7 +76,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         Add New Dish
                     </Typography>
 
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Image URL"
                         fullWidth
@@ -56,7 +84,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.imgSrc}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Name"
                         fullWidth
@@ -64,7 +92,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.name}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Price"
                         fullWidth
@@ -72,7 +100,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.price}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Units Available"
                         fullWidth
@@ -80,7 +108,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.unitAvailable}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Quantity"
                         fullWidth
@@ -88,7 +116,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.quantity}
                         onChange={handleChange}
                     />
-                    <TextField
+                    <TextField className={classes.textFieldBorder}
                         margin="normal"
                         label="Total Price"
                         fullWidth
