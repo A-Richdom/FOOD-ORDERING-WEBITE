@@ -19,15 +19,15 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         const { name, value } = e.target;
         setDish({ ...dish, [name]: value });
     };
-    const handleSubmit = () => {
-        onAddDish(dish);
-        onClose();
-    };
-
     // const handleSubmit = () => {
-    //     dispatch(addDish(dishData));
-    //     handleClose();
+    //     onAddDish(dish);
+    //     onClose();
     // };
+
+    const handleSubmit = () => {
+        dispatch(addDish(dishData));
+        handleClose();
+    };
 
 
     return (
@@ -40,11 +40,15 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     transform: 'translate(-50%, -50%)',
                     width: 300,
                     height: 300,
-                    background: 'background.paper',
-                    border: '2px solid #000',
-                    boxShadow: 24,
+                    backgroundColor: '#393C49',
+                    border: 'none',
+                    borderRadius: '15px',
+                    boxShadow: 36,
                     padding: 2,
-                    overflowY: 'scroll'
+                    overflowY: 'scroll',
+                    '&::-webkit-scrollbar': {
+                        display: 'none',
+                    },
                 }}>
                     <Typography variant="h6" component="h2">
                         Add New Dish

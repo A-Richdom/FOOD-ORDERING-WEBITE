@@ -557,7 +557,7 @@ const Settings = () => {
                                         ))
                                     )}
                                 </div>
-
+                                    
                                 <div className={classes.btnsWrapper}>
                                     <Button variant="outlined" sx={{
                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '30px', paddingRight: '30px', border: '1px solid #EA6969',
