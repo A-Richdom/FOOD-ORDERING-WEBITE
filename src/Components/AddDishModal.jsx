@@ -62,24 +62,26 @@ const useStyles = makeStyles((theme) => ({
 
 const AddDishModal = ({ open, onClose, onAddDish }) => {
 
-    const [dish, setDish] = useState({
+    const initialDishState = {
         imgSrc: '',
         name: '',
         price: '',
         unitAvailable: '',
         quantity: '',
         imageFile: null,
-    });
+    };
+
+    const [dish, setDish] = useState(initialDishState);
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
 
         if (type == 'file') {
-            setDish({
+            setDish((dish) => ({
                 ...dish,
                 imageFile: files[0],
                 imgSrc: URL.createObjectURL(files[0]),
-            });
+            }));
         }
         else {
             setDish({ ...dish, [name]: value });
@@ -88,6 +90,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const handleSubmit = () => {
         onAddDish(dish);
+        setDish(initialDishState);
         onClose();
     };
 

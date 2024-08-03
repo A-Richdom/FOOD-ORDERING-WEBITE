@@ -251,7 +251,7 @@ const Settings = () => {
     //Update State Using Redux..//
     const dispatch = useDispatch();
     const dishesData = useSelector((state) => state.dishes.dishes);
-    // console.log(dishesData);
+    console.log(dishesData);
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
@@ -267,7 +267,8 @@ const Settings = () => {
         dispatch(addDish(dish))
         handleCloseModal();
     };
-
+        console.log(handleAddDish);
+        
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>

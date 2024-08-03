@@ -118,7 +118,7 @@ const dishesSlice = createSlice({
         setError: (state, action) => {
             state.isError = action.payload;
         }
-    }
+    },
 });
 
 export const { addDish, setLoading, setError } = dishesSlice.actions;
