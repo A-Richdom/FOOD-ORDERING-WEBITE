@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -264,11 +264,16 @@ const Settings = () => {
         setModalOpen(false);
     };
     const handleAddDish = (dish) => {
+        console.log("Diapatching dish:", dish); //log the dish being dispatched
         dispatch(addDish(dish))
         handleCloseModal();
     };
-        console.log(handleAddDish);
-        
+
+    useEffect(() => {
+      console.log("Dishes Data:", dishesData); // log the dishes Data
+    }, [dishesData])
+    
+
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
