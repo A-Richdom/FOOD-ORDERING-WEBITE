@@ -68,7 +68,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         price: '',
         unitAvailable: '',
         quantity: '',
-        totalPrice: '',
         imageFile: null,
     });
 
