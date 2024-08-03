@@ -103,7 +103,6 @@ const initialState = {
     isError: '',
 };
 
-// console.log(initialState.dishes);
 
 const dishesSlice = createSlice({
     name: 'dishes',
