@@ -110,7 +110,8 @@ const dishesSlice = createSlice({
     initialState,
     reducers: {
         addDish: (state, action) => {
-            state.dishes.push(action.payload);
+            console.log('Adding Dish:', action.payload);
+            state.dishes = [...state.dishes, action.payload];
         },
         setLoading: (state, action) => {
             state.isLoading = action.payload;

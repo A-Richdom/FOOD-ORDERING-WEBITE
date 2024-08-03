@@ -96,7 +96,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const classes = useStyles();
 
-
     return (
         <>
             <Modal open={open} onClose={onClose} className={classes.removeBorder}
