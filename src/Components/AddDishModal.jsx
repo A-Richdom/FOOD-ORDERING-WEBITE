@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     imagePreview: {
         maxWidth: '100%',
-        maxHeight: '100px',
+        maxHeight: '120px',
         marginTop: '10px',
         borderRadius: '5px',
     },
