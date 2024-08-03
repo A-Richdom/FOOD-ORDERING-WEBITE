@@ -218,7 +218,7 @@ const useStyles = makeStyles((theme) => ({
         gap: '30px',
         textAlign: 'center',
         justifyContent: 'space-between',
-        height: '25%',
+        height: '21.5%',
         '@media (max-width: 400px)': {
             height: '15%'
         },
@@ -425,7 +425,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
-        paddingTop: '20px',
+        paddingTop: '6px',
         marginBottom: '15px',
         gap: '10px',
         '@media (max-width: 600px)': {
