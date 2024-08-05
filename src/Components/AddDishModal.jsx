@@ -64,11 +64,11 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const initialDishState = {
         imgSrc: '',
+        imgName: '',
         name: '',
         price: '',
-        unitAvailable: '',
         quantity: '',
-        imageFile: null,
+        unitAvailable: '',
     };
 
     const [dish, setDish] = useState(initialDishState);
@@ -76,12 +76,16 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
 
-        if (type == 'file') {
-            setDish((dish) => ({
-                ...dish,
-                imageFile: files[0],
-                imgSrc: URL.createObjectURL(files[0]),
-            }));
+        if (type === 'file') {
+            if (files.length > 0) {
+                const file = files[0];
+                setDish((dish) => ({
+                    ...dish,
+                    imageFile: file,
+                    imgSrc: URL.createObjectURL(file),
+                    imgName: file.name, // store the file name
+                }));
+            }
         }
         else {
             setDish({ ...dish, [name]: value });
