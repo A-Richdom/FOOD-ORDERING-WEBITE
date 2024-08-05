@@ -97,14 +97,13 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         setDish(initialDishState);
         onClose();
     };
-
+    
     useEffect(() => {
-
-        return() => {
+        return () => {
             if (dish.imgSrc) {
                 URL.revokeObjectURL(dish.imgSrc);
             }
-        }
+        };
     }, [dish.imgSrc]);
     
 
