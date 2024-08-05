@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     dishesOrdering: {
-        height: '13.5% !important',
+        height: '12% !important',
         width: '100%',
         paddingTop: '10px',
     },

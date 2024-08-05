@@ -273,7 +273,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex !important',
         flexWrap: 'wrap !important',
         gap: '8px !important',
-        paddingTop: '20px'
+        paddingTop: '15px'
     },
     orderBtn: {
         fontFamily: 'Quicksand !important',
@@ -294,11 +294,11 @@ const useStyles = makeStyles((theme) => ({
             border: '1px solid #555a70',
         },
     },
-    dishesOrdering: {
-        height: '13.5% !important',
-        width: '100%',
-        paddingTop: '10px',
-    },
+    // dishesOrdering: {
+    //     height: '13.5% !important',
+    //     width: '100%',
+    //     paddingTop: '10px',
+    // },
     tableContainer: {
         height: '100%',
         overflowY: 'scroll',
@@ -425,8 +425,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
-        paddingTop: '1px',
-        marginBottom: '15px',
+        paddingTop: '0.5rem',
+        marginBottom: '25px',
         gap: '10px',
         '@media (max-width: 600px)': {
             fontSize: '12px',
@@ -712,7 +712,7 @@ const Homepage = () => {
                             expandedDishName={expandedDishName}
                         />
                         {/* Payment Wrapper */}
-                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px', position: 'fixed' }}>
+                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', position: 'fixed' }}>
                             <div className={classes.discount}>
                                 <Typography sx={{
                                     fontSize: '15px',

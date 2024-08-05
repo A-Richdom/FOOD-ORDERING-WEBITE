@@ -93,18 +93,19 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     };
 
     const handleSubmit = () => {
+        e.preventDefaut();
         onAddDish(dish);
         setDish(initialDishState);
         onClose();
     };
-    
-    useEffect(() => {
-        return () => {
-            if (dish.imgSrc) {
-                URL.revokeObjectURL(dish.imgSrc);
-            }
-        };
-    }, [dish.imgSrc]);
+
+    // useEffect(() => {
+    //     return () => {
+    //         if (dish.imgSrc) {
+    //             URL.revokeObjectURL(dish.imgSrc);
+    //         }
+    //     };
+    // }, [dish.imgSrc]);
     
 
     const classes = useStyles();
@@ -151,10 +152,11 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                                 <IconButton aria-label="upload picture" component="span" sx={{ color: '#EA6969', }}>
                                     <PhotoCamera />
                                 </IconButton>
-                                {dish.imgSrc && <img src={dish.imgSrc} alt="Preview" className={classes.imagePreview} />}
+                                {dish.imgSrc && <img src={dish.imgSrc} alt={dish.imgName} className={classes.imagePreview} />}
                             </label>
                         </Grid>
                     </Grid>
+
                     <TextField className={classes.removeBorder}
                         margin="normal"
                         label="Image URL"
