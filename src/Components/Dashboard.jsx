@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         color: '#EA6969',
-        fontSize: '40px',
+        fontSize: '1.5rem',
         fontWeight: 'bold',
         cursor: 'pointer',
         '&:hover': {

@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         color: '#EA6969',
-        fontSize: '40px',
+        fontSize: '1.5rem',
         fontWeight: 'bold',
         cursor: 'pointer',
         '&:hover': {
@@ -218,7 +218,7 @@ const useStyles = makeStyles((theme) => ({
         gap: '30px',
         textAlign: 'center',
         justifyContent: 'space-between',
-        height: '25%',
+        height: '22%',
         '@media (max-width: 400px)': {
             height: '15%'
         },
@@ -425,7 +425,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
-        paddingTop: '16px',
+        paddingTop: '1px',
         marginBottom: '15px',
         gap: '10px',
         '@media (max-width: 600px)': {
