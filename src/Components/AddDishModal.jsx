@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, Box, Typography, TextField, Button, Grid, IconButton, } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { PhotoCamera } from '@mui/icons-material';
@@ -97,6 +97,16 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         setDish(initialDishState);
         onClose();
     };
+
+    useEffect(() => {
+
+        return() => {
+            if (dish.imgSrc) {
+                URL.revokeObjectURL(dish.imgSrc);
+            }
+        }
+    }, [dish.imgSrc]);
+    
 
     const classes = useStyles();
 
