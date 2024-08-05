@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import { storage } from 'redux-persist/lib/storage'; //default to local storage for web
+import storage from "redux-persist/lib/storage";  //default to local storage for web
 import dishesReducer from './DishesSlice';
+
 
 
 const persistConfig = {
