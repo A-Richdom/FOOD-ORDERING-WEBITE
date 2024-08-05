@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
             '& .MuiInputBase-input': {
                 textAlign: 'center',
                 '&::placeholder': {
-                    color: '#EA6969 !important', 
+                    color: '#EA6969 !important',
                     opacity: 1,
                 },
             },
@@ -73,10 +73,18 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const [dish, setDish] = useState(initialDishState);
 
+    useEffect(() => {
+
+        const savedDish = JSON.parse(localStorage.getItem('dishDate')) || initialDishState;
+        setDish(savedDish)
+
+    }, []);
+
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
 
         if (type === 'file') {
+
             if (files.length > 0) {
                 const file = files[0];
                 setDish((dish) => ({
@@ -85,28 +93,28 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     imgSrc: URL.createObjectURL(file),
                     imgName: file.name, // store the file name
                 }));
+
+                //save image to local storage
+                localStorage.setItem('dishData', JSON.stringify({
+                    ...dish,
+                    imgSrc: URL.createObjectURL(file),
+                    imgName: file.name,
+                }));
             }
         }
         else {
             setDish({ ...dish, [name]: value });
-        }
+        };
+
     };
 
-    const handleSubmit = () => {
-        e.preventDefaut();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         onAddDish(dish);
         setDish(initialDishState);
         onClose();
     };
 
-    // useEffect(() => {
-    //     return () => {
-    //         if (dish.imgSrc) {
-    //             URL.revokeObjectURL(dish.imgSrc);
-    //         }
-    //     };
-    // }, [dish.imgSrc]);
-    
 
     const classes = useStyles();
 
@@ -148,7 +156,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                                 type="file"
                                 onChange={handleChange}
                             />
-                            <label  htmlFor="upload-image" className={classes.fileLabel}>
+                            <label htmlFor="upload-image" className={classes.fileLabel}>
                                 <IconButton aria-label="upload picture" component="span" sx={{ color: '#EA6969', }}>
                                     <PhotoCamera />
                                 </IconButton>

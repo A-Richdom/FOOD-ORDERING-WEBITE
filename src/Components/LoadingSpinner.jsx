@@ -5,7 +5,7 @@ const LoadingSpinner = () => {
 
   return (
     <div>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'red', }}>
             <CircularProgress />
         </Box>
     </div>
