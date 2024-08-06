@@ -472,18 +472,14 @@ const Homepage = () => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenNavMenu = (event) => {
-    //     setAnchorElNav(event.currentTarget);
-    // };
+  
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
-    // const handleCloseNavMenu = () => {
-    //     setAnchorElNav(null);
-    // };
+
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
@@ -653,8 +649,8 @@ const Homepage = () => {
                             ) : isError ? (
                                 <Typography>Error loading dishes</Typography>
                             ) : (
-                                dishesData && dishesData.map((dish, index) => (
-                                    <Card key={index} className={classes.dishCard} >
+                                dishesData && dishesData.map((dish, i) => (
+                                    <Card key={dish._id} className={classes.dishCard} >
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />

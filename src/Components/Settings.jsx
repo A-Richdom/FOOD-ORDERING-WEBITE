@@ -269,10 +269,11 @@ const Settings = () => {
         handleCloseModal();
     };
 
+      
     useEffect(() => {
-      console.log("Dishes Data:", dishesData); // log the dishes Data
+        console.log("Dishes Data:", dishesData); // log the dishes Data
     }, [dishesData])
-    
+
 
     return (
         <div className={classes.divContainer}>
@@ -521,8 +522,8 @@ const Settings = () => {
                                     ) : isError ? (
                                         <Typography>Error loading dishes</Typography>
                                     ) : (
-                                        dishesData && dishesData.map((dish, index) => (
-                                            <Card key={index} className={classes.dishCard} >
+                                        dishesData && dishesData.map((dish, i) => (
+                                            <Card key={dish._id} className={classes.dishCard} >
                                                 <img src={dish.imgSrc} alt={dish.name}
                                                     className={classes.dishImg}
                                                 />
@@ -541,7 +542,7 @@ const Settings = () => {
                                                 </span>
                                                 <div className={classes.dishCardFooter}>
 
-                                                    <Button variant="outlined" sx={{
+                                                    <Button variant="outlined" onClick = {() => handleUpdateDish(dish.id)}  sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
                                                         '&:hover': {
                                                             border: 'none',

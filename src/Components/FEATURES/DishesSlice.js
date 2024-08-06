@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     dishes: [
             {
+                id: 0,
                 imgSrc: 'DishImages/img1.png',
                 name: 'Salted Pesta Seasoningg',
                 price: '$3.42',
@@ -11,6 +12,7 @@ const initialState = {
                 totalPrice: '$10.26',
             },
             {
+                id: 1,
                 imgSrc: 'DishImages/img2.png',
                 name: 'Ice creem sandwich',
                 price: '$1.06',
@@ -19,6 +21,7 @@ const initialState = {
                 totalPrice: '$20.56',
             },
             {
+                id: 2,
                 imgSrc: 'DishImages/img3.png',
                 name: 'Spicy Instant Noodles',
                 price: '$1.33',
@@ -27,6 +30,7 @@ const initialState = {
                 totalPrice: '$105.50',
             },
             {
+                id: 3,
                 imgSrc: 'DishImages/img4.png',
                 name: 'Fresh Youghout',
                 price: '$3.33',
@@ -35,6 +39,7 @@ const initialState = {
                 totalPrice: '$20.89',
             },
             {
+                id: 4,
                 imgSrc: 'DishImages/img5.png',
                 name: 'Salted pasta with asorted meat',
                 price: '$2.33',
@@ -43,6 +48,7 @@ const initialState = {
                 totalPrice: '$70.00',
             },
             {
+                id: 5,
                 imgSrc: 'DishImages/img6.png',
                 name: 'Instant Noodles with egg',
                 price: '$10.33',
@@ -51,6 +57,7 @@ const initialState = {
                 totalPrice: '$10.56',
             },
             {
+                id: 6,
                 imgSrc: 'DishImages/img1.png',
                 name: 'Salted Pasta Seasooning',
                 price: '$3.42',
@@ -59,6 +66,7 @@ const initialState = {
                 totalPrice: '$490.45',
             },
             {
+                id: 7,
                 imgSrc: 'DishImages/img2.png',
                 name: 'Ice cream sandwich',
                 price: '$1.06',
@@ -67,6 +75,7 @@ const initialState = {
                 totalPrice: '$23.11',
             },
             {
+                id: 8,
                 imgSrc: 'DishImages/img3.png',
                 name: 'Spicy Instant Noodles',
                 price: '$1.33',
@@ -75,6 +84,7 @@ const initialState = {
                 totalPrice: '$24.33',
             },
             {
+                id: 9,
                 imgSrc: 'DishImages/img4.png',
                 name: 'Fresh Yooughout',
                 price: '$3.33',
@@ -83,6 +93,7 @@ const initialState = {
                 totalPrice: '$10.11',
             },
             {
+                id: 10,
                 imgSrc: 'DishImages/img5.png',
                 name: 'Salted pasta with assorted fish',
                 price: '$2.33',
@@ -91,6 +102,7 @@ const initialState = {
                 totalPrice: '$4.76',
             },
             {
+                id: 11,
                 imgSrc: 'DishImages/img5.png',
                 name: 'Salted pastaa with assorted meat',
                 price: '$2.33',

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Box, Typography, TextField, Button, Grid, IconButton, } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { PhotoCamera } from '@mui/icons-material';
-import { getDishes, saveDish } from './IndexDB';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     const initialDishState = {
+        id: '',
         imgSrc: '',
         imgName: '',
         name: '',
@@ -75,15 +75,11 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     const [dish, setDish] = useState(initialDishState);
 
     useEffect(() => {
-        const fetchDishes = async () => {
-          const savedDishes = await getDishes();
-          if (savedDishes > 0) {
-            setDish(savedDishes[0]);
-          }
-        };
-    
-        fetchDishes();
-      }, []);
+        const savedDishData = JSON.parse(localStorage.getItem('dishData'));
+        if (savedDishData) {
+            setDish(savedDishData);
+        }
+    }, []);
 
 
     const handleChange = (e) => {
@@ -109,7 +105,12 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
                     setDish(newDish);
 
-                    saveDish(newDish);  //save dish to indexDB
+                    //Save data to local storage
+                    localStorage.setItem('dishData', JSON.stringify(newDish))
+
+                    // Verify that the data is saved to localStorage
+                console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
+
                 };
 
                 reader.readAsDataURL(file);
@@ -127,6 +128,8 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         setDish(initialDishState);
         onClose();
     };
+
+    
 
 
     const classes = useStyles();
