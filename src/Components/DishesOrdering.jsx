@@ -7,43 +7,8 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
 
-     rightBar: {
-        width: '35%',
-        backgroundColor: '#1F1D2B !important',
-        display: 'flex !important',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    rightBarChildren: {
-        width: '100% !important',
-    },
-    orderBtnWrapper: {
-        display: 'flex !important',
-        flexWrap: 'wrap !important',
-        gap: '8px !important',
-        paddingTop: '20px'
-    },
-    orderBtn: {
-        fontFamily: 'Quicksand !important',
-        fontWeight: '600 !important',
-        textTransform: 'none !important',
-        border: '1px solid #EA6969 !important',
-        borderRadius: '10px !important',
-        padding: theme.spacing(1),
-        color: '#EA6969 !important',
-        '&:hover': {
-            backgroundColor: '#f97f7f !important',
-            color: 'white !important',
-            border: 'none !important',
-        },
-        '&:focus': {
-            backgroundColor: '#EA6969 !important',
-            color: 'white !important',
-            border: '1px solid #555a70',
-        },
-    },
     dishesOrdering: {
-        height: '12% !important',
+        height: '8.5% !important',
         width: '100%',
         paddingTop: '10px',
     },

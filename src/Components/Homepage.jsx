@@ -297,7 +297,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     // dishesOrdering: {
-    //     height: '13.5% !important',
+    //     height: '1.5% !important',
     //     width: '100%',
     //     paddingTop: '10px',
     // },
@@ -707,7 +707,7 @@ const Homepage = () => {
                         </div>
 
                         {/* Dishes-Ordering Component */}
-                        <DishesOrdering
+                        <DishesOrdering className={classes.dishesOrdering}
                             dishes={dishesData}
                             handleTextboxChange={handleTextboxChange}
                             handleDishName={handleDishName}
