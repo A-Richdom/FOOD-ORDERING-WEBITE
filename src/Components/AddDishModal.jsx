@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, Box, Typography, TextField, Button, Grid, IconButton, } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { PhotoCamera } from '@mui/icons-material';
-import { saveDish } from './IndexDB';
+import { getDishes, saveDish } from './IndexDB';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +77,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     useEffect(() => {
         const fetchDishes = async () => {
           const savedDishes = await getDishes();
-          setDishes(savedDishes);
+          setDish(savedDishes);
         };
     
         fetchDishes();
