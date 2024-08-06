@@ -159,7 +159,7 @@ const useStyles = makeStyles((theme) => ({
     deleteBtn: {
         border: '1px solid #EA6969 !important',
         borderRadius: '10px !important',
-        padding: theme.spacing(1),
+        padding: theme.spacing(2),
         color: '#EA6969 !important',
         '&:hover': {
             backgroundColor: '#f97f7f !important',
