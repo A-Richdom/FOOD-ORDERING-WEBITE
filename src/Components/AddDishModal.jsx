@@ -75,9 +75,11 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
     useEffect(() => {
 
-        const savedDish = JSON.parse(localStorage.getItem('dishDate')) || initialDishState;
-        setDish(savedDish)
+        const savedDishData = JSON.parse(localStorage.getItem('dishData')) || initialDishState;
+        if (savedDishData) {
+            setDish(savedDishData)
 
+        }
     }, []);
 
     const handleChange = (e) => {
@@ -87,19 +89,31 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
 
             if (files.length > 0) {
                 const file = files[0];
-                setDish((dish) => ({
-                    ...dish,
-                    imageFile: file,
-                    imgSrc: URL.createObjectURL(file),
-                    imgName: file.name, // store the file name
-                }));
+                const reader = new FileReader();
 
-                //save image to local storage
-                localStorage.setItem('dishData', JSON.stringify({
-                    ...dish,
-                    imgSrc: URL.createObjectURL(file),
-                    imgName: file.name,
-                }));
+                reader.onloadend = () => {
+                    const base64String = reader.result;
+
+                    console.log('Base64String', base64String);
+
+                    const newDish = {
+                        ...dish,
+                        imageFile: file,
+                        imgSrc: base64String, //Base64 encoded image
+                        imgName: file.name,
+                    };
+
+                    setDish(newDish);
+
+                    //save image to local storage
+                    localStorage.setItem('dishData', JSON.stringify(newDish));
+
+                    // Verify that the data is saved to localStorage
+                    console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
+
+                };
+
+                reader.readAsDataURL(file);
             }
         }
         else {
