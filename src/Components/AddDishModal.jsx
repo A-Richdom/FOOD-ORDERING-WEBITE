@@ -77,20 +77,14 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     useEffect(() => {
         const fetchDishes = async () => {
           const savedDishes = await getDishes();
-          setDish(savedDishes);
+          if (savedDishes > 0) {
+            setDish(savedDishes[0]);
+          }
         };
     
         fetchDishes();
       }, []);
 
-    // useEffect(() => {
-
-    //     const savedDishData = JSON.parse(localStorage.getItem('dishData')) || initialDishState;
-    //     if (savedDishData) {
-    //         setDish(savedDishData)
-
-    //     }
-    // }, []);
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -116,13 +110,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     setDish(newDish);
 
                     saveDish(newDish);  //save dish to indexDB
-
-                    // //save image to local storage
-                    // localStorage.setItem('dishData', JSON.stringify(newDish));
-
-                    // // Verify that the data is saved to localStorage
-                    // console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
-
                 };
 
                 reader.readAsDataURL(file);
