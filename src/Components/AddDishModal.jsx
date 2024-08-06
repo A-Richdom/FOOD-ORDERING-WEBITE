@@ -130,8 +130,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     };
 
     
-
-
     const classes = useStyles();
 
     return (
