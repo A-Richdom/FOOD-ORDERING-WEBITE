@@ -85,12 +85,14 @@ const useStyles = makeStyles((theme) => ({
     mainBar: {
         backgroundColor: '#393C49 !important',
         width: '60%',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     mainBarChildren: {
         width: '98%',
+        height: '100%',
         backgroundColor: '#393C49',
     },
     navBar1: {
@@ -218,7 +220,7 @@ const useStyles = makeStyles((theme) => ({
         gap: '30px',
         textAlign: 'center',
         justifyContent: 'space-between',
-        height: '22%',
+        height: '55%',
         '@media (max-width: 400px)': {
             height: '15%'
         },
