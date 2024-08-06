@@ -106,7 +106,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
             setDish({ ...dish, [name]: value });
         };
 
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
