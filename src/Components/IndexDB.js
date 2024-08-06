@@ -3,6 +3,7 @@ import { openDB } from 'idb';
 const DB_NAME = 'foodOrdering';
 const STORE_NAME = 'dishes';
 
+
 export const initDB = async () => {
   return openDB(DB_NAME, 1, {
     upgrade(db) {
