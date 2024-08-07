@@ -57,10 +57,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',
         borderRadius: '5px',
     },
-
 }));
 
 const AddDishModal = ({ open, onClose, onAddDish }) => {
+    const classes = useStyles();
 
     const initialDishState = {
         id: '',
@@ -81,47 +81,34 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         }
     }, []);
 
-
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
-
         if (type === 'file') {
-
             if (files.length > 0) {
                 const file = files[0];
                 const reader = new FileReader();
-
                 reader.onloadend = () => {
                     const base64String = reader.result;
-
                     console.log('Base64String', base64String);
-
                     const newDish = {
                         ...dish,
                         imageFile: file,
                         imgSrc: base64String, //Base64 encoded image
                         imgName: file.name,
                     };
-
                     setDish(newDish);
-
                     //Save data to local storage
                     localStorage.setItem('dishData', JSON.stringify(newDish))
-
                     // Verify that the data is saved to localStorage
                 console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
-
                 };
-
                 reader.readAsDataURL(file);
             }
         }
         else {
             setDish({ ...dish, [name]: value });
         };
-
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         onAddDish(dish);
@@ -129,8 +116,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         onClose();
     };
 
-    
-    const classes = useStyles();
 
     return (
         <>
@@ -157,7 +142,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     <Typography variant="h6" color="white" component="h2">
                         Add New Dish
                     </Typography>
-
                     <Grid>
                         <Grid item>
                             <Typography sx={{ fontFamily: 'Quicksand', color: 'white', marginTop: '10px' }}>Upload Image</Typography>
@@ -178,7 +162,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                             </label>
                         </Grid>
                     </Grid>
-
                     <TextField className={classes.removeBorder}
                         margin="normal"
                         label="Image URL"
@@ -186,7 +169,6 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         name="imgSrc"
                         value={dish.imgSrc}
                         onChange={handleChange}
-
                     />
                     <TextField className={classes.removeBorder}
                         margin="normal"
@@ -235,12 +217,9 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                     <Button onClick={handleSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>
                         Add Dish
                     </Button>
-
                 </Box>
             </Modal>
-
         </>
     )
 }
-
 export default AddDishModal

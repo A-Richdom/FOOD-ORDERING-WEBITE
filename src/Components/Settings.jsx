@@ -15,11 +15,12 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined';
 import CircleIcon from '@mui/icons-material/Circle';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDish } from './FEATURES/DishesSlice';
-import AddDishModal from './AddDishModal';
+import { addDish, deleteDish } from './FEATURES/DishesSlice';
+// import AddDishModal from './AddDishModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -266,7 +267,11 @@ const Settings = () => {
     const handleAddDish = (dish) => {
         console.log("Diapatching dish:", dish); //log the dish being dispatched
         dispatch(addDish(dish))
-        handleCloseModal();
+        handleCloseModal(); 
+    };
+    const handleDeleteDish = (id) => {
+        console.log('Deleted dish:', id);
+        dispatch(deleteDish(id))
     };
 
       
@@ -542,7 +547,7 @@ const Settings = () => {
                                                 </span>
                                                 <div className={classes.dishCardFooter}>
 
-                                                    <Button variant="outlined" onClick = {() => handleUpdateDish(dish.id)}  sx={{
+                                                    <Button variant="outlined" sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
                                                         '&:hover': {
                                                             border: 'none',
@@ -554,10 +559,29 @@ const Settings = () => {
                                                                 color: 'white',
                                                             },
                                                         },
-                                                    }}>
+                                                    }}>                                            
                                                         <DriveFileRenameOutlineOutlinedIcon sx={{ fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
                                                         <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>
-                                                            Edit dish
+                                                            Edit
+                                                        </Typography>
+                                                    </Button>
+                                                    
+                                                    <Button variant="outlined" onClick={() => handleDeleteDish(i)}  sx={{
+                                                        textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
+                                                        '&:hover': {
+                                                            border: 'none',
+                                                            backgroundColor: '#54363B',
+                                                            '& .MuiSvgIcon-root': {
+                                                                color: 'red',
+                                                            },
+                                                            '& .MuiTypography-root': {
+                                                                color: 'red',
+                                                            },
+                                                        },
+                                                    }}>
+                                                        <DeleteOutlineOutlinedIcon sx={{ fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
+                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>
+                                                            Del
                                                         </Typography>
                                                     </Button>
                                                 </div>
@@ -607,7 +631,7 @@ const Settings = () => {
                     </div>
                 </CardContent>
             </Card>
-            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} />
+            {/* <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} /> */}
         </div>
     )
 }
