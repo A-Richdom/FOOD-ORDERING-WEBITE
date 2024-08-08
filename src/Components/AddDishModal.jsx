@@ -20,16 +20,29 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#555a70',
         },
     },
+    label: {
+        color: '#EA6969',
+        fontSize: '15px',
+        '&.Mui-focused': {
+            color: '#EA6969',
+        },
+    },
+    imagePreview: {
+        maxWidth: '100%',
+        maxHeight: '120px',
+        marginTop: '10px',
+        borderRadius: '5px',
+    },
     removeBorder: {
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#555a70',
+                borderColor: '#555a70 !important',
             },
             '&:hover fieldset': {
-                borderColor: '#555a70',
+                borderColor: '#555a70 !important',
             },
             '&.Mui-focused fieldset': {
-                border: '1px solid white',
+                border: '1px solid white !important',
                 borderColor: 'white',
             },
             '& .MuiInputBase-input': {
@@ -44,18 +57,24 @@ const useStyles = makeStyles((theme) => ({
             },
         },
     },
-    label: {
-        color: '#EA6969',
-        fontSize: '15px',
-        '&.Mui-focused': {
-            color: '#EA6969',
+    errorBorder: {
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'red !important',
+            },
+            '&:hover fieldset': {
+                borderColor: 'red !important',
+            },
+            '&.Mui-focused fieldset !important': {
+                border: '1px solid red',
+                borderColor: 'red',
+            },
         },
+        color: 'red'
     },
-    imagePreview: {
-        maxWidth: '100%',
-        maxHeight: '120px',
-        marginTop: '10px',
-        borderRadius: '5px',
+    errorHelperText: {
+        color: 'red !important',  // Customize the error message color here
+        fontSize: '0.875rem', // Adjust the font size if needed
     },
 }));
 
@@ -73,11 +92,16 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
     };
 
     const [dish, setDish] = useState(initialDishState);
+    const [price, setPrice] = useState('');
+    const [unitAvailable, setUnitAvailable] = useState('');
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         const savedDishData = JSON.parse(localStorage.getItem('dishData'));
         if (savedDishData) {
-            setDish(savedDishData);
+            setDish(savedDishData)
+            setPrice(savedDishData.price ? parseFloat(savedDishData.price.replace('$', '')) : '');
+            setUnitAvailable(savedDishData.unit ? parseFloat(savedDishData.unitAvailable.replace('Bowls', '')) : '');
         }
     }, []);
 
@@ -88,34 +112,62 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                 const file = files[0];
                 const reader = new FileReader();
                 reader.onloadend = () => {
+
                     const base64String = reader.result;
                     console.log('Base64String', base64String);
+
                     const newDish = {
                         ...dish,
                         imageFile: file,
                         imgSrc: base64String, //Base64 encoded image
                         imgName: file.name,
                     };
+
                     setDish(newDish);
+
                     //Save data to local storage
-                    localStorage.setItem('dishData', JSON.stringify(newDish))
+                    localStorage.setItem('dishData', JSON.stringify(newDish));
+
                     // Verify that the data is saved to localStorage
-                console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
+                    console.log('Saved Dish Data:', JSON.parse(localStorage.getItem('dishData')));
                 };
+
                 reader.readAsDataURL(file);
             }
+        } else if (name === 'price') {
+            const rawValue = value.replace('$', '').replace(/[^0-9.]/g, '');
+            const formattedValue = rawValue ? `$${rawValue}` : '';
+            setDish({ ...dish, price: formattedValue });
+            setPrice(rawValue);
+        }
+        else if (name === 'unitAvailable') {
+            const rawValue = value.replace('$', '').replace(/[^0-9.]/g, '');
+            const formattedValue = rawValue ? `${rawValue} Bowls` : '';
+            setDish({ ...dish, unitAvailable: formattedValue });
+            setUnitAvailable(rawValue);
         }
         else {
             setDish({ ...dish, [name]: value });
         };
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onAddDish(dish);
-        setDish(initialDishState);
-        onClose();
+    const validationForm = () => {
+        const newErrors = {};
+        if (!dish.price) newErrors.price = 'Price is required';
+        if (!dish.unitAvailable) newErrors.unitAvailable = 'Unit is required';
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validationForm()) {
+            onAddDish(dish);
+            setDish(initialDishState);
+            setPrice('');
+            setUnitAvailable('');
+            onClose();
+        }
+    };
 
     return (
         <>
@@ -178,23 +230,37 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
                         value={dish.name}
                         onChange={handleChange}
                     />
-                    <TextField className={classes.removeBorder}
+                    <TextField className={errors.price ? classes.errorBorder : classes.removeBorder}
                         margin="normal"
                         label="Price"
                         fullWidth
                         name="price"
-                        type='number'
+                        type='text'
                         value={dish.price}
                         onChange={handleChange}
+                        errors={!!errors.price}
+                        helperText={errors.price}
+                        FormHelperTextProps={{
+                            classes: {
+                                root: classes.errorHelperText,
+                            },
+                        }}
                     />
-                    <TextField className={classes.removeBorder}
+                    <TextField className={errors.unitAvailable ? classes.errorBorder : classes.removeBorder}
                         margin="normal"
                         label="Units Available"
                         fullWidth
                         name="unitAvailable"
-                        type='number'
+                        type='text'
                         value={dish.unitAvailable}
                         onChange={handleChange}
+                        errors={!!errors.unitAvailable}
+                        helperText={errors.unitAvailable}
+                        FormHelperTextProps={{
+                            classes: {
+                                root: classes.errorHelperText,
+                            },
+                        }}
                     />
                     <TextField className={classes.removeBorder}
                         margin="normal"

@@ -489,14 +489,14 @@ const Homepage = () => {
     const dispatch = useDispatch();
     const dishesData = useSelector((state) => state.dishes.dishes);
     // console.log(dishesData);
+
+    if (!dishesData || dishesData.length === 0) {
+        return <div> No dishes available. Please add some dishes</div>
+    }
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
-
-    const handleDishClick = (dish) => {
-        dispatch(addDish(dish))
-    };
-
+    
     // RIGHT BAR...//
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
@@ -650,8 +650,8 @@ const Homepage = () => {
                             ) : isError ? (
                                 <Typography>Error loading dishes</Typography>
                             ) : (
-                                dishesData && dishesData.map((dish, i) => (
-                                    <Card key={dish._id} className={classes.dishCard} >
+                                dishesData && dishesData.map((dish) => (
+                                    <Card key={dish.id} className={classes.dishCard} >
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />
@@ -659,7 +659,7 @@ const Homepage = () => {
                                             {dish.name}
                                         </Typography>
                                         <span>
-                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>
+                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'whitesmoke', }}>
                                                 {dish.price}
                                             </Typography>
                                         </span>

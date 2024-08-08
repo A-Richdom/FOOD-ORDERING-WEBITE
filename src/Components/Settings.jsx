@@ -20,7 +20,7 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDish, deleteDish } from './FEATURES/DishesSlice';
-// import AddDishModal from './AddDishModal';
+import AddDishModal from './AddDishModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -227,11 +227,11 @@ const useStyles = makeStyles((theme) => ({
             height: '60px'
         }
     },
-    priceQuantity: {
+    priceAndUnit: {
         display: 'flex !important',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '10px'
+        gap: '6px'
     },
     dishCardFooter: {
         display: 'flex',
@@ -252,7 +252,7 @@ const Settings = () => {
     //Update State Using Redux..//
     const dispatch = useDispatch();
     const dishesData = useSelector((state) => state.dishes.dishes);
-    console.log(dishesData);
+    console.log(dishesData.id);
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
@@ -267,14 +267,20 @@ const Settings = () => {
     const handleAddDish = (dish) => {
         console.log("Diapatching dish:", dish); //log the dish being dispatched
         dispatch(addDish(dish))
-        handleCloseModal(); 
-    };
-    const handleDeleteDish = (id) => {
-        console.log('Deleted dish:', id);
-        dispatch(deleteDish(id))
+        handleCloseModal();
     };
 
-      
+    const handleDeleteDish = (id) => {
+        console.log('Deleted dish:', id);
+        if (id !== undefined) {
+            dispatch(deleteDish(id))
+        }
+        else {
+            console.log('ID is undefined');;
+        }
+    };
+
+
     useEffect(() => {
         console.log("Dishes Data:", dishesData); // log the dishes Data
     }, [dishesData])
@@ -527,24 +533,29 @@ const Settings = () => {
                                     ) : isError ? (
                                         <Typography>Error loading dishes</Typography>
                                     ) : (
-                                        dishesData && dishesData.map((dish, i) => (
-                                            <Card key={dish._id} className={classes.dishCard} >
+                                        dishesData && dishesData.map((dish) => (
+                                            <Card key={dish.id} className={classes.dishCard} >
+
                                                 <img src={dish.imgSrc} alt={dish.name}
                                                     className={classes.dishImg}
                                                 />
                                                 <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
                                                     {dish.name}
                                                 </Typography>
-                                                <span>
-                                                    <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'white', }}>
-                                                        {dish.price}
-                                                    </Typography>
-                                                </span>
-                                                <span>
-                                                    <Typography className={classes.dishUnit} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
-                                                        {dish.unitAvailable}
-                                                    </Typography>
-                                                </span>
+                                                <div className={classes.priceAndUnit}>
+                                                    <span>
+                                                        <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
+                                                            {dish.price}
+                                                        </Typography>
+                                                    </span>
+                                                    <CircleIcon sx={{ fontSize: '5px', color: '#b5b8b9'}}/>
+                                                    <span>
+                                                        <Typography className={classes.dishUnit} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                            {dish.unitAvailable}
+                                                        </Typography>
+                                                    </span>
+                                                </div>
+
                                                 <div className={classes.dishCardFooter}>
 
                                                     <Button variant="outlined" sx={{
@@ -559,14 +570,14 @@ const Settings = () => {
                                                                 color: 'white',
                                                             },
                                                         },
-                                                    }}>                                            
+                                                    }}>
                                                         <DriveFileRenameOutlineOutlinedIcon sx={{ fontSize: '18px', color: '#EA6969', marginRight: '5px', }} />
                                                         <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', fontWeight: 'bold', color: '#EA6969', cursor: 'pointer', }}>
                                                             Edit
                                                         </Typography>
                                                     </Button>
-                                                    
-                                                    <Button variant="outlined" onClick={() => handleDeleteDish(i)}  sx={{
+
+                                                    <Button variant="outlined" onClick={() => handleDeleteDish(dish.id)} sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
                                                         '&:hover': {
                                                             border: 'none',
@@ -631,7 +642,7 @@ const Settings = () => {
                     </div>
                 </CardContent>
             </Card>
-            {/* <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} /> */}
+            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} />
         </div>
     )
 }
