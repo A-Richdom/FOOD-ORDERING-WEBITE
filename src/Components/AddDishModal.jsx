@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AddDishModal = ({ open, onClose, onAddDish }) => {
+const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
     const classes = useStyles();
 
     const initialDishState = {
@@ -91,7 +91,7 @@ const AddDishModal = ({ open, onClose, onAddDish }) => {
         unitAvailable: '',
     };
 
-    const [dish, setDish] = useState(initialDishState);
+    const [dish, setDish] = useState(editDish || initialDishState);
     const [price, setPrice] = useState('');
     const [unitAvailable, setUnitAvailable] = useState('');
     const [errors, setErrors] = useState({});

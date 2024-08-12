@@ -640,7 +640,7 @@ const Settings = () => {
                         </div>
 
                     </div>
-                </CardContent>
+                </CardContent>  
             </Card>
             <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} />
         </div>

@@ -128,6 +128,12 @@ const dishesSlice = createSlice({
             state.dishes = [...state.dishes, action.payload];
             console.log("New state after adding dish:", state.dishes); // Log new state
         },
+        updateDish: (state, action) => {
+            const index = state.dishes.findIndex(dish => dish.id === action.payload.id);
+            if (index !== -1) {
+                state.dishes[index] = action.payload
+            }
+        },
         deleteDish: (state, action) => {
             const id = action.payload
             console.log('Reducer received ID:', id); // Check ID here
