@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
+const AddDishModal = ({ open, onClose, onAddDish, dishToEdit }) => {
     const classes = useStyles();
 
     const initialDishState = {
@@ -91,19 +91,27 @@ const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
         unitAvailable: '',
     };
 
-    const [dish, setDish] = useState(editDish || initialDishState);
+    const [dish, setDish] = useState(initialDishState);
+    const [editDish, setEditDish] = useState(dishToEdit);
     const [price, setPrice] = useState('');
     const [unitAvailable, setUnitAvailable] = useState('');
+    const [imgSrc, setImgSrc] = useState('');
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        const savedDishData = JSON.parse(localStorage.getItem('dishData'));
-        if (savedDishData) {
-            setDish(savedDishData)
-            setPrice(savedDishData.price ? parseFloat(savedDishData.price.replace('$', '')) : '');
-            setUnitAvailable(savedDishData.unit ? parseFloat(savedDishData.unitAvailable.replace('Bowls', '')) : '');
+        if (dishToEdit) {
+            setDish(dishToEdit);
         }
-    }, []);
+        else {
+            setDish(initialDishState);
+        }
+        // const savedDishData = JSON.parse(localStorage.getItem('dishData'));
+        // if (savedDishData) {
+        //     setDish(savedDishData)
+        //     setPrice(savedDishData.price ? parseFloat(savedDishData.price.replace('$', '')) : '');
+        //     setUnitAvailable(savedDishData.unit ? parseFloat(savedDishData.unitAvailable.replace('Bowls', '')) : '');
+        // }
+    }, [dishToEdit]);
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -150,6 +158,7 @@ const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
             setDish({ ...dish, [name]: value });
         };
     };
+
     const validationForm = () => {
         const newErrors = {};
         if (!dish.price) newErrors.price = 'Price is required';
@@ -163,6 +172,7 @@ const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
         if (validationForm()) {
             onAddDish(dish);
             setDish(initialDishState);
+
             setPrice('');
             setUnitAvailable('');
             onClose();
@@ -192,7 +202,7 @@ const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
                         },
                     }}>
                     <Typography variant="h6" color="white" component="h2">
-                        Add New Dish
+                        {dishToEdit ? 'Edit Dish' : 'Add New Dish'}
                     </Typography>
                     <Grid>
                         <Grid item>
@@ -281,7 +291,7 @@ const AddDishModal = ({ open, onClose, onAddDish, editDish }) => {
                         onChange={handleChange}
                     />
                     <Button onClick={handleSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>
-                        Add Dish
+                        {dishToEdit ? 'Update Dish' : 'Add Dish'}
                     </Button>
                 </Box>
             </Modal>

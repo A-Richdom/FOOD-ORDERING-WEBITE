@@ -1,146 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
-const initialState = {
-    //     dishes: [
-    //         {
-    //             id: 0,
-    //             imgSrc: 'DishImages/img1.png',
-    //             name: 'Salted Pesta Seasoningg',
-    //             price: '$3.42',
-    //             unitAvailable: '20 Bowls Available',
-    //             quantity: '3',
-    //             totalPrice: '$10.26',
-    //         },
-    //         {
-    //             id: 1,
-    //             imgSrc: 'DishImages/img2.png',
-    //             name: 'Ice creem sandwich',
-    //             price: '$1.06',
-    //             unitAvailable: '10 Bowls Available',
-    //             quantity: '6',
-    //             totalPrice: '$20.56',
-    //         },
-    //         {
-    //             id: 2,
-    //             imgSrc: 'DishImages/img3.png',
-    //             name: 'Spicy Instant Noodles',
-    //             price: '$1.33',
-    //             unitAvailable: '5 Bowls Available',
-    //             quantity: '9',
-    //             totalPrice: '$105.50',
-    //         },
-    //         {
-    //             id: 3,
-    //             imgSrc: 'DishImages/img4.png',
-    //             name: 'Fresh Youghout',
-    //             price: '$3.33',
-    //             unitAvailable: '4 Bowls Available',
-    //             quantity: '2',
-    //             totalPrice: '$20.89',
-    //         },
-    //         {
-    //             id: 4,
-    //             imgSrc: 'DishImages/img5.png',
-    //             name: 'Salted pasta with asorted meat',
-    //             price: '$2.33',
-    //             unitAvailable: '15 Bowls Available',
-    //             quantity: '35',
-    //             totalPrice: '$70.00',
-    //         },
-    //         {
-    //             id: 5,
-    //             imgSrc: 'DishImages/img6.png',
-    //             name: 'Instant Noodles with egg',
-    //             price: '$10.33',
-    //             unitAvailable: '10 Bowls Available',
-    //             quantity: '1',
-    //             totalPrice: '$10.56',
-    //         },
-    //         {
-    //             id: 6,
-    //             imgSrc: 'DishImages/img1.png',
-    //             name: 'Salted Pasta Seasooning',
-    //             price: '$3.42',
-    //             unitAvailable: '20 Bowls Available',
-    //             quantity: '120',
-    //             totalPrice: '$490.45',
-    //         },
-    //         {
-    //             id: 7,
-    //             imgSrc: 'DishImages/img2.png',
-    //             name: 'Ice cream sandwich',
-    //             price: '$1.06',
-    //             unitAvailable: '3 Bowls Available',
-    //             quantity: '3',
-    //             totalPrice: '$23.11',
-    //         },
-    //         {
-    //             id: 8,
-    //             imgSrc: 'DishImages/img3.png',
-    //             name: 'Spicy Instant Noodles',
-    //             price: '$1.33',
-    //             unitAvailable: '10 Bowls Available',
-    //             quantity: '25',
-    //             totalPrice: '$24.33',
-    //         },
-    //         {
-    //             id: 9,
-    //             imgSrc: 'DishImages/img4.png',
-    //             name: 'Fresh Yooughout',
-    //             price: '$3.33',
-    //             unitAvailable: '20 Bowl Available',
-    //             quantity: '3',
-    //             totalPrice: '$10.11',
-    //         },
-    //         {
-    //             id: 10,
-    //             imgSrc: 'DishImages/img5.png',
-    //             name: 'Salted pasta with assorted fish',
-    //             price: '$2.33',
-    //             unitAvailable: '20 Bowl Available',
-    //             quantity: '10',
-    //             totalPrice: '$4.76',
-    //         },
-    //         {
-    //             id: 11,
-    //             imgSrc: 'DishImages/img5.png',
-    //             name: 'Salted pastaa with assorted meat',
-    //             price: '$2.33',
-    //             unitAvailable: '15 Bowls Available',
-    //             quantity: '11',
-    //             totalPrice: '$22.33',
-    //         },
-    // ],
+
+// Utility functions
+const saveStateToLocalStorage = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem('dishesState', serializedState);
+    } catch (e) {
+        console.error("Could not save state", e);
+    }
+};
+
+const loadStateFromLocalStorage = () => {
+    try {
+        const serializedState = localStorage.getItem('dishesState');
+        if (serializedState === null) {
+            return undefined; // Return undefined if no state is found
+        }
+        return JSON.parse(serializedState);
+    } catch (e) {
+        console.error("Could not load state", e);
+        return undefined;
+    }
+};
+
+// Initialize state
+const initialState = loadStateFromLocalStorage() || {
     dishes: [],
     isLoading: false,
     isError: false,
 };
-
-console.log("Initial state", initialState.id);
-
 
 const dishesSlice = createSlice({
     name: 'dishes',
     initialState,
     reducers: {
         addDish: (state, action) => {
-            console.log('Adding Dish:', action.payload); //log adding dish 
-            state.dishes = [...state.dishes, action.payload];
-            console.log("New state after adding dish:", state.dishes); // Log new state
+            const newDish = { ...action.payload, id: uuidv4() };
+            state.dishes = [...state.dishes, newDish];
+            saveStateToLocalStorage(state); // Pass the state here
         },
-        updateDish: (state, action) => {
-            const index = state.dishes.findIndex(dish => dish.id === action.payload.id);
+        editDish: (state, action) => {
+            const { id, updatedDish } = action.payload;
+            const index = state.dishes.findIndex(dish => dish.id === id);
             if (index !== -1) {
-                state.dishes[index] = action.payload
+                state.dishes[index] = updatedDish;
+                saveStateToLocalStorage(state); // Pass the state here
             }
         },
         deleteDish: (state, action) => {
-            const id = action.payload
-            console.log('Reducer received ID:', id); // Check ID here
+            const id = action.payload;
             state.dishes = state.dishes.filter(dish => dish.id !== id);
-            console.log('New state after deleting dish:', state.dishes);
+            saveStateToLocalStorage(state); // Pass the state here
         },
-
         setLoading: (state, action) => {
             state.isLoading = action.payload;
         },
@@ -150,5 +63,5 @@ const dishesSlice = createSlice({
     },
 });
 
-export const { addDish, deleteDish, setLoading, setError } = dishesSlice.actions;
+export const { addDish, deleteDish, editDish, setLoading, setError } = dishesSlice.actions;
 export default dishesSlice.reducer;

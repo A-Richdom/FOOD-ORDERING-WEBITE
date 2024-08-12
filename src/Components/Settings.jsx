@@ -19,7 +19,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDish, deleteDish } from './FEATURES/DishesSlice';
+import { addDish, deleteDish, editDish } from './FEATURES/DishesSlice';
 import AddDishModal from './AddDishModal';
 
 
@@ -252,24 +252,57 @@ const Settings = () => {
     //Update State Using Redux..//
     const dispatch = useDispatch();
     const dishesData = useSelector((state) => state.dishes.dishes);
-    console.log(dishesData.id);
+    console.log(dishesData.id); 
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [dishToEdit, setDishToEdit] = useState(null);
+
+    useEffect(() => {
+        console.log("Dishes Data:", dishesData); // log the dishes Data            
+    }, [dishesData]);
 
     const handleOpenModal = () => {
         setModalOpen(true);
     };
     const handleCloseModal = () => {
         setModalOpen(false);
-    };
-    const handleAddDish = (dish) => {
-        console.log("Diapatching dish:", dish); //log the dish being dispatched
-        dispatch(addDish(dish))
-        handleCloseModal();
+        setDishToEdit(null);
     };
 
+    console.log("Dishes data", dishesData);
+    
+    const handleAddDish = (dish) => {
+        if (dishToEdit) {
+            console.log("Editing dish:", dish);
+            dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
+
+            // dispatch(editDish({ id: Math.floor(Math.random() * 5000), updatedDish: dish }));
+        }
+        else {
+            console.log("Diapatching dish:", dish); //log the dish being dispatched
+            dispatch(addDish(dish));
+        }
+        handleCloseModal();
+    };
+    // const handleEditDish = (dish) => {
+    //     setDishToEdit(dish);
+    //     handleOpenModal();
+    // };
+
+    const handleEditDish = (dish) => {
+        if (dishToEdit) {
+            // Update the dish being edited with the new details
+            console.log("Editing dish:", dish);
+            setDishToEdit(dish);
+            dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
+        } else {
+            console.log('No dish to edit');
+        }
+        handleCloseModal();
+    };
+    
     const handleDeleteDish = (id) => {
         console.log('Deleted dish:', id);
         if (id !== undefined) {
@@ -279,11 +312,6 @@ const Settings = () => {
             console.log('ID is undefined');;
         }
     };
-
-
-    useEffect(() => {
-        console.log("Dishes Data:", dishesData); // log the dishes Data
-    }, [dishesData])
 
 
     return (
@@ -534,6 +562,7 @@ const Settings = () => {
                                         <Typography>Error loading dishes</Typography>
                                     ) : (
                                         dishesData && dishesData.map((dish) => (
+                                            
                                             <Card key={dish.id} className={classes.dishCard} >
 
                                                 <img src={dish.imgSrc} alt={dish.name}
@@ -558,7 +587,7 @@ const Settings = () => {
 
                                                 <div className={classes.dishCardFooter}>
 
-                                                    <Button variant="outlined" sx={{
+                                                    <Button variant="outlined" onClick={handleEditDish} sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
                                                         '&:hover': {
                                                             border: 'none',
@@ -642,7 +671,7 @@ const Settings = () => {
                     </div>
                 </CardContent>  
             </Card>
-            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} />
+            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} dishToEdit={dishToEdit}  />
         </div>
     )
 }
