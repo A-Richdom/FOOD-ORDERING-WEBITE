@@ -277,8 +277,6 @@ const Settings = () => {
         if (dishToEdit) {
             console.log("Editing dish:", dish);
             dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
-
-            // dispatch(editDish({ id: Math.floor(Math.random() * 5000), updatedDish: dish }));
         }
         else {
             console.log("Diapatching dish:", dish); //log the dish being dispatched

@@ -116,12 +116,6 @@ const AddDishModal = ({ open, onClose, onAddDish, dishToEdit }) => {
         else {
             setDish(initialDishState);
         }
-        // const savedDishData = JSON.parse(localStorage.getItem('dishData'));
-        // if (savedDishData) {
-        //     setDish(savedDishData)
-        //     setPrice(savedDishData.price ? parseFloat(savedDishData.price.replace('$', '')) : '');
-        //     setUnitAvailable(savedDishData.unit ? parseFloat(savedDishData.unitAvailable.replace('Bowls', '')) : '');
-        // }
     }, [dishToEdit]);
 
     const handleChange = (e) => {
