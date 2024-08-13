@@ -293,7 +293,6 @@ const Settings = () => {
     };
     
     const handleDeleteDish = (id) => {
-        
         if (id !== undefined) {
             dispatch(deleteDish(id))
             console.log('Deleted dish:', id);
