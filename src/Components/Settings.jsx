@@ -286,6 +286,7 @@ const Settings = () => {
         }
         handleCloseModal();
     };
+    
     // const handleEditDish = (dish) => {
     //     setDishToEdit(dish);
     //     handleOpenModal();
