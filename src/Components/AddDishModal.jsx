@@ -44,17 +44,28 @@ const useStyles = makeStyles((theme) => ({
             '&.Mui-focused fieldset': {
                 border: '1px solid white !important',
                 borderColor: 'white',
+                backgroundColor: 'transparent !important',
             },
             '& .MuiInputBase-input': {
                 textAlign: 'center',
-                '&::placeholder': {
-                    color: '#EA6969 !important',
-                    opacity: 1,
-                },
+                color: 'white',
+                fontFamily: 'Quicksand',
+                backgroundColor: 'transparent !important',
             },
             '& .MuiTableCell-root': {
                 border: 'none'
             },
+        },
+        '& .MuiInputLabel-root': {
+            color: 'white',
+            fontFamily: 'Quicksand',
+        },
+        '& .MuiInputLabel-shrink': {
+            color: '#EA6969 !important',
+        },
+        '& .Mui-focused MuiInputLabel-shrink': {
+            color: 'white',
+            fontFamily: 'Quicksand !important',
         },
     },
     errorBorder: {
@@ -290,7 +301,7 @@ const AddDishModal = ({ open, onClose, onAddDish, dishToEdit }) => {
                         value={dish.totalPrice}
                         onChange={handleChange}
                     />
-                    <Button onClick={handleSubmit} variant="contained" color="primary" sx={{ mt: 2 }}>
+                    <Button onClick={handleSubmit} variant="contained" sx={{ mt: 2, backgroundColor: '#EA6969' }}>
                         {dishToEdit ? 'Update Dish' : 'Add Dish'}
                     </Button>
                 </Box>

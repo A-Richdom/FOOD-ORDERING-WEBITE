@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
 
     dishesOrdering: {
-        height: '50% !important',
+        height: '25% !important',
         width: '100%',
         paddingTop: '10px',
     },

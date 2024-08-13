@@ -286,28 +286,28 @@ const Settings = () => {
         }
         handleCloseModal();
     };
-    
-    // const handleEditDish = (dish) => {
-    //     setDishToEdit(dish);
-    //     handleOpenModal();
-    // };
 
     const handleEditDish = (dish) => {
-        if (dishToEdit) {
-            // Update the dish being edited with the new details
-            console.log("Editing dish:", dish);
-            setDishToEdit(dish);
-            dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
-        } else {
-            console.log('No dish to edit');
-        }
-        handleCloseModal();
+        setDishToEdit(dish);
+        handleOpenModal();
     };
+
+    // const handleEditDish = (dish) => {
+    //     if (dishToEdit) {
+    //         // Update the dish being edited with the new details
+    //         console.log("Editing dish:", dish);
+    //         dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
+    //     } else {
+    //         console.log('No dish to edit');
+    //     }
+    //     handleCloseModal();
+    // };
     
     const handleDeleteDish = (id) => {
-        console.log('Deleted dish:', id);
+        
         if (id !== undefined) {
             dispatch(deleteDish(id))
+            console.log('Deleted dish:', id);
         }
         else {
             console.log('ID is undefined');;
@@ -588,7 +588,7 @@ const Settings = () => {
 
                                                 <div className={classes.dishCardFooter}>
 
-                                                    <Button variant="outlined" onClick={handleEditDish} sx={{
+                                                    <Button variant="outlined" onClick={() => handleEditDish(dish)} sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
                                                         '&:hover': {
                                                             border: 'none',
