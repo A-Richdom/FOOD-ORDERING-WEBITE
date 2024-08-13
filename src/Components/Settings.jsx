@@ -258,6 +258,7 @@ const Settings = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [dishToEdit, setDishToEdit] = useState(null);
+    const [isSpinnerLoading, setIsSpinnerLoading] = useState(false);
 
     useEffect(() => {
         console.log("Dishes Data:", dishesData); // log the dishes Data            
