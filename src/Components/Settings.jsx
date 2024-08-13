@@ -297,10 +297,7 @@ const Settings = () => {
     //         // Update the dish being edited with the new details
     //         console.log("Editing dish:", dish);
     //         dispatch(editDish({ id: dishToEdit.id, updatedDish: dish }));
-    //     } else {
-    //         console.log('No dish to edit');
-    //     }
-    //     handleCloseModal();
+    //     } 
     // };
     
     const handleDeleteDish = (id) => {

@@ -18,4 +18,4 @@ export const loadStateFromLocalStorage = () => {
         console.error("Could not load state", e);
         return undefined;
     }
-}
+};
