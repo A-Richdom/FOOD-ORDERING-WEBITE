@@ -303,4 +303,5 @@ const AddDishModal = ({ open, onClose, onAddDish, dishToEdit }) => {
         </>
     )
 }
+
 export default AddDishModal
