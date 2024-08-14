@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDish, deleteDish, editDish } from './FEATURES/DishesSlice';
 import AddDishModal from './AddDishModal';
+import LoadingModal from './LoadingModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -282,6 +283,11 @@ const Settings = () => {
         else {
             console.log("Diapatching dish:", dish); //log the dish being dispatched
             dispatch(addDish(dish));
+            setIsSpinnerLoading(true);
+
+            setTimeout(() => {
+                setIsSpinnerLoading(false);
+            }, 10000);
         }
         handleCloseModal();
     };
@@ -542,7 +548,9 @@ const Settings = () => {
                                         <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />
                                         <Typography sx={{ fontFamily: 'Quicksand', fontWeight: '600', color: '#EA6969', cursor: 'pointer', }}>Add new dish</Typography>
                                     </Card>
-
+                                        <div>
+                                            <LoadingModal open={isSpinnerLoading}/>
+                                        </div>
                                     {/* DISHES-ADDED */}
                                     {isLoading ? (
                                         <Typography>Loading...</Typography>

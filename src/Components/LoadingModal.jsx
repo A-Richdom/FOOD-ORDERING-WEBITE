@@ -29,8 +29,8 @@ const LoadingModal = ({ open }) => {
                         borderRadius: '8px',
                     }}
                 >
-                    <CircularProgress />
-                    <Typography sx={{ marginTop: '10px' }}>Processing...</Typography>
+                    <CircularProgress  sx={{ color: '#EA6969', }}/>
+                    <Typography sx={{ marginTop: '10px', backgroundColor: 'transparent', fontFamily: 'Quicksand' }}>Processing...</Typography>
                 </Box>
             </Box>
         </Modal>
