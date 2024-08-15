@@ -6,8 +6,10 @@ import { saveStateToLocalStorage, loadStateFromLocalStorage } from './LocalStora
 const initialState = loadStateFromLocalStorage() || {
     dishes: [],
     selectedDishes: [],
+    isVisible: false,
     isLoading: false,
     isError: false,
+    
 };
 
 const dishesSlice = createSlice({
@@ -45,6 +47,12 @@ const dishesSlice = createSlice({
             state.selectedDishes = state.selectedDishes.filter(dish => dish.id !== id);
             saveStateToLocalStorage(state);
         },
+        showSlide: (state) => {
+            state.isVisible = true;
+        },
+        hideSlide: (state) => {
+            state.isVisible = false;
+        },
         setLoading: (state, action) => {
             state.isLoading = action.payload;
         },
@@ -54,5 +62,5 @@ const dishesSlice = createSlice({
     },
 });
 
-export const { addDish, deleteDish, editDish, selectDish, deSelectDish, setLoading, setError } = dishesSlice.actions;
+export const { addDish, deleteDish, editDish, selectDish, deSelectDish, showSlide,hideSlide, setLoading, setError } = dishesSlice.actions;
 export default dishesSlice.reducer;

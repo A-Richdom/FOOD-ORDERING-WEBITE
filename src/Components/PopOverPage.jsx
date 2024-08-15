@@ -6,112 +6,24 @@ import AddIcon from '@mui/icons-material/Add';
 import DishesOrdering from './DishesOrdering';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
-
-const dishes = [
-  {
-    imgSrc: 'DishImages/img1.png',
-    name: 'Salted Pesta Seasoningg',
-    price: '$3.42',
-    unitAvailable: '20 Bowls Available',
-    quantity: '3',
-    totalPrice: '$10.26',
-  },
-  {
-    imgSrc: 'DishImages/img2.png',
-    name: 'Ice creem sandwich',
-    price: '$1.06',
-    unitAvailable: '10 Bowls Available',
-    quantity: '6',
-    totalPrice: '$20.56',
-  },
-  {
-    imgSrc: 'DishImages/img3.png',
-    name: 'Spicy Instant Noodles',
-    price: '$1.33',
-    unitAvailable: '5 Bowls Available',
-    quantity: '9',
-    totalPrice: '$105.50',
-  },
-  {
-    imgSrc: 'DishImages/img4.png',
-    name: 'Fresh Youghout',
-    price: '$3.33',
-    unitAvailable: '4 Bowls Available',
-    quantity: '2',
-    totalPrice: '$20.89',
-  },
-  {
-    imgSrc: 'DishImages/img5.png',
-    name: 'Salted pasta with asorted meat',
-    price: '$2.33',
-    unitAvailable: '15 Bowls Available',
-    quantity: '35',
-    totalPrice: '$70.00',
-  },
-  {
-    imgSrc: 'DishImages/img6.png',
-    name: 'Instant Noodles with egg',
-    price: '$10.33',
-    unitAvailable: '10 Bowls Available',
-    quantity: '1',
-    totalPrice: '$10.56',
-  },
-  {
-    imgSrc: 'DishImages/img1.png',
-    name: 'Salted Pasta Seasooning',
-    price: '$3.42',
-    unitAvailable: '20 Bowls Available',
-    quantity: '120',
-    totalPrice: '$490.45',
-  },
-  {
-    imgSrc: 'DishImages/img2.png',
-    name: 'Ice cream sandwich',
-    price: '$1.06',
-    unitAvailable: '3 Bowls Available',
-    quantity: '3',
-    totalPrice: '$23.11',
-  },
-  {
-    imgSrc: 'DishImages/img3.png',
-    name: 'Spicy Instant Noodles',
-    price: '$1.33',
-    unitAvailable: '10 Bowls Available',
-    quantity: '25',
-    totalPrice: '$24.33',
-  },
-  {
-    imgSrc: 'DishImages/img4.png',
-    name: 'Fresh Yooughout',
-    price: '$3.33',
-    unitAvailable: '20 Bowl Available',
-    quantity: '3',
-    totalPrice: '$10.11',
-  },
-  {
-    imgSrc: 'DishImages/img5.png',
-    name: 'Salted pasta with assorted fish',
-    price: '$2.33',
-    unitAvailable: '20 Bowl Available',
-    quantity: '10',
-    totalPrice: '$4.76',
-  },
-  {
-    imgSrc: 'DishImages/img5.png',
-    name: 'Salted pastaa with assorted meat',
-    price: '$2.33',
-    unitAvailable: '15 Bowls Available',
-    quantity: '11',
-    totalPrice: '$22.33',
-  },
-];
+import { selectDish } from './FEATURES/DishesSlice';
+import { useSelector } from 'react-redux';
+import DishesSlice from './FEATURES/DishesSlice';
+import Slide from '@mui/material';
+import { hideSlide } from './FEATURES/DishesSlice';
 
 const useStyles = makeStyles((theme) => ({
 
   cardContainer: {
     width: '60%',
     height: '100vh',
+    // position: 'fixed',
+    //     right: 0,
+    //     top: 0,
+    //     height: '100%',
+    //     width: '70%',
+    //     backgroundColor: 'white',
+    //     zIndex: 2000,
     display: 'flex',
     borderRadius: '15px !important',
     '@media (max-width: 960px)': {
@@ -215,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   paymentPageChildren: {
     width: '100%',
     paddingToP: '20px !important',
-    height: '100%',
+    height: '95%',
     overflowY: 'scroll',
     overflowX: 'hidden',
     '&::-webkit-scrollbar': {
@@ -381,6 +293,9 @@ const useStyles = makeStyles((theme) => ({
 const PopOverPage = () => {
   const classes = useStyles();
   const [expandedDishName, setExpandedDishName] = useState(null);
+  // const [selectedDishes, setSelectedDishes] = useState([]);
+
+  const selectedDishes = useSelector((state) => state.selectedDishes);
 
   // Dine in Button Function
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -402,7 +317,7 @@ const PopOverPage = () => {
     setExpandedDishName(index === expandedDishName ? null : index);
   };
 
-
+  const isVisible = useSelector((state) => state.slide.isVisible);
 
   return (
     <div>
@@ -463,7 +378,7 @@ const PopOverPage = () => {
 
             <DishesOrdering
               className={classes.dishesOrdering}
-              dishes={dishes}
+              selectedDishes={selectedDishes}
               handleTextboxChange={handleTextboxChange}
               handleDishName={handleDishName}
               expandedDishName={expandedDishName}
@@ -1048,7 +963,7 @@ const PopOverPage = () => {
                     border: '1px solid #f97f7f',
                     borderRadius: '8px',
                     color: 'white',
-                    padding: '10px',
+                    padding: '5px',
                     textTransform: 'none',
                     fontFamily: 'Quicksand',
                     fontSize: '12px',

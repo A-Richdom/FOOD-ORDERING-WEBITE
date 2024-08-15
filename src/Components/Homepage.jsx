@@ -17,13 +17,14 @@ import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDish } from './FEATURES/DishesSlice';
+import { selectDish, showSlide } from './FEATURES/DishesSlice';
 
 //// Search Box..//
 import SearchIcon from '@mui/icons-material/Search';
 import zIndex from '@mui/material/styles/zIndex';
 import DishesOrdering from './DishesOrdering';
 import { Link } from 'react-router-dom';
+import PopOverPage from './PopOverPage';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -395,6 +396,14 @@ const Homepage = () => {
     const handleDishName = (index) => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
+
+    const handleContinuePayment = () => {
+        dispatch(showSlide());
+        console.log("SHOW SLIDE IS TREU", showSlide);
+        
+    };
+
+
     return (
         <div className={classes.divContainer}>
             <Card className={classes.cardWrapper}>
@@ -663,7 +672,7 @@ const Homepage = () => {
                                     </Typography>
                                 </span>
                             </div>
-                            <Button
+                            <Button onClick={handleContinuePayment}
                                 sx={{
                                     backgroundColor: '#f97f7f',
                                     borderRadius: '10px',
@@ -688,6 +697,8 @@ const Homepage = () => {
                         </div>
                     </div>
                 </CardContent>
+
+                <PopOverPage />
             </Card>
         </div>
     )

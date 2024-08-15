@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     // TABLE HEADER..//
     tableHead: {
         width: '94% !important',
-        position: 'absolute !important',
-        top: '15',
+        // position: 'absolute !important',
+        // top: '15',   
         backgroundColor: '#1F1D2B !important',
         zIndex: '1',
         border: 'none !important',
