@@ -17,7 +17,7 @@ import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDish } from './FEATURES/DishesSlice';
+import { selectDish } from './FEATURES/DishesSlice';
 
 //// Search Box..//
 import SearchIcon from '@mui/icons-material/Search';
@@ -424,6 +424,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     paymentWrapper: {
+        position: 'static',
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
@@ -457,6 +458,8 @@ const Homepage = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [expandedDishName, setExpandedDishName] = useState(null);
+
+    const [selectedDishes, setSelectedDishes] = useState([]);
     // text field
     const [name, setName] = React.useState('');
 
@@ -495,6 +498,12 @@ const Homepage = () => {
     }
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
+
+    //SELECTED DISH TO ORDER....//
+    const handleSelectDish = (dish) => {
+        dispatch(selectDish(dish));
+        setSelectedDishes(prevDishes => [ ...prevDishes, dish ]);
+    };
 
     
     // RIGHT BAR...//
@@ -651,7 +660,7 @@ const Homepage = () => {
                                 <Typography>Error loading dishes</Typography>
                             ) : (
                                 dishesData && dishesData.map((dish) => (
-                                    <Card key={dish.id} className={classes.dishCard} >
+                                    <Card key={dish.id} className={classes.dishCard} onClick={() => handleSelectDish(dish)} >
                                         <img src={dish.imgSrc} alt={dish.name}
                                             className={classes.dishImg}
                                         />
@@ -705,7 +714,8 @@ const Homepage = () => {
 
                         {/* Dishes-Ordering Component */}
                         <DishesOrdering className={classes.dishesOrdering}
-                            dishes={dishesData}
+                            // dishes={dishesData}
+                            selectedDishes={selectedDishes}
                             handleTextboxChange={handleTextboxChange}
                             handleDishName={handleDishName}
                             expandedDishName={expandedDishName}

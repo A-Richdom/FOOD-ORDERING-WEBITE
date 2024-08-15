@@ -3,12 +3,13 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typog
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { makeStyles } from '@mui/styles';
 import { useSelector } from 'react-redux';
+import { deSelectDish } from './FEATURES/DishesSlice';
 
 
 const useStyles = makeStyles((theme) => ({
 
     dishesOrdering: {
-        height: '25% !important',
+        height: '13% !important',
         width: '100%',
         paddingTop: '10px',
     },
@@ -140,9 +141,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedDishName }) => {
+const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDishName, expandedDishName }) => {
     const classes = useStyles();
-    // const orderedDishes = useSelector((state) => state.dishes.orderedDishes)
+
+    console.log("SELECTED DISHES", selectedDishes);
+    
+    // const selectedDishes= useSelector((state) => state.selectedDishes.selectedDishes);
 
     return (
             <div className={classes.dishesOrdering}>
@@ -161,7 +165,7 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
                         {/* TABLE BODY */}
                         <TableBody className={classes.tableBody}>
                             {
-                                dishes && dishes.map((dish, index) => (
+                                selectedDishes && selectedDishes.map((dish, index) => (
                                     <React.Fragment key={dish.name}>
                                         <TableRow className={classes.tableBodyRow}>
                                             <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
@@ -277,7 +281,7 @@ const DishesOrdering = ({ dishes, handleTextboxChange, handleDishName, expandedD
                                             </TableCell>
                                             <TableCell className={classes.deleteBtnCell}>
 
-                                                <Button className={classes.deleteBtn} variant="outlined" href="#outlined-buttons"
+                                                <Button className={classes.deleteBtn} onClick={() => dispatch(deSelectDish(dish.id))} variant="outlined" href="#outlined-buttons"
                                                     sx={{
                                                         display: 'flex',
                                                         border: '1px solid #EA6969',
