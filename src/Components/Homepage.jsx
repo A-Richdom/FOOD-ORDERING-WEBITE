@@ -680,7 +680,6 @@ const Homepage = () => {
                                     '@media (max-width: 480px)': {
                                         width: '90%',
                                         fontSize: '10px',
-                                        // padding: '1px',
                                         padding: '1px',
                                     },
                                 }}>
