@@ -9,7 +9,7 @@ import { deSelectDish } from './FEATURES/DishesSlice';
 const useStyles = makeStyles((theme) => ({
 
     dishesOrdering: {
-        height: '13% !important',
+        height: '8% !important',
         width: '100%',
         paddingTop: '10px',
     },
@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     },
     // TABLE HEADER..//
     tableHead: {
-        width: '100% !important',
-        position: 'sticky !important',
-        top: '0',
+        width: '94% !important',
+        position: 'absolute !important',
+        top: '15',
         backgroundColor: '#1F1D2B !important',
         zIndex: '1',
         border: 'none !important',

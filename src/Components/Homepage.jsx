@@ -222,7 +222,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         height: '55%',
         '@media (max-width: 400px)': {
-            height: '15%'
+            height: '40%'
         },
         overflowY: 'scroll !important',
         borderBottom: '1px solid #555a70',
@@ -267,6 +267,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex !important',
         flexDirection: 'column',
         alignItems: 'center',
+        height: '100vh',
+        position: 'relative',
     },
     rightBarChildren: {
         width: '100% !important',
@@ -295,136 +297,13 @@ const useStyles = makeStyles((theme) => ({
             color: 'white !important',
             border: '1px solid #555a70',
         },
-    },
-    // dishesOrdering: {
-    //     height: '1.5% !important',
-    //     width: '100%',
-    //     paddingTop: '10px',
-    // },
-    tableContainer: {
-        height: '100%',
-        overflowY: 'scroll',
-        border: 'none !important',
-        borderBottom: '1px solid #555a70',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
-    table: {
-        width: '100% !important',
-        borderCollapse: 'collapse !imporant'
-    },
-    // TABLE HEADER..//
-    tableHead: {
-        width: '100% !important',
-        position: 'sticky !important',
-        top: '0',
-        backgroundColor: '#1F1D2B !important',
-        zIndex: '1',
-        border: 'none !important',
-        '& .MuiTableCell-root': {
-            position: 'sticky',
-            color: '#fff !important',
-            borderBottom: '1px solid #555a70 !important',
-        },
-    },
-    tableHeadRow: {
-        width: '100% !important',
-    },
-    itemCell: {
-        width: '100% !important',
-        paddingLeft: '0 !important',
-    },
-    quantityCell: {
-        width: '100% !important',
-    },
-    totalPriceCell: {
-        width: '100% !important',
-        paddingRight: '0 !important'
-    },
-    // TABLE BODY...//
-    tableBody: {
-        width: '100% !important',
-        backgroundColor: '#1F1D2B !important',
-        borderBottom: '1px solid #555a70 !important',
-        // border: 'none !important',
-        '& .MuiTableCell-root': {
-            color: '#c9cdce !important',
-            borderBottom: 'none !important',
-        },
-    },
-    tableBodyRow: {
-        width: '100% !important',
-        padding: '0 !important',
-        margin: '0 !important',
-    },
-    tableBodyItemCell: {
-        // width: '94% !important',
-        paddingLeft: '0 !important',
-        padding: '4px 8px !important',
-    },
-    dishImgOrdering: {
-        width: '40px',
-        height: '40px',
-    },
-    tableBodyQuantityCell: {
-        width: '100% !important',
-        padding: '4px 8px !important',
-    },
-    tableBodyTotalPriceCell: {
-        width: '100% !important',
-        paddingRight: '0 !important',
-        padding: '4px 8px !important',
-    },
-    textFieldRow: {
-        width: '100% !important',
-        padding: '0px !important',
-        marginTop: '0px !important',
-    },
-    textFieldCell: {
-        paddingLeft: '0 !important',
-        width: '100%',
-        paddingTop: '14px !important',
-        paddingBottom: '30px !important',
-    },
-    textField: {
-        width: '100%',
-    },
-    truncateText: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        cursor: 'pointer',
-        maxWidth: '150px',
-    },
-    fullText: {
-        cursor: 'pointer',
-        maxWidth: '150px',
-    },
-    deleteBtnCell: {
-        width: '100% !important',
-        paddingTop: '14px !important',
-        paddingRight: '0 !important',
-        paddingBottom: '30px !important',
-    },
-    deleteBtn: {
-        border: '1px solid #EA6969 !important',
-        borderRadius: '10px !important',
-        padding: theme.spacing(1),
-        color: '#EA6969 !important',
-        '&:hover': {
-            backgroundColor: '#f97f7f !important',
-            color: 'white !important',
-            border: 'none !important',
-        },
-        '&:focus': {
-            backgroundColor: '#EA6969 !important',
-            color: 'white !important',
-            border: '1px solid #555a70',
-        },
-    },
+    }, 
     paymentWrapper: {
-        position: 'static',
+        position: 'absolute',
+        bottom: 40,
+        left: 15,
+        right: 15,
+        // zIndex: '2 !important',
         display: 'flex',
         flexWrap: 'wrap !important',
         flexDirection: 'column',
@@ -798,7 +677,7 @@ const Homepage = () => {
                                         fontSize: '12px',
                                         padding: '8px',
                                     },
-                                    '@media (max-width: 400px)': {
+                                    '@media (max-width: 480px)': {
                                         width: '90%',
                                         fontSize: '10px',
                                         // padding: '1px',
