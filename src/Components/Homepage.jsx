@@ -717,6 +717,7 @@ const Homepage = () => {
 
                 {isOverlayVisible && (
                     <PopOverPage
+                        selectedDishes={selectedDishes}
                         onClose={closeOverlay}
                     />
                 )}

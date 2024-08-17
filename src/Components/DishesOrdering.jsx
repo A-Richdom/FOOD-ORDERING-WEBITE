@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#1F1D2B !important',
         borderBottom: '1px solid #555a70 !important',
         paddingRight: '0 !important',
-        // border: 'none !important',
         '& .MuiTableCell-root': {
             color: '#c9cdce !important',
             borderBottom: 'none !important',
@@ -74,7 +73,6 @@ const useStyles = makeStyles((theme) => ({
         margin: '0 !important',
     },
     tableBodyItemCell: {
-        // width: '94% !important',
         paddingLeft: '0 !important',
         padding: '4px 8px !important',
     },

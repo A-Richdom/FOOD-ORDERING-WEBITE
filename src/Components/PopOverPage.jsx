@@ -9,7 +9,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { selectDish } from './FEATURES/DishesSlice';
 import { useSelector } from 'react-redux';
 import DishesSlice from './FEATURES/DishesSlice';
-import { hideSlide } from './FEATURES/DishesSlice';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -291,12 +290,12 @@ const useStyles = makeStyles((theme) => ({
 
 // console.log(dishes);
 
-const PopOverPage = ({ onClose }) => {
+const PopOverPage = ({ selectedDishes, onClose }) => {
   const classes = useStyles();
   const [expandedDishName, setExpandedDishName] = useState(null);
   // const [selectedDishes, setSelectedDishes] = useState([]);
 
-  const selectedDishes = useSelector((state) => state.selectedDishes);
+  // const selectedDishes = useSelector((state) => state.selectedDishes);
 
   // Dine in Button Function
   const [anchorEl, setAnchorEl] = React.useState(null);
