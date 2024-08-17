@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   popOverPageVisible: {
-      right: 0,
+    right: 0,
   },
-  
+
   // CONFIRMATION PAGE..//
   confirmationPage: {
     width: '50%',
@@ -84,6 +84,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   discountSubtotalWrapper: {
+    position: 'absolute',
+    bottom: 40,
+    left: '1rem',
+    right: '25rem',
     display: 'flex',
     flexWrap: 'wrap !important',
     flexDirection: 'column',
