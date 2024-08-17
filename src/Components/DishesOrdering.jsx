@@ -12,14 +12,16 @@ const useStyles = makeStyles((theme) => ({
         height: '8% !important',
         width: '100%',
         paddingTop: '10px',
+        
     },
     tableContainer: {
-        height: '100%',
-        overflowY: 'scroll',
+        height: '55vh',
+        // minHeight: '10vh',
+        overflowY: 'scroll !important',
         border: 'none !important',
         borderBottom: '1px solid #555a70',
         '&::-webkit-scrollbar': {
-            display: 'none',
+            display: 'none !important',
         },
     },
     table: {
@@ -59,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     // TABLE BODY...//
     tableBody: {
         width: '100% !important',
+        // minHeight: '2-0vh',
         backgroundColor: '#1F1D2B !important',
         borderBottom: '1px solid #555a70 !important',
         paddingRight: '0 !important',
