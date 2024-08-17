@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {
     Card, CardContent, Box, styled, Button, Menu, MenuItem, Fade, Typography,
+    Slide,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -17,7 +18,7 @@ import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Avatar, InputBase, Toolbar, IconButton, Tooltip, } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDish, showSlide } from './FEATURES/DishesSlice';
+import { selectDish } from './FEATURES/DishesSlice';
 
 //// Search Box..//
 import SearchIcon from '@mui/icons-material/Search';
@@ -52,11 +53,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const useStyles = makeStyles((theme) => ({
+    divContainer: {
+        position: 'relative',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     cardWrapper: {
         width: '100%',
         height: '100vh',
         display: 'flex',
-        backgroundColor: 'transparent !important'
+        backgroundColor: 'transparent !important',
+        borderRadius: '15px !important',
     },
     // Side-Bar...//
     sideBar: {
@@ -298,7 +307,7 @@ const useStyles = makeStyles((theme) => ({
             color: 'white !important',
             border: '1px solid #555a70',
         },
-    }, 
+    },
     paymentWrapper: {
         position: 'absolute',
         bottom: 40,
@@ -356,7 +365,7 @@ const Homepage = () => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-  
+
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -382,10 +391,10 @@ const Homepage = () => {
     //SELECTED DISH TO ORDER....//
     const handleSelectDish = (dish) => {
         dispatch(selectDish(dish));
-        setSelectedDishes(prevDishes => [ ...prevDishes, dish ]);
+        setSelectedDishes(prevDishes => [...prevDishes, dish]);
     };
 
-    
+
     // RIGHT BAR...//
     const handleTextboxChange = (index) => (event) => {
         const newRows = [...rows];
@@ -397,10 +406,18 @@ const Homepage = () => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
 
-    const handleContinuePayment = () => {
-        dispatch(showSlide());
-        console.log("SHOW SLIDE IS TREU", showSlide);
-        
+
+    //OVERLAY COMPONENT...//
+    const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+
+    //Open Overlay Visibility..//
+    const openOverlay = () => {
+        setIsOverlayVisible(true);
+        // dispatch());
+        // console.log("SHOW SLIDE IS TREU"h);
+    };
+    const closeOverlay = () => {
+        setIsOverlayVisible(false);
     };
 
 
@@ -672,7 +689,7 @@ const Homepage = () => {
                                     </Typography>
                                 </span>
                             </div>
-                            <Button onClick={handleContinuePayment}
+                            <Button onClick={openOverlay}
                                 sx={{
                                     backgroundColor: '#f97f7f',
                                     borderRadius: '10px',
@@ -698,7 +715,13 @@ const Homepage = () => {
                     </div>
                 </CardContent>
 
-                {/* <PopOverPage /> */}
+                {isOverlayVisible && (
+                    <PopOverPage
+                        onClose={closeOverlay}
+                    />
+                )}
+
+
             </Card>
         </div>
     )

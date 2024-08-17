@@ -9,27 +9,28 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { selectDish } from './FEATURES/DishesSlice';
 import { useSelector } from 'react-redux';
 import DishesSlice from './FEATURES/DishesSlice';
-// import Slide from '@mui/material';
 import { hideSlide } from './FEATURES/DishesSlice';
+
 
 const useStyles = makeStyles((theme) => ({
 
   cardContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    height: '100%',
+    zIndex: 2,
     width: '60%',
-    height: '100vh',
-    // position: 'fixed',
-    //     right: 0,
-    //     top: 0,
-    //     height: '100%',
-    //     width: '70%',
-    //     backgroundColor: 'white',
-    //     zIndex: 2000,
     display: 'flex',
     borderRadius: '15px !important',
     '@media (max-width: 960px)': {
       width: '100%'
     }
   },
+  popOverPageVisible: {
+      right: 0,
+  },
+  
   // CONFIRMATION PAGE..//
   confirmationPage: {
     width: '50%',
@@ -290,7 +291,7 @@ const useStyles = makeStyles((theme) => ({
 
 // console.log(dishes);
 
-const PopOverPage = () => {
+const PopOverPage = ({ onClose }) => {
   const classes = useStyles();
   const [expandedDishName, setExpandedDishName] = useState(null);
   // const [selectedDishes, setSelectedDishes] = useState([]);
@@ -326,7 +327,7 @@ const PopOverPage = () => {
         {/* CONFIRMATION PAGE */}
         <CardContent className={classes.confirmationPage}>
           <div className={classes.confirmationPageChildren}>
-            <span><KeyboardBackspaceOutlinedIcon
+            <span><KeyboardBackspaceOutlinedIcon onClick={onClose}
               sx={{
                 color: 'white',
                 cursor: 'pointer',
