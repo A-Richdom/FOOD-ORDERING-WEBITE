@@ -11,7 +11,6 @@ const initialState = loadStateFromLocalStorage() || {
     isError: false,
     
 };
-console.log();
 
 
 const dishesSlice = createSlice({
