@@ -9,7 +9,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { selectDish } from './FEATURES/DishesSlice';
 import { useSelector } from 'react-redux';
 import DishesSlice from './FEATURES/DishesSlice';
-import Slide from '@mui/material';
+// import Slide from '@mui/material';
 import { hideSlide } from './FEATURES/DishesSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -317,7 +317,7 @@ const PopOverPage = () => {
     setExpandedDishName(index === expandedDishName ? null : index);
   };
 
-  const isVisible = useSelector((state) => state.slide.isVisible);
+  // const isVisible = useSelector((state) => state.slide.isVisible);
 
   return (
     <div>
