@@ -407,7 +407,7 @@ const Homepage = () => {
     };
 
 
-    //OVERLAY COMPONENT...//
+    //OVERLAY COMPONENT....//
     const [isOverlayVisible, setIsOverlayVisible] = useState(false);
 
     //Open Overlay Visibility..//
