@@ -390,8 +390,20 @@ const Homepage = () => {
 
     //SELECTED DISH TO ORDER....//
     const handleSelectDish = (dish) => {
-        dispatch(selectDish(dish));
-        setSelectedDishes(prevDishes => [...prevDishes, dish]);
+        console.log(`Dish Selected: ${dish.name}, Units Available: ${dish.unitAvailable}`);
+        
+        if (dish.unitAvailable > 0) {
+            dispatch(selectDish(dish)); // Dispatch the dish to reduce unitAvailable and add to selectedDishes
+            setSelectedDishes(prevDishes => [...prevDishes, dish]); // Add to local state without modifying unitAvailable
+        } else {
+            alert('No more units available for this dish');
+        }
+        // if (dish.unitAvailable > 0) {
+        //     dispatch(selectDish(dish));
+        //     setSelectedDishes(prevDishes => [...prevDishes, { ...dish, unitAvailable: dish.unitAvailable - 1 }]);
+        // } else {
+        //     alert('No more units available for this dish')
+        // }
     };
 
 
