@@ -36,9 +36,11 @@ const dishesSlice = createSlice({
             saveStateToLocalStorage(state); // Pass the state here
         },
         selectDish: (state, action) => {
+            console.log('selectDish reducer called with payload', action.payload);
+            
             console.log('Dish ID:', action.payload.id);
 
-            const dishIndex = state.dishes.findIndex(d => d.id === action.payload.id);
+            const dishIndex = state.dishes.findIndex(dish => dish.id === action.payload.id);
             console.log('Dish Index:', dishIndex);
 
             if (dishIndex !== -1 && state.dishes[dishIndex].unitAvailable > 0) {
@@ -54,14 +56,6 @@ const dishesSlice = createSlice({
             } else {
                 console.log('No more units available for this dish');
             }
-            // const selectedDish = action.payload;
-            // const index = state.dishes.findIndex(dish => dish.id === selectedDish.id);
-
-            // if (index !== -1 && state.dishes[index].unitAvailable > 0) {
-            //     state.dishes[index].unitAvailable -= 1;
-            //     state.selectedDishes.push({ ...selectedDish, unitAvailable: state.dishes[index].unitAvailable });
-            //     saveStateToLocalStorage(state);
-
 
             // const dish = action.payload;
             // if (!state.selectedDishes) {

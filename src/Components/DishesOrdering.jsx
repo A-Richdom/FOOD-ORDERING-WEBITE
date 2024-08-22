@@ -165,8 +165,9 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
 
                         {/* TABLE BODY */}
                         <TableBody className={classes.tableBody}>
-                            {
+                            {selectedDishes.length > 0 ? (
                                 selectedDishes && selectedDishes.map((dish, index) => (
+                                    
                                     <React.Fragment key={dish.name}>
                                         <TableRow className={classes.tableBodyRow}>
                                             <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
@@ -298,7 +299,12 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
 
                                         </TableRow>
                                     </React.Fragment>
-                                ))}
+
+                                ))
+                            ) : (
+                                <Typography sx={{ color: 'white', fontFamily: 'Quicksand', }}>No dishes selected yet</Typography>
+                            )}
+
                         </TableBody>
                     </Table>
                 </TableContainer>

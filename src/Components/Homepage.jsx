@@ -12,7 +12,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-// Card Content 2..//
+// Card Content 2..//   
 import SoupKitchenOutlinedIcon from '@mui/icons-material/SoupKitchenOutlined';
 import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -394,7 +394,7 @@ const Homepage = () => {
         
         if (dish.unitAvailable > 0) {
             dispatch(selectDish(dish)); // Dispatch the dish to reduce unitAvailable and add to selectedDishes
-            setSelectedDishes(prevDishes => [...prevDishes, dish]); // Add to local state without modifying unitAvailable
+            // setSelectedDishes(prevDishes => [...prevDishes, dish]); // Add to local state without modifying unitAvailable
         } else {
             alert('No more units available for this dish');
         }
