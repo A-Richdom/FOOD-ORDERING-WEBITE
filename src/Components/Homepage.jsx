@@ -388,7 +388,7 @@ const Homepage = () => {
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
-    //SELECTED DISH TO ORDER....//
+    //SELECTED DISH TO ORDER...//
     const handleSelectDish = (dish) => {
         console.log(`Dish Selected: ${dish.name}, Units Available: ${dish.unitAvailable}`);
         
