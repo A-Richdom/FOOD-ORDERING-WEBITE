@@ -429,7 +429,7 @@ const Homepage = () => {
     const openOverlay = () => {
         setIsOverlayVisible(true);
         // dispatch());
-        // console.log("SHOW SLIDE IS TREU"h);
+        // console.log("SHOW SLIDE IS TRUE");
     };
     const closeOverlay = () => {
         setIsOverlayVisible(false);
@@ -471,7 +471,7 @@ const Homepage = () => {
                                         },
                                         letterSpacing: '.1rem'
                                     }}>
-                                        Richdom's Kitchen
+                                        Stackbite's Kitchen
                                     </Typography>
                                     <div>
                                         <DigitalClock />
