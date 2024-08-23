@@ -302,6 +302,7 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
 
                                 ))
                             ) : (
+
                                 <Typography sx={{ color: 'white', fontFamily: 'Quicksand', }}>No dishes selected yet</Typography>
                             )}
 
