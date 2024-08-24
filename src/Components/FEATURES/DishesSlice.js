@@ -20,7 +20,7 @@ const dishesSlice = createSlice({
         addDish: (state, action) => {
             const newDish = { ...action.payload, id: uuidv4(), unitAvailable: action.payload.unitAvailable || 10 };
             state.dishes = [...state.dishes, newDish];
-            saveStateToLocalStorage(state); // Pass the state here
+            saveStateToLocalStorage(state); // Pass the state here.
         },
         editDish: (state, action) => {
             const { id, updatedDish } = action.payload;
