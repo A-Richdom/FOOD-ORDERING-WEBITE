@@ -10,7 +10,6 @@ import Report from './Components/Report';
 import Settings from './Components/Settings';
 import AddDishModal from './Components/AddDishModal';
 
-
 const router = createBrowserRouter([
 
   { path: '/', element: <Homepage /> },

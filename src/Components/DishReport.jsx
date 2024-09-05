@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@mui/styles'
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typography, Avatar, Stack, } from '@mui/material';
+import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Typography, Avatar, Stack, Button, } from '@mui/material';
 
 
 const dishes = [
@@ -114,131 +114,106 @@ const dishes = [
     },
 ];
 
-const useStyles = makeStyles((theme) => ({
-    reportWrapper: {
-        width: '100%',
-        height: '100vh !important'
-    },
-    tableContainer: {
-        height: '50% !important',
-        overflowY: 'scroll',
-        border: 'none !important',
-        borderBottom: '1px solid #555a70',
-        paddingBottom: '20px',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
-    table: {
-        width: '100% !important',
-        borderCollapse: 'collapse !imporant',
-    },
-    // TABLE HEADER..//
-    tableHead: {
-        width: '100% !important',
-        position: 'sticky !important',
-        top: '0',
-        backgroundColor: '#1F1D2B !important',
-        zIndex: '1',
-        border: 'none !important',
-
-        '& .MuiTableCell-root': {
-            position: 'sticky',
-            color: '#fff !important',
-            borderBottom: '1px solid #555a70 !important',
-        },
-    },
-    tableHeadRow: {
-        width: '100% !important',
-    },
-    customerCell: {
-        paddingLeft: '0 !important',
-    },
-    menuCell: {
-        paddingLeft: '40px !important',
-    },
-    totalPriceCell: {
-        paddingRight: '0 !important'
-    },
-    statusCell: {
-    },
-
-    // TABLE BODY...//
-    tableBody: {
-        width: '100% !important',
-        backgroundColor: '#1F1D2B !important',
-        borderBottom: '1px solid #555a70 !important',
-        paddingRight: '0 !important',
-        // border: 'none !important',
-        '& .MuiTableCell-root': {
-            color: '#c9cdce !important',
-            borderBottom: 'none !important',
-        },
-    },
-    tableBodyRow: {
-        width: '100% !important',
-        padding: '0 !important',
-        margin: '0 !important',
-    },
-    tableBodyCustomerCell: {
-        width: '100% !important',
-        paddingLeft: '0 !important',
-        padding: '4px 8px !important',
-    },
-    dishImgOrdering: {
-        width: '40px',
-        height: '40px',
-    },
-    tableBodyMenuCell: {
-        width: '100% !important',
-        paddingLeft: '40px !important',
-        padding: '4px 8px !important',
-    },
-    tableBodyTotalPriceCell: {
-        width: '100% !important',
-        paddingLeft: '20px !important',
-        padding: '4px 8px !important',
-    },
-    tableBodyStatusCell: {
-    },
-    truncateText: {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        cursor: 'pointer',
-        maxWidth: '150px',
-    },
-    fullText: {
-        cursor: 'pointer',
-        maxWidth: '150px',
-    },
-    deleteBtnCell: {
-        width: '100% !important',
-        paddingTop: '14px !important',
-        paddingRight: '0 !important',
-        paddingBottom: '30px !important',
-    },
-    deleteBtn: {
-        border: '1px solid #EA6969 !important',
-        borderRadius: '10px !important',
-        padding: theme.spacing(1),
-        color: '#EA6969 !important',
-        '&:hover': {
-            backgroundColor: '#f97f7f !important',
-            color: 'white !important',
-            border: 'none !important',
-        },
-        '&:focus': {
-            backgroundColor: '#EA6969 !important',
-            color: 'white !important',
-            border: '1px solid #555a70',
-        },
-    },
-
+// Styled Components
+const ReportWrapper = styled('div')(({ theme }) => ({
+    width: '100%',
+    height: '100vh',
 }));
 
+const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
+    height: '50%',
+    overflowY: 'scroll',
+    border: 'none',
+    borderBottom: '1px solid #555a70',
+    paddingBottom: '20px',
+    '&::-webkit-scrollbar': {
+        display: 'none',
+    },
+}));
+
+const StyledTable = styled(Table)(({ theme }) => ({
+    width: '100%',
+    borderCollapse: 'collapse',
+}));
+
+const StyledTableHead = styled(TableHead)(({ theme }) => ({
+    width: '100%',
+    position: 'sticky',
+    top: '0',
+    backgroundColor: '#1F1D2B',
+    zIndex: 1,
+    '& .MuiTableCell-root': {
+        position: 'sticky',
+        color: '#fff',
+        borderBottom: '1px solid #555a70',
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    width: '100%',
+}));
+
+const CustomerCell = styled(TableCell)(({ theme }) => ({
+    paddingLeft: '0',
+}));
+
+const MenuCell = styled(TableCell)(({ theme }) => ({
+    paddingLeft: '40px',
+}));
+
+const TotalPriceCell = styled(TableCell)(({ theme }) => ({
+    paddingRight: '0',
+}));
+
+const StatusCell = styled(TableCell)(({ theme }) => ({
+    paddingRight: '0',
+}));
+
+const StyledTableBody = styled(TableBody)(({ theme }) => ({
+    width: '100%',
+    backgroundColor: '#1F1D2B',
+    borderBottom: '1px solid #555a70',
+    '& .MuiTableCell-root': {
+        color: '#c9cdce',
+        borderBottom: 'none',
+    },
+}));
+
+const StyledTableBodyRow = styled(TableRow)(({ theme }) => ({
+    width: '100%',
+    padding: '0',
+    margin: '0',
+}));
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+    fontFamily: 'Quicksand',
+    color: '#e0e6e9',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: '150px',
+}));
+
+const DeleteButton = styled('button')(({ theme }) => ({
+    border: '1px solid #EA6969',
+    borderRadius: '10px',
+    padding: theme.spacing(1),
+    color: '#EA6969',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        border: 'none',
+    },
+    '&:focus': {
+        backgroundColor: '#EA6969',
+        color: 'white',
+        border: '1px solid #555a70',
+    },
+}));
+
+
 const DishReport = () => {
-    const classes = useStyles();
     const [expandedDishName, setExpandedDishName] = useState(null);
 
     // Handle Truncating of the DishName...//
@@ -246,103 +221,75 @@ const DishReport = () => {
         setExpandedDishName(index === expandedDishName ? null : index);
     };
 
-
     return (
-        <div className={classes.reportWrapper}>
-            <TableContainer className={classes.tableContainer}>
-                <Table className={classes.table}>
-                    <TableHead className={classes.tableHead}>
-                        <TableRow className={classes.tableHeadRow}>
-                            <TableCell className={classes.customerCell}
-                            >
-
+        <ReportWrapper>
+            <StyledTableContainer>
+                <StyledTable>
+                    <StyledTableHead>
+                        <StyledTableRow>
+                            <CustomerCell>
                                 <Typography sx={{ fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600' }}>Customer</Typography>
-                            </TableCell>
+                            </CustomerCell>
+                            <MenuCell>
+                                <Typography sx={{ fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600' }}>Menu</Typography>
+                            </MenuCell>
+                            <TotalPriceCell>
+                                <Typography sx={{ fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600', whiteSpace: 'nowrap' }}>
+                                    Total Payment
+                                </Typography>
+                            </TotalPriceCell>
+                            <StatusCell>
+                                <Typography sx={{ fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600' }}>Status</Typography>
+                            </StatusCell>
+                        </StyledTableRow>
+                    </StyledTableHead>
 
-                            <TableCell className={classes.menuCell}
-                            >
-                                <Typography sx={{ display: 'flex', alignItems: 'left', justifyContent: 'left', paddingLeft: '0', fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600' }}>Menu</Typography>
-                            </TableCell>
+                    <StyledTableBody>
+                        {dishes.map((dish, index) => (
+                            <StyledTableBodyRow key={dish.customer}>
+                                <TableCell sx={{ display: 'flex', gap: '15px', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                                    <Stack direction="row" spacing={2}>
+                                        <Avatar sx={{ backgroundColor: 'grey' }} alt={dish.customer} src={dish.imgSrc} />
+                                    </Stack>
+                                    <div>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '16px', color: '#e0e6e9' }}>{dish.customer}</Typography>
+                                    </div>
+                                </TableCell>
 
-                            <TableCell className={classes.totalPaymentCell}>
-                                <Typography sx={{ display: 'flex', justifyContent: 'left', paddingRight: '10px', fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600', whiteSpace: 'nowrap', }}>Total Payment</Typography>
-                            </TableCell>
+                                <MenuCell>
+                                    <div>
+                                        <StyledTypography onClick={() => handleDishName(index)}>
+                                            {dish.name}
+                                        </StyledTypography>
+                                        <span>
+                                            <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12.5px', color: '#e0e6e9' }}>
+                                                {dish.price}
+                                            </Typography>
+                                        </span>
+                                    </div>
+                                </MenuCell>
 
-                            <TableCell className={classes.statusCell}>
-                                <Typography sx={{ display: 'flex', justifyContent: 'left', paddingRight: '20px', fontFamily: 'Quicksand', fontSize: '17px', fontWeight: '600' }}>Status</Typography>
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
+                                <TotalPriceCell>
+                                    <Typography sx={{ fontFamily: 'Quicksand', fontSize: '16px', color: '#e0e6e9' }}>
+                                        {dish.totalPrice}
+                                    </Typography>
+                                </TotalPriceCell>
 
-                    {/* TABLE BODY */}
-                    <TableBody className={classes.tableBody}>
-                        {
-                            dishes.map((dish, index) => (
-                                <React.Fragment key={dish.customer}>
-                                    <TableRow className={classes.tableBodyRow}>
-                                        <TableCell className={classes.tableBodyCustomerCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', whiteSpace: 'nowrap' }}>
-
-                                            {/* dish image */}
-                                            <Stack direction="row" spacing={2}>
-                                                <Avatar
-                                                    sx={{ backgroundColor: 'grey' }}
-                                                    alt={dish.customer}
-                                                    src={dish.imgSrc}
-                                                />
-                                            </Stack>
-
-                                            <div>
-                                                <Typography
-                                                    sx={{
-                                                        fontFamily: 'Quicksand', fontSize: '16px',
-                                                        color: '#e0e6e9'
-                                                    }}
-                                                >
-                                                    {dish.customer}
-                                                </Typography>
-                                            </div>
-
-                                        </TableCell>
-
-                                        {/*  menu list*/}
-                                        <TableCell className={classes.tableBodyMenuCell}>
-                                            <div>
-                                                <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText}
-
-                                                    sx={{
-                                                        fontFamily: 'Quicksand', fontSize: '16px',
-                                                        color: '#e0e6e9'
-                                                    }}
-
-                                                    onClick={() => handleDishName(index)}
-                                                >
-                                                    {dish.name}
-                                                </Typography>
-
-                                                <span>
-                                                    <Typography className={classes.tableBodyPriceCell} sx={{
-                                                        fontFamily: 'Quicksand', fontSize: '12.5px', color: '#e0e6e9',
-                                                    }}>{dish.price}
-                                                    </Typography>
-                                                </span>
-                                            </div>
-                                        </TableCell>
+                                <StatusCell sx={{ padding: 0 }}>
+                                    <StatusCell sx={{ fontFamily: 'Quicksand', fontSize: '14px', textTransform: 'none', color: '#e0e6e9', backgroundColor: '#314c4e', borderRadius: '20px', padding: 0 }}>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14px', textTransform: 'none', color: '#e0e6e9', padding: 1 }}>Complete</Typography>
+                                    </StatusCell>
+                                </StatusCell>
 
 
-                                        <TableCell className={classes.tableBodyTotalPriceCell}><Typography sx={{ display: 'flex', justifyContent: 'left', fontFamily: 'Quicksand', fontSize: '16px', color: '#e0e6e9' }}>{dish.totalPrice}</Typography>
-                                        </TableCell>
 
-                                        <TableCell className={classes.tableBodyStatusCell}><Typography sx={{ display: 'flex', justifyContent: 'left', fontFamily: 'Quicksand', fontSize: '16px', color: '#e0e6e9' }}>{dish.totalPrice}</Typography>
-                                        </TableCell>
-                                    </TableRow>
-                                </React.Fragment>
-                            ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
-        </div>
-    )
+                            </StyledTableBodyRow>
+                        ))}
+                    </StyledTableBody>
+                </StyledTable>
+            </StyledTableContainer>
+        </ReportWrapper>
+    );
 }
 
 export default DishReport

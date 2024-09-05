@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@mui/styles'
+import { styled }  from '@mui/material/styles';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -24,236 +24,279 @@ import AddDishModal from './AddDishModal';
 import LoadingModal from './LoadingModal';
 
 
-const useStyles = makeStyles((theme) => ({
-    cardWrapper: {
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        backgroundColor: 'transparent !important'
-    },
-    // Side-Bar...//
-    sideBar: {
-        width: '5%',
-        backgroundColor: '#1F1D2B',
-    },
-    sideBarIcons: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    icon: {
-        color: '#EA6969',
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#f97f7f',
-            color: 'white',
-            padding: 10,
-            borderRadius: '5px',
-        },
-    },
 
-    // Main Bar...//
-    mainBar: {
-        backgroundColor: '#393C49 !important',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    mainBarChildren: {
-        width: '100%',
-        backgroundColor: '#393C49',
-    },
-    header: {
-        paddingBottom: '15px'
-    },
-    mainBarBodies: {
-        display: 'flex !important',
-        gap: '20px',
-    },
+const CardWrapper = styled(Card)({
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    backgroundColor: 'transparent !important',
+});
+// Side-Bar...//
+const SideBar = styled(CardContent)({
+    width: '5%',
+    backgroundColor: '#1F1D2B',
+});
 
-    body1Content: {
-        width: '100%',
-        display: 'flex',
-        gap: '6px',
-        padding: '20px',
-        paddingTop: '20px',
-        paddingBottom: '20px',
-        boxSizing: 'border-box',
-        position: 'relative',
-        '&:hover': {
-            backgroundColor: '#54363B',
-            '& svg': {
-                color: '#EA6969',
-            },
-            '& p:first-of-type': {
-                color: '#EA6969',
-            },
-            '&::after': {
-                content: '""',
-                position: 'absolute',
-                top: '50%',
-                right: '0',
-                transform: 'translateY(-50%)',
-                width: '4px',
-                height: '45%',
-                backgroundColor: '#EA6969'
-            }
-        }
+const SideBarIcons = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
+
+const Icon = styled('div')({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        padding: 10,
+        borderRadius: '5px',
     },
-    nav1: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingTop: '10px',
-        top: 0,
-        zIndex: 1,
+});
+
+const IconLink = styled(Link)(({ theme }) => ({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        borderRadius: '5px',
     },
-    manageCategory: {
-        display: 'flex',
-        gap: '5px',
-        color: 'white'
-    },
-    nav2Children: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        padding: 12,
-        paddingBottom: '20px',
-        borderBottom: '1px solid #555a70 !important',
-        '& li': {
-            marginRight: theme.spacing(6),
-            '& a': {
-                color: 'white',
-                textDecoration: 'none',
-                fontFamily: 'Quicksand',
-                '&:hover': {
-                    color: '#EA6969',
-                },
-            },
+}));
+
+// Main Bar...//
+const MainBar = styled(CardContent)({
+    backgroundColor: '#393C49 !important',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+});
+
+const MainBarChildren = styled('div')({
+    width: '100%',
+    backgroundColor: '#393C49',
+});
+
+const Header = styled('div')({
+    paddingBottom: '15px',
+});
+
+const MainBarBodies = styled('div')({
+    display: 'flex !important',
+    gap: '20px',
+});
+
+const Body1Content = styled('div')(({ theme }) => ({
+    width: '100%',
+    display: 'flex',
+    gap: '6px',
+    padding: '20px',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    boxSizing: 'border-box',
+    position: 'relative',
+    '&:hover': {
+        backgroundColor: '#54363B',
+        '& svg': {
+            color: '#EA6969',
         },
-    },
-    navItem: {
-        position: 'relative',
-        display: 'inline-block',
-        textDecoration: 'none',
+        '& p:first-of-type': {
+            color: '#EA6969',
+        },
         '&::after': {
             content: '""',
             position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            height: '2px',
-            marginBottom: '-5px',
-            backgroundColor: '#EA6969 !important',
-            transform: 'scaleX(0)',
-            transition: 'transform 0.3s ease',
-        },
-        '&:hover::after': {
-            transform: 'scaleX(1)',
+            top: '50%',
+            right: '0',
+            transform: 'translateY(-50%)',
+            width: '4px',
+            height: '45%',
+            backgroundColor: '#EA6969',
         },
     },
-    navLink: {
-        '&:hover': {
-            color: '#EA6969',
-        },
-    },
-    dishesWrapper: {
-        display: 'flex !important',
-        flexWrap: 'wrap',
-        gap: '20px',
-        textAlign: 'center',
-        justifyContent: 'space-around',
-        height: '60%',
-        '@media (max-width: 400px)': {
-            height: '15%'
-        },
-        overflowY: 'scroll !important',
-        // borderBottom: '1px solid #555a70',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
-    addNewDish: {
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-        width: '20%',
-        border: '1px dashed #EA6969',
-        '@media (max-width: 600px)': {
-            width: '30%'
-        },
-        '@media (max-width: 400px)': {
-            width: '60%'
-        },
-        backgroundColor: '#1F1D2B !important',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        borderRadius: '20px !important',
-    },
-    dishCard: {
-        width: '20%',
-        border: '1px solid #555a70',
-        '@media (max-width: 600px)': {
-            width: '30%'
-        },
-        '@media (max-width: 400px)': {
-            width: '60%'
-        },
-        backgroundColor: '#1F1D2B !important',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '5px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        borderRadius: '20px !important',
-        cursor: 'pointer',
-    },
-    dishImg: {
-        width: '100px !important',
-        height: '100px !important',
-        '@media (max-width: 600px)': {
-            width: '80px',
-            height: '80px'
-        },
-        '@media (max-width: 400px)': {
-            width: '60px',
-            height: '60px'
-        }
-    },
-    priceAndUnit: {
-        display: 'flex !important',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '6px'
-    },
-    dishCardFooter: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    btnsWrapper: {
-        display: 'flex',
-        gap: '10px',
-        paddingTop: '30px'
-    }
-
 }));
 
+const Nav1 = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: '10px',
+    top: 0,
+    zIndex: 1,
+});
+
+const ManageCategory = styled('span')({
+    display: 'flex',
+    gap: '5px',
+    color: 'white',
+});
+
+const Nav2Children = styled('ul')(({ theme }) => ({
+    display: 'flex',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    padding: 12,
+    paddingBottom: '20px',
+    borderBottom: '1px solid #555a70 !important',
+    '& li': {
+        marginRight: theme.spacing(6),
+        '& a': {
+            color: 'white',
+            textDecoration: 'none',
+            fontFamily: 'Quicksand',
+            '&:hover': {
+                color: '#EA6969',
+            },
+        },
+    },
+}));
+
+const NavItem = styled('li')({
+    position: 'relative',
+    display: 'inline-block',
+    textDecoration: 'none',
+    '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '2px',
+        marginBottom: '-5px',
+        backgroundColor: '#EA6969 !important',
+        transform: 'scaleX(0)',
+        transition: 'transform 0.3s ease',
+    },
+    '&:hover::after': {
+        transform: 'scaleX(1)',
+    },
+});
+
+const NavLink = styled('a')({
+    '&:hover': {
+        color: '#EA6969',
+    },
+});
+
+const DishesWrapper = styled('div')(({ theme }) => ({
+    display: 'flex !important',
+    flexWrap: 'wrap',
+    gap: '20px',
+    textAlign: 'center',
+    justifyContent: 'space-around',
+    height: '60%',
+    '@media (max-width: 400px)': {
+        height: '15%',
+    },
+    overflowY: 'scroll !important',
+    '&::-webkit-scrollbar': {
+        display: 'none',
+    },
+}));
+
+const AddNewDish = styled(Card)(({ theme }) => ({
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    width: '20%',
+    border: '1px dashed #EA6969',
+    '@media (max-width: 600px)': {
+        width: '30%',
+    },
+    '@media (max-width: 400px)': {
+        width: '60%',
+    },
+    backgroundColor: '#1F1D2B !important',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+    borderRadius: '20px !important',
+}));
+
+// const rotate = keyframes`
+// 0% { 
+// transform: rotate(0deg); 
+// }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// `;
+
+// const RotatingDottedLine = styled('div')({
+//     borderRadius: '50%',
+//     borderTop: '2px dotted white',
+//     width: '50px',
+//     height: '50px',
+//     animation: `${rotate} 1.5s linear infinite`,
+// });
+
+const DishCard = styled(Card)(({ theme }) => ({
+    width: '20%',
+    border: '1px solid #555a70',
+    '@media (max-width: 600px)': {
+        width: '30%',
+    },
+    '@media (max-width: 400px)': {
+        width: '60%',
+    },
+    backgroundColor: '#1F1D2B !important',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '5px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+    borderRadius: '20px !important',
+    cursor: 'pointer',
+}));
+
+const DishImg = styled('img')(({ theme }) => ({
+    width: '100px !important',
+    height: '100px !important',
+    '@media (max-width: 600px)': {
+        width: '80px',
+        height: '80px',
+    },
+    '@media (max-width: 400px)': {
+        width: '60px',
+        height: '60px',
+    },
+}));
+
+const PriceAndUnit = styled('div')({
+    display: 'flex !important',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+});
+
+const DishCardFooter = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
+
+const BtnsWrapper = styled('div')({
+    display: 'flex',
+    gap: '10px',
+    paddingTop: '30px',
+});
+
+
 const Settings = () => {
-    const classes = useStyles();
 
     //Update State Using Redux..//
     const dispatch = useDispatch();
     const dishesData = useSelector((state) => state.dishes.dishes);
-    console.log(dishesData.id); 
+    console.log(dishesData.id);
     const isLoading = useSelector((state) => state.dishes.isLoading);
     const isError = useSelector((state) => state.dishes.isError);
 
@@ -274,7 +317,7 @@ const Settings = () => {
     };
 
     console.log("Dishes data", dishesData);
-    
+
     const handleAddDish = (dish) => {
         if (dishToEdit) {
             console.log("Editing dish:", dish);
@@ -296,7 +339,7 @@ const Settings = () => {
         setDishToEdit(dish);
         handleOpenModal();
     };
-    
+
     const handleDeleteDish = (id) => {
         if (id !== undefined) {
             dispatch(deleteDish(id))
@@ -309,28 +352,34 @@ const Settings = () => {
 
 
     return (
-        <div className={classes.divContainer}>
-            <Card className={classes.cardWrapper}>
+        <div>
+            <CardWrapper>
 
                 {/* SIDE-BAR */}
-                <CardContent className={classes.sideBar}>
-                    <div className={classes.sideBarIcons}>
-                        <StorefrontIcon className={classes.icon} />
-                        <Link to="/"><HomeOutlinedIcon className={classes.icon} /></Link>
-                        <RamenDiningOutlinedIcon className={classes.icon} />
-                        <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
-                        <EmailOutlinedIcon className={classes.icon} />
-                        <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>
-                        <ExitToAppOutlinedIcon className={classes.icon} />
-                    </div>
-                </CardContent>
+                <SideBar>
+                    <SideBarIcons>
+                        <Icon><StorefrontIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/"><HomeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon><RamenDiningOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/dashboard"><DashboardCustomizeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon> <EmailOutlinedIcon /></Icon>
+                        <Icon><NotificationsNoneOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/settings"><SettingsOutlinedIcon />
+                            </IconLink></Icon>
+                        <Icon><ExitToAppOutlinedIcon /></Icon>
+                    </SideBarIcons>
+                </SideBar>
 
                 {/* MAIN-BAR */}
-                <CardContent className={classes.mainBar}>
-                    <div className={classes.mainBarChildren}>
-                        <div className={classes.header}>
-                            <Typography className={classes.headerTypo} sx={{
+                <MainBar>
+                    <MainBarChildren>
+                        <Header>
+                            <Typography sx={{
                                 fontSize: {
                                     xs: '14px',
                                     sm: '16px',
@@ -343,11 +392,11 @@ const Settings = () => {
                             }}>
                                 Settings
                             </Typography>
-                        </div>
+                        </Header>
 
-                        <div className={classes.mainBarBodies}>
+                        <MainBarBodies>
                             <CardContent sx={{ width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0' }}>
-                                <div className={classes.body1Content}>
+                                <Body1Content>
                                     <FavoriteBorderIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -368,8 +417,9 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Dark and Light mode, Font size</Typography>
                                     </div>
-                                </div>
-                                <div className={classes.body1Content}>
+                                </Body1Content>
+
+                                <Body1Content>
                                     <StorefrontIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -390,8 +440,9 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Dark and Light mode, Font size</Typography>
                                     </div>
-                                </div>
-                                <div className={classes.body1Content}>
+                                </Body1Content>
+
+                                <Body1Content>
                                     <RamenDiningOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -412,8 +463,9 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Mange your products, pricing etc</Typography>
                                     </div>
-                                </div>
-                                <div className={classes.body1Content}>
+                                </Body1Content>
+
+                                <Body1Content>
                                     <NotificationsNoneOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -434,8 +486,9 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Customize your notifications</Typography>
                                     </div>
-                                </div>
-                                <div className={classes.body1Content}>
+                                </Body1Content>
+
+                                <Body1Content>
                                     <LockOpenOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -456,8 +509,9 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Configure Password, PIN, etc</Typography>
                                     </div>
-                                </div>
-                                <div className={classes.body1Content}>
+                                </Body1Content>
+
+                                <Body1Content>
                                     <InfoOutlinedIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
                                         <Typography sx={{
@@ -478,12 +532,13 @@ const Settings = () => {
                                             color: '#c9cdce',
                                         }}>Find out more about us</Typography>
                                     </div>
-                                </div>
+                                </Body1Content>
+
                             </CardContent>
 
                             <CardContent sx={{ width: '80%', height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
 
-                                <div className={classes.nav1}>
+                                <Nav1>
                                     <Typography sx={{
                                         fontSize: {
                                             xs: '14px',
@@ -496,6 +551,7 @@ const Settings = () => {
                                         color: 'white',
                                     }}>Products Management
                                     </Typography>
+
                                     <Button
                                         variant="outlined"
                                         href="#outlined-buttons"
@@ -519,38 +575,42 @@ const Settings = () => {
                                                 border: '1.4px solid #abbbc2 !important',
                                             },
                                         }}>
-                                        <span className={classes.manageCategory}>
+                                        <ManageCategory>
                                             <TuneOutlinedIcon />
                                             Manage Categories
-                                        </span>
+                                        </ManageCategory>
                                     </Button>
 
-                                </div>
+                                </Nav1>
 
-                                <div className={classes.nav2Wrapper}>
-                                    <ul className={classes.nav2Children}>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Hot Dishes</a></li>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Cold Dishes</a></li>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Soup</a></li>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Grill</a></li>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Appetizer</a></li>
-                                        <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
-                                    </ul>
+                                <div>
+                                    <Nav2Children>
+                                        <NavItem><NavLink href="#">Hot Dishes</NavLink></NavItem>
+                                        <NavItem><NavLink href="#">Cold Dishes</NavLink></NavItem>
+                                        <NavItem><NavLink href="#">Soup</NavLink></NavItem>
+                                        <NavItem><NavLink href="#">Grill</NavLink></NavItem>
+                                        <NavItem><NavLink href="#">Appetizer</NavLink></NavItem>
+                                        <NavItem><NavLink href="#">Dessert</NavLink></NavItem>
+                                    </Nav2Children>
                                 </div>
 
                                 {/* Choose Dishes Menu */}
-                                <div className={classes.dishesWrapper}>
+                                <DishesWrapper>
 
                                     {/* ADD NEW DISH */}
-                                    <Card className={classes.addNewDish} onClick={handleOpenModal}>
+                                    <AddNewDish onClick={handleOpenModal}>
+
+                                        {/* <RotatingDottedLine /> */}
+
                                         <div className={`${`rotating-dotted-line`}`}></div>
 
                                         <AddOutlinedIcon sx={{ fontFamily: 'Quicksand', fontSize: '30px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }} />
                                         <Typography sx={{ fontFamily: 'Quicksand', fontWeight: '600', color: '#EA6969', cursor: 'pointer', }}>Add new dish</Typography>
-                                    </Card>
-                                        <div>
-                                            <LoadingModal open={isSpinnerLoading}/>
-                                        </div>
+                                    </AddNewDish>
+
+                                    <div>
+                                        <LoadingModal open={isSpinnerLoading} />
+                                    </div>
                                     {/* DISHES-ADDED */}
                                     {isLoading ? (
                                         <Typography>Loading...</Typography>
@@ -558,30 +618,30 @@ const Settings = () => {
                                         <Typography>Error loading dishes</Typography>
                                     ) : (
                                         dishesData && dishesData.map((dish) => (
-                                            
-                                            <Card key={dish.id} className={classes.dishCard} >
 
-                                                <img src={dish.imgSrc} alt={dish.name}
-                                                    className={classes.dishImg}
+                                            <DishCard key={dish.id}>
+
+                                                <DishImg src={dish.imgSrc} alt={dish.name}
                                                 />
-                                                <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                                <Typography sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
                                                     {dish.name}
                                                 </Typography>
-                                                <div className={classes.priceAndUnit}>
+
+                                                <PriceAndUnit>
                                                     <span>
-                                                        <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
+                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '13px', color: '#b5b8b9', }}>
                                                             {dish.price}
                                                         </Typography>
                                                     </span>
-                                                    <CircleIcon sx={{ fontSize: '5px', color: '#b5b8b9'}}/>
+                                                    <CircleIcon sx={{ fontSize: '5px', color: '#b5b8b9' }} />
                                                     <span>
-                                                        <Typography className={classes.dishUnit} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                                        <Typography sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
                                                             {dish.unitAvailable}
                                                         </Typography>
                                                     </span>
-                                                </div>
+                                                </PriceAndUnit>
 
-                                                <div className={classes.dishCardFooter}>
+                                                <DishCardFooter>
 
                                                     <Button variant="outlined" onClick={() => handleEditDish(dish)} sx={{
                                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', fontSize: '14px', margin: '0px', paddingLeft: '10px', paddingRight: '10px', border: 'none',
@@ -620,13 +680,13 @@ const Settings = () => {
                                                             Del
                                                         </Typography>
                                                     </Button>
-                                                </div>
-                                            </Card>
+                                                </DishCardFooter>
+                                            </DishCard>
                                         ))
                                     )}
-                                </div>
+                                </DishesWrapper>
 
-                                <div className={classes.btnsWrapper}>
+                                <BtnsWrapper>
                                     <Button variant="outlined" sx={{
                                         textTransform: 'none', color: 'white', fontFamily: 'Quicksand', margin: '0px', paddingLeft: '30px', paddingRight: '30px', border: '1px solid #EA6969',
                                         '&:hover': {
@@ -660,14 +720,15 @@ const Settings = () => {
                                         <Typography sx={{ fontFamily: 'Quicksand', fontSize: '12px', fontWeight: '500', color: '#EA6969', cursor: 'pointer', }}>
                                             Save Change
                                         </Typography>
-                                    </Button></div>
+                                    </Button>
+                                </BtnsWrapper>
                             </CardContent>
-                        </div>
+                        </MainBarBodies>
 
-                    </div>
-                </CardContent>  
-            </Card>
-            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} dishToEdit={dishToEdit}  />
+                    </MainBarChildren>
+                </MainBar>
+            </CardWrapper>
+            <AddDishModal open={modalOpen} onClose={handleCloseModal} onAddDish={handleAddDish} dishToEdit={dishToEdit} />
         </div>
     )
 }

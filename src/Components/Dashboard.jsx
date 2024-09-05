@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+// import { styled } from '@mui/material/styles';
 import {
     Card, CardContent, Box, styled, Button, Menu, MenuItem, Fade, Typography,
     TableContainer,
@@ -7,7 +8,6 @@ import {
     TableRow,
     TableCell,
 } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RamenDiningOutlinedIcon from '@mui/icons-material/RamenDiningOutlined';
@@ -94,176 +94,201 @@ const dishes = [
     },
 ];
 
-const useStyles = makeStyles((theme) => ({
-    cardContainer: {
-        width: '100% !important',
-        height: '100vh',
-        display: 'flex',
-        backgroundColor: '#393C49 !important',
-    },
+const CardContainer = styled(Card)({
+    width: '100% !important',
+    height: '100vh',
+    display: 'flex',
+    backgroundColor: '#393C49 !important',
+});
 
-    // Side-Bar...//
-    sideBar: {
-        width: '5%',
-        backgroundColor: '#1F1D2B',
-    },
-    sideBarIcons: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    icon: {
-        color: '#EA6969',
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#f97f7f',
-            color: 'white',
-            padding: 10,
-            borderRadius: '5px',
-        },
-    },
+const SideBar = styled(CardContent)({
+    width: '5%',
+    backgroundColor: '#1F1D2B',
+});
 
-    // Main Bar...//
-    mainBar: {
-        backgroundColor: '#393C49 !important',
-        width: '65%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    mainBarChildren: {
-        width: '100%',
-        backgroundColor: '#393C49',
-    },
-    header: {
-        borderBottom: '1px solid #555a70 !important',
-        paddingBottom: '20px'
-    },
-    metricsContainer: {
-        display: 'flex',
-        gap: '25px',
-        justifyContent: 'space-between',
-        // alignItems: 'center',
-        paddingTop: '20px',
-        paddingBottom: '20px',
-        borderRadius: '10px',
-    },
-    metricItem: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '15px'
-    },
-    reportNav1: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        top: 0,
-        zIndex: 1,
-    },
-    reportTable: {
-        height: '10%',
-    },
-    filterOrder: {
-        display: 'flex',
-        gap: '5px',
-    },
+const SideBarIcons = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
 
-    //Right Bar...//
-    rightBar: {
-        width: '30%',
-        display: 'flex !important',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
+const Icon = styled('div')({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        padding: 10,
+        borderRadius: '5px',
     },
-    rightBarChildren: {
-        width: '100% !important',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '20px'
-    },
-    mostOrderNav: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingBottom: '15px',
-        borderBottom: '1px solid #555a70 !important',
-    },
-    dishImgOrdering: {
-        width: '40px',
-        height: '40px',
-    },
-    todayBtn: {
-        display: 'flex',
-        alignItems: 'center',
-    },
-    tableContainer: {
-        height: '100%',
-        overflowY: 'scroll',
-        border: 'none !important',
-        // borderBottom: '1px solid #555a70',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
+});
 
-    table: {
-        width: '100% !important',
-        borderCollapse: 'collapse !imporant'
+const IconLink = styled(Link)(({ theme }) => ({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        borderRadius: '5px',
     },
-    tableBody: {
-        border: 'none !important'
-    },
-    tableBodyRow: {
-        borderCollapse: 'collapse'
-    },
-    dishImg: {
-        width: '100px !important',
-        height: '100px !important',
-        '@media (max-width: 600px)': {
-            width: '80px',
-            height: '80px'
-        },
-        '@media (max-width: 400px)': {
-            width: '60px',
-            height: '60px'
-        }
-    },
-
 }));
 
+const MainBar = styled(CardContent)({
+    backgroundColor: '#393C49 !important',
+    width: '65%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // Ensure content is scrollable if needed
+    // overflowY: 'auto', 
+});
+
+const MainBarChildren = styled('div')({
+    width: '100%',
+    backgroundColor: '#393C49',
+    // Add padding for better spacing
+    // padding: '20px', 
+    // display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'center',
+});
+
+const Header = styled('div')({
+    borderBottom: '1px solid #555a70 !important',
+    paddingBottom: '20px',
+    // Ensure it spans the width of the container
+    width: '100%',
+});
+
+const MetricsContainer = styled('div')({
+    display: 'flex',
+    gap: '25px',
+    justifyContent: 'space-between',
+    paddingTop: '20px',
+    paddingBottom: '20px',
+    borderRadius: '10px',
+    // Ensure it spans the width of the container
+    width: '100%',
+});
+
+const MetricItem = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px',
+});
+
+const ReportNav1 = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+    top: 0,
+    zIndex: 1,
+    // Ensure it spans the width of the container
+    width: '100%',
+});
+
+const RightBar = styled(CardContent)({
+    width: '30%',
+    display: 'flex !important',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+});
+
+const RightBarChildren = styled('div')({
+    width: '100% !important',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+});
+
+const MostOrderNav = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingBottom: '15px',
+    borderBottom: '1px solid #555a70 !important',
+});
+
+const TableContainerStyled = styled(TableContainer)({
+    height: '100%',
+    overflowY: 'scroll',
+    border: 'none !important',
+    '&::-webkit-scrollbar': {
+        display: 'none',
+    },
+});
+
+const TableStyled = styled(Table)({
+    width: '100% !important',
+    borderCollapse: 'collapse !important',
+});
+
+const TableBodyStyled = styled(TableBody)({
+    border: 'none !important',
+});
+
+const TableRowStyled = styled(TableRow)({
+    borderCollapse: 'collapse',
+});
+
+const DishImg = styled('img')(({ theme }) => ({
+    width: '100px !important',
+    height: '100px !important',
+    [theme.breakpoints.down('sm')]: {
+        width: '80px',
+        height: '80px',
+    },
+    [theme.breakpoints.down('xs')]: {
+        width: '60px',
+        height: '60px',
+    },
+}));
+
+const FilterOrder = styled('span')({
+    display: 'flex',
+    gap: '5px',
+});
+
+
+
 const Dashboard = () => {
-    const classes = useStyles();
     const [expandedDishName, setExpandedDishName] = useState(null);
 
 
     return (
-        <div className={classes.divContainer}>
-            <Card className={classes.cardContainer}>
-
+        <div>
+            <CardContainer>
                 {/* SIDE-BAR */}
-                <CardContent className={classes.sideBar}>
-                    <div className={classes.sideBarIcons}>
-                        <StorefrontIcon className={classes.icon} />
-                        <Link to="/"><HomeOutlinedIcon className={classes.icon} /></Link>
-                        <RamenDiningOutlinedIcon className={classes.icon} />
-                        <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
-                        <EmailOutlinedIcon className={classes.icon} />
-                        <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>         
-                        <ExitToAppOutlinedIcon className={classes.icon} />
-                    </div>
-                </CardContent>
+                <SideBar>
+                    <SideBarIcons>
+                        <Icon><StorefrontIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/"><HomeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon><RamenDiningOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/dashboard"><DashboardCustomizeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon> <EmailOutlinedIcon /></Icon>
+                        <Icon><NotificationsNoneOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/settings"><SettingsOutlinedIcon />
+                            </IconLink></Icon>
+                        <Icon><ExitToAppOutlinedIcon /></Icon>
+                    </SideBarIcons>
+                </SideBar>
 
-                {/* MAIN-BAR */}
-                <CardContent className={classes.mainBar}>
-                    <div className={classes.mainBarChildren}>
-                        <div className={classes.header}>
-                            <Typography className={classes.headerTypo} sx={{
+                <MainBar>
+                    <MainBarChildren>
+                        <Header>
+                            <Typography sx={{
                                 fontSize: {
                                     xs: '14px',
                                     sm: '16px',
@@ -276,19 +301,15 @@ const Dashboard = () => {
                             }}>
                                 Dashboard
                             </Typography>
-                            <div>
-                                <DigitalClock />
-                            </div>
-                        </div>
+                        </Header>
 
-                        <div className={classes.metricsContainer}>
+                        <MetricsContainer>
                             <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
-                                <div className={classes.metricItem}>
+                                <MetricItem>
                                     <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
-                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#50d1aa', }}
-                                    >+32.39%</Typography>
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#50d1aa', }}>+32.39%</Typography>
                                     <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#384c43', color: '#50d1aa', borderRadius: '20px', padding: '5px' }} />
-                                </div>
+                                </MetricItem>
                                 <Typography sx={{
                                     fontSize: {
                                         xs: '14px',
@@ -300,15 +321,14 @@ const Dashboard = () => {
                                 }}>$10,243.00</Typography>
 
                                 <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Revenue</Typography>
-
                             </Card>
+
                             <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
-                                <div className={classes.metricItem}>
+                                <MetricItem>
                                     <BookmarkBorderOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#ffb572', borderRadius: '8px', padding: '10px' }} />
-                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ff7ca3', }}
-                                    >-12.01%</Typography>
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ff7ca3' }}>-12.01%</Typography>
                                     <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#552e3c', color: '#ff7ca3', borderRadius: '20px', padding: '5px' }} />
-                                </div>
+                                </MetricItem>
                                 <Typography sx={{
                                     fontSize: {
                                         xs: '14px',
@@ -316,19 +336,23 @@ const Dashboard = () => {
                                         md: '18px',
                                         lg: '20px',
                                         xl: '24px',
-                                    }, color: 'white', fontFamily: 'Quicksand', fontWeight: '600', paddingTop: '15px'
+                                    },
+                                    color: 'white',
+                                    fontFamily: 'Quicksand',
+                                    fontWeight: '600',
+                                    paddingTop: '15px'
                                 }}>$23,113.60</Typography>
-
-                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Dish Ordered</Typography>
-
+                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}>
+                                    Total Dish Ordered
+                                </Typography>
                             </Card>
+
                             <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
-                                <div className={classes.metricItem}>
+                                <MetricItem>
                                     <PeopleAltOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#65b0f6', borderRadius: '8px', padding: '10px' }} />
-                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ffb572', }}
-                                    >+2.72%</Typography>
+                                    <Typography sx={{ fontFamily: 'Quicksand', color: '#ffb572' }}>+2.72%</Typography>
                                     <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#686767', color: '#ffb572', borderRadius: '20px', padding: '5px' }} />
-                                </div>
+                                </MetricItem>
                                 <Typography sx={{
                                     fontSize: {
                                         xs: '14px',
@@ -336,19 +360,24 @@ const Dashboard = () => {
                                         md: '18px',
                                         lg: '20px',
                                         xl: '24px',
-                                    }, color: 'white', fontFamily: 'Quicksand', fontWeight: '600', paddingTop: '15px'
+                                    },
+                                    color: 'white',
+                                    fontFamily: 'Quicksand',
+                                    fontWeight: '600',
+                                    paddingTop: '15px'
                                 }}>$1,234</Typography>
-
-                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Customer</Typography>
-
+                                <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}>
+                                    Total Customer
+                                </Typography>
                             </Card>
-                        </div>
+
+                        </MetricsContainer>
 
                         <Card sx={{
                             backgroundColor: '#1F1D2B', width: '100%', height: '85%', borderRadius: '10px',
                         }}>
                             <CardContent sx={{ height: '5vh' }}>
-                                <div className={classes.reportNav1}>
+                                <ReportNav1>
                                     <Typography sx={{
                                         fontSize: {
                                             xs: '12px',
@@ -360,8 +389,7 @@ const Dashboard = () => {
                                         fontFamily: 'Roboto',
                                         fontWeight: '400',
                                         color: 'white',
-                                    }}>Order Report
-                                    </Typography>
+                                    }}>Order Report</Typography>
                                     <Button
                                         variant="outlined"
                                         href="#outlined-buttons"
@@ -370,184 +398,71 @@ const Dashboard = () => {
                                             textTransform: 'none',
                                             fontSize: '14px',
                                             fontFamily: 'Quicksand',
-                                            border: '1px solid #393c49 !important',
-                                            borderRadius: '10px !important',
-                                            padding: '7px 12px !important',
+                                            border: '1px solid #555a70 !important',
+                                            borderRadius: '5px',
                                             color: '#abbbc2 !important',
-                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
                                             '&:hover': {
-                                                border: '1.4px solid #abbbc2 !important',
-                                                backgroundColor: 'inherit !important',
-                                                color: 'white !important',
+                                                border: '1px solid #aaaaaa !important',
+                                                backgroundColor: '#1e1e2c',
                                             },
-                                            '&:focus': {
-                                                color: 'white !important',
-                                                border: '1.4px solid #abbbc2 !important',
-                                            },
-                                        }}>
-                                        <span className={classes.filterOrder}>
-                                            <TuneOutlinedIcon />
-                                            Filter Order
-                                        </span>
+                                        }}
+                                    >
+                                        Filter
+                                        <TuneOutlinedIcon sx={{ fontSize: '20px', color: '#abbbc2 !important', ml: '5px' }} />
                                     </Button>
+                                </ReportNav1>
 
-                                </div>
-
-                                {/*Order Report Table */}
+                                {/* ORDER REPORT TABLE */}
                                 <DishReport />
-
                             </CardContent>
 
+                            {/* Table */}
+                            <TableContainerStyled>
+                                <TableStyled>
+                                    <TableBodyStyled>
+                                        <TableRowStyled>
+                                            <TableCell>
+                                                {/* <DishImg src={dish.img} alt={dish.name} /> */}
+                                            </TableCell>
+                                            {/* Other Table Cells */}
+                                        </TableRowStyled>
+                                    </TableBodyStyled>
+                                </TableStyled>
+                            </TableContainerStyled>
                         </Card>
+                    </MainBarChildren>
 
-                    </div>
-                </CardContent>
-
-                {/* RIGHT-BAR */}
-                <CardContent className={classes.rightBar}>
-                    <div className={classes.rightBarChildren}>
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '60%', borderRadius: '10px', padding: '10px' }}>
-                            <CardContent sx={{ padding: '10px' }}>
-                                <div className={classes.mostOrderNav}>
-                                    <Typography sx={{
-                                        fontSize: {
-                                            xs: '12px',
-                                            sm: '14px',
-                                            md: '17px',
-                                            lg: '17px',
-                                            xl: '24px',
-                                        },
-                                        fontFamily: 'Roboto',
-                                        fontWeight: '400',
-                                        color: 'white',
-                                    }}>Most Ordered
-                                    </Typography>
-                                    <Button
-                                        variant="outlined"
-                                        href="#outlined-buttons"
-                                        sx={{
-                                            minWidth: 'unset',
-                                            textTransform: 'none',
-                                            fontSize: '12px',
-                                            fontFamily: 'Quicksand',
-                                            border: '1px solid #393c49 !important',
-                                            borderRadius: '10px !important',
-                                            padding: '7px 12px !important',
-                                            color: '#abbbc2 !important',
-                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
-                                            '&:hover': {
-                                                border: '1.4px solid #abbbc2 !important',
-                                                backgroundColor: 'inherit !important',
-                                                color: 'white !important',
-                                            },
-                                            '&:focus': {
-                                                color: 'white !important',
-                                                border: '1.4px solid #abbbc2 !important',
-                                            },
-                                        }}>
-                                        <span className={classes.todayBtn}>
-                                            <ExpandMoreIcon />
-                                            Today
-                                        </span>
-                                    </Button>
-
-                                </div>
-
-                                <TableContainer className={classes.tableContainer}>
-                                    <Table className={classes.table}>
-                                        <TableBody className={classes.tableBody}>
-                                            {
-                                                dishes.map((dish, index) => (
-                                                    <React.Fragment key={dish.name}>
-                                                        <TableRow className={classes.tableBodyRow}>
-                                                            <TableCell className={classes.tableBodyItemCell} sx={{ display: 'flex', gap: '15px', alignItems: 'center', }}>
-                                                                <img src={dish.imgSrc} alt={dish.name}
-                                                                    className={classes.dishImgOrdering}
-                                                                />
-                                                                <div>
-                                                                    <Typography className={expandedDishName === index ? classes.fullText : classes.truncateText}
-
-                                                                        sx={{
-                                                                            fontFamily: 'Quicksand', fontSize: '18px',
-                                                                            color: 'white'
-                                                                        }}
-
-                                                                        onClick={() => handleDishName(index)}
-                                                                    >
-                                                                        {dish.name}
-                                                                    </Typography>
-
-                                                                    <span>
-                                                                        <Typography className={classes.tableBodyPriceCell} sx={{
-                                                                            fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce',
-                                                                        }}>{dish.price}
-                                                                        </Typography>
-                                                                    </span>
-                                                                </div>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    </React.Fragment>
-                                                ))};
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-
-                            </CardContent>
-                        </Card>
-
-                        <Card sx={{ backgroundColor: '#1F1D2B', width: '100%', height: '40%', borderRadius: '10px', }}>
-                            <CardContent sx={{ padding: '10px' }}>
-                            <div className={classes.mostOrderNav}>
-                                    <Typography sx={{
-                                        fontSize: {
-                                            xs: '12px',
-                                            sm: '14px',
-                                            md: '17px',
-                                            lg: '17px',
-                                            xl: '24px',
-                                        },
-                                        fontFamily: 'Roboto',
-                                        fontWeight: '400',
-                                        color: 'white',
-                                    }}>Most Ordered
-                                    </Typography>
-                                    <Button
-                                        variant="outlined"
-                                        href="#outlined-buttons"
-                                        sx={{
-                                            minWidth: 'unset',
-                                            textTransform: 'none',
-                                            fontSize: '12px',
-                                            fontFamily: 'Quicksand',
-                                            border: '1px solid #393c49 !important',
-                                            borderRadius: '10px !important',
-                                            padding: '7px 12px !important',
-                                            color: '#abbbc2 !important',
-                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
-                                            '&:hover': {
-                                                border: '1.4px solid #abbbc2 !important',
-                                                backgroundColor: 'inherit !important',
-                                                color: 'white !important',
-                                            },
-                                            '&:focus': {
-                                                color: 'white !important',
-                                                border: '1.4px solid #abbbc2 !important',
-                                            },
-                                        }}>
-                                        <span className={classes.todayBtn}>
-                                            <ExpandMoreIcon />
-                                            Today
-                                        </span>
-                                    </Button>
-
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </CardContent>
-            </Card>
+                    <RightBar>
+                        <RightBarChildren>
+                            <MostOrderNav>
+                                <Typography sx={{
+                                    fontSize: {
+                                        xs: '12px',
+                                        sm: '14px',
+                                        md: '17px',
+                                        lg: '20px',
+                                        xl: '24px',
+                                    },
+                                    fontFamily: 'Roboto',
+                                    fontWeight: '400',
+                                    color: 'white',
+                                }}>Most Ordered</Typography>
+                                <ExpandMoreIcon sx={{
+                                    fontSize: '24px',
+                                    color: '#abbbc2 !important',
+                                    backgroundColor: 'inherit',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        color: 'white !important',
+                                    },
+                                }} />
+                            </MostOrderNav>
+                        </RightBarChildren>
+                    </RightBar>
+                </MainBar>
+            </CardContainer>
         </div>
-    )
+    );
 }
 
 export default Dashboard

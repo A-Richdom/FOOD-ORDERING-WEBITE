@@ -1,301 +1,308 @@
 import React, { useState } from 'react'
-import { Card, CardContent, Typography, Button, TextField, Menu, MenuItem, Fade } from '@mui/material'
-import { makeStyles } from '@mui/styles';
+import { Card, CardContent, Typography, Button, TextField, Menu, MenuItem, Fade } from '@mui/material';
 import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import DishesOrdering from './DishesOrdering';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { styled } from '@mui/material/styles';
 import { selectDish } from './FEATURES/DishesSlice';
 import { useSelector } from 'react-redux';
 import DishesSlice from './FEATURES/DishesSlice';
 
 
-const useStyles = makeStyles((theme) => ({
-
-  cardContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    height: '100%',
-    zIndex: 2,
-    width: '60%',
-    display: 'flex',
-    borderRadius: '15px !important',
-    '@media (max-width: 960px)': {
-      width: '100%'
-    }
-  },
-  popOverPageVisible: {
-    right: 0,
-  },
-
-  // CONFIRMATION PAGE..//
-  confirmationPage: {
-    width: '50%',
-    height: '100%',
-    display: 'flex !important',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#1f1d2b',
-    borderRight: '1.2px solid #555a70',
-    '@media (max-width: 960px)': {
-      width: '40%',
-      borderRight: 'none',
-    },
-  },
-  confirmationPageChildren: {
-    flex: 1
-    , width: '100%',
-    '@media (max-width: 400px)': {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      // height: '100%'
-    }
-    // // height: '100vh',
-    //     overflowY: 'scroll',
-    //     // overflowX: 'hidden',
-    //     '&::-webkit-scrollbar': {
-    //         display: 'none',
-    //     },
-  },
-  navBar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingBottom: '20px',
-    borderBottom: '1px solid #555a70 !important',
-  },
-  addBtn: {
-    border: '1px solid #EA6969 !important',
-    borderRadius: '10px !important',
-    padding: theme.spacing(1),
-    color: '#EA6969 !important',
-    '&:hover': {
-      backgroundColor: '#f97f7f !important',
-      color: 'white !important',
-      border: 'none !important',
-    },
-    '&:focus': {
-      backgroundColor: '#EA6969 !important',
-      color: 'white !important',
-      border: '1px solid #555a70',
-    },
-  },
-  discountSubtotalWrapper: {
-    position: 'absolute',
-    bottom: 40,
-    left: '1rem',
-    right: '25rem',
-    display: 'flex',
-    flexWrap: 'wrap !important',
-    flexDirection: 'column',
-    gap: '10px',
-    paddingTop: '50px !important',
-    '@media (max-width: 600px)': {
-      fontSize: '12px',
-      padding: '8px',
-      paddingToP: '35px'
-    },
-    '@media (max-width: 400px)': {
-      fontSize: '10px',
-      padding: '6px',
-      paddingToP: '35px'
-    },
-  },
-  discount: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  subTotal: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-
-
-  // PAYMENT PAGE...//
-  paymentPage: {
-    width: '50%',
-    height: '100%',
-    display: 'flex !important',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#1f1d2b',
-    '@media (max-width: 960px)': {
-      width: '60%',
-    },
-  },
-  paymentPageChildren: {
+const CardContainer = styled(Card)(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  height: '100%',
+  zIndex: 2,
+  width: '60%',
+  display: 'flex',
+  borderRadius: '15px !important',
+  [theme.breakpoints.down('md')]: {
     width: '100%',
-    paddingToP: '20px !important',
-    height: '95%',
-    overflowY: 'scroll',
-    overflowX: 'hidden',
-    '&::-webkit-scrollbar': {
-      display: 'none',
-    },
   },
-  paymentPageNav: {
-    paddingToP: '50px !important',
-    borderBottom: '1px solid #555a70 !important',
-  },
-  paymentMethodBtns: {
-    display: 'flex',
-    gap: '10px',
-    paddingBottom: '5px',
-    width: '100%',
-    overflowX: 'scroll',
-    '&::-webkit-scrollbar': {
-      display: 'none',
-    },
-  },
-  paymentMethodBtn: {
-    border: '1px solid #393c49 !important',
-    borderRadius: '10px !important',
-    padding: '7px 12px !important',
-    color: '#abbbc2 !important',
-    transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
-    // padding: theme.spacing(1),
-    '&:hover': {
-      border: '1.4px solid #abbbc2 !important',
-      backgroundColor: 'inherit !important',
-      color: 'white !important',
-    },
-    '&:focus': {
-      color: 'white !important',
-      border: '1.4px solid #abbbc2 !important',
-    },
-  },
-  creditCardBtn: {
-    padding: '7px 12px !important',
-  },
-  paypalBtn: {
-    padding: '7px 18px !important',
-  },
-  cashBtn: {
-    padding: '7px 22px !important',
-  },
-  creditCard: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap !important',
-    alignItems: 'center',
-  },
-  paypal: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap !important',
-    alignItems: 'center',
-  },
-  cash: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap !important',
-    alignItems: 'center',
-  },
-  cardName: {
-    paddingBottom: '10px',
-    // paddingToP: '20px !important'
-  },
-  cardNumber: {
-    paddingBottom: '10px !important',
-  },
-  expCvvWrapper: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    gap: '10px',
-    paddingBottom: '10px',
-    '@media (max-width: 600px)': {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    '@media (max-width: 400px)': {
-      display: 'flex',
-      flexWrap: 'wrap',
-    }
-  },
-  orderTypeTableWrapper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: '30px',
-    '@media (max-width: 400px)': {
-      gap: '15px',
-    }
-  },
-  orderType: {
-    paddingToP: '10px',
-  },
-  dineInIcon: {
-    transition: 'transform 0.5s ease !important',
-  },
-  dineInButton: {
-    textTransform: 'none !important',
-    backgroundColor: '#1F1D2B !important',
-    padding: '4px 3px !important',
-    border: '1px solid #393c49 !important',
-    '&:hover': {
-      backgroundColor: '#393C49 !important'
-    },
-    '&:focus $dineInIcon': {
-      transform: 'rotate(180deg)',
-    },
-  },
-  dineInItem: {
-    fontSize: '12px !important',
-    fontFamily: 'Quicksand',
-    // paddingToP: '20px',
-    '&:hover': {
-      backgroundColor: '#393C49 !important',
-      color: 'white',
-      borderRadius: '3px',
-      padding: theme.spacing(1, 2)
-    },
-  },
-  textField: {
-    '@media (max-width: 600px)': {
-      '& .MuiOutlinedInput-root': {
-        '& .MuiInputBase-input': {
-          fontSize: '14px',
-          padding: '6px',
-        },
-      },
-      // Media query for medium screens
-      '@media (max-width: 400px)': {
-        '& .MuiOutlinedInput-root': {
-          '& .MuiInputBase-input': {
-            fontSize: '15px',
-            padding: '7px',
-          },
-        },
-      },
-    }
-  },
-  continuePaymentWrapper: {
-    display: 'flex',
-    gap: '15px',
-    paddingTop: '25px',
-    '@media (max-width: 600px)': {
-      display: 'flex',
-      gap: '20px',
-    },
-    '@media (max-width: 400px)': {
-      display: 'flex',
-      gap: '25px',
-      paddingBottom: '25px'
-    },
-  },
-
-
 }));
+
+// popOverPageVisible: {
+//   right: 0,
+// },
+
+// CONFIRMATION PAGE..//
+const ConfirmationPage = styled(CardContent)(({ theme }) => ({
+  width: '50%',
+  height: '100%',
+  display: 'flex !important',
+  flexDirection: 'column',
+  alignItems: 'center',
+  backgroundColor: '#1f1d2b',
+  borderRight: '1.2px solid #555a70',
+  [theme.breakpoints.down('md')]: {
+    width: '40%',
+    borderRight: 'none',
+  },
+}));
+
+const ConfirmationPageChildren = styled('div')(({ theme }) => ({
+  flex: 1,
+  width: '100%',
+  [theme.breakpoints.down('xs')]: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+  },
+}));
+
+// // height: '100vh',
+//     overflowY: 'scroll',
+//     // overflowX: 'hidden',
+//     '&::-webkit-scrollbar': {
+//         display: 'none',
+//     },
+
+const NavBar = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  paddingBottom: '20px',
+  borderBottom: '1px solid #555a70 !important',
+});
+
+const AddBtn = styled(Button)(({ theme }) => ({
+  border: '1px solid #EA6969 !important',
+  borderRadius: '10px !important',
+  padding: theme.spacing(1),
+  color: '#EA6969 !important',
+  '&:hover': {
+    backgroundColor: '#f97f7f !important',
+    color: 'white !important',
+    border: 'none !important',
+  },
+  '&:focus': {
+    backgroundColor: '#EA6969 !important',
+    color: 'white !important',
+    border: '1px solid #555a70',
+  },
+}));
+
+const DiscountSubtotalWrapper = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: 40,
+  left: '1rem',
+  right: '25rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
+  paddingTop: '50px !important',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '12px',
+    padding: '8px',
+    paddingToP: '35px',
+  },
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '10px',
+    padding: '6px',
+    paddingToP: '35px',
+  },
+}));
+
+const Discount = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+});
+
+const SubTotal = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+});
+
+// PAYMENT PAGE...//
+const PaymentPage = styled(CardContent)(({ theme }) => ({
+  width: '50%',
+  height: '100%',
+  display: 'flex !important',
+  flexDirection: 'column',
+  alignItems: 'center',
+  backgroundColor: '#1f1d2b',
+  [theme.breakpoints.down('md')]: {
+    width: '60%',
+  },
+}));
+
+const PaymentPageChildren = styled('div')(({ theme }) => ({
+  width: '100%',
+  paddingTop: '20px !important',
+  height: '95%',
+  overflowY: 'scroll',
+  overflowX: 'hidden',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
+}));
+
+const PaymentPageNav = styled('div')({
+  paddingTop: '50px !important',
+  borderBottom: '1px solid #555a70 !important',
+});
+
+const PaymentMethodBtns = styled('div')({
+  display: 'flex',
+  gap: '10px',
+  paddingBottom: '5px',
+  width: '100%',
+  overflowX: 'scroll',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
+});
+
+const PaymentMethodBtn = styled(Button)(({ theme }) => ({
+  border: '1px solid #393c49 !important',
+  borderRadius: '10px !important',
+  padding: '7px 12px !important',
+  color: '#abbbc2 !important',
+  transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+  '&:hover': {
+    border: '1.4px solid #abbbc2 !important',
+    backgroundColor: 'inherit !important',
+    color: 'white !important',
+  },
+  '&:focus': {
+    color: 'white !important',
+    border: '1.4px solid #abbbc2 !important',
+  },
+}));
+
+const CreditCardBtn = styled(PaymentMethodBtn)({
+  padding: '7px 12px !important',
+});
+
+const PaypalBtn = styled(PaymentMethodBtn)({
+  padding: '7px 18px !important',
+});
+
+const CashBtn = styled(PaymentMethodBtn)({
+  padding: '7px 22px !important',
+});
+
+const CreditCard = styled('span')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+const Paypal = styled(CreditCard)``;
+
+const Cash = styled(CreditCard)``;
+
+const CardName = styled('div')({
+  paddingBottom: '10px',
+  // paddingToP: '20px !important'
+
+});
+
+const CardNumber = styled('div')({
+  paddingBottom: '10px !important',
+});
+
+const ExpCvvWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'nowrap',
+  gap: '10px',
+  paddingBottom: '10px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  [theme.breakpoints.down('xs')]: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+}));
+
+const OrderTypeTableWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  gap: '30px',
+  [theme.breakpoints.down('sm')]: {
+    gap: '15px',
+  },
+}));
+
+const OrderType = styled('div')({
+  paddingTop: '10px',
+});
+
+const DineInButton = styled(Button)(({ theme }) => ({
+  textTransform: 'none !important',
+  backgroundColor: '#1F1D2B !important',
+  padding: '4px 3px !important',
+  border: '1px solid #393c49 !important',
+  '&:hover': {
+    backgroundColor: '#393C49 !important',
+  },
+  '&:focus $dineInIcon': {
+    transform: 'rotate(180deg)',
+  },
+}));
+
+const DineInIcon = styled('span')({
+  transition: 'transform 0.5s ease !important',
+});
+
+const DineInItem = styled(MenuItem)(({ theme }) => ({
+  fontSize: '12px !important',
+  fontFamily: 'Quicksand',
+  // paddingToP: '20px',
+  '&:hover': {
+    backgroundColor: '#393C49 !important',
+    color: 'white',
+    borderRadius: '3px',
+    padding: theme.spacing(1, 2),
+  },
+}));
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    '& .MuiOutlinedInput-root': {
+      '& .MuiInputBase-input': {
+        fontSize: '14px',
+        padding: '6px',
+      },
+    },
+  },
+  [theme.breakpoints.down('xs')]: {
+    '& .MuiOutlinedInput-root': {
+      '& .MuiInputBase-input': {
+        fontSize: '15px',
+        padding: '7px',
+      },
+    },
+  },
+}));
+
+const ContinuePaymentWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  gap: '15px',
+  paddingTop: '25px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
+    gap: '20px',
+  },
+  [theme.breakpoints.down('xs')]: {
+    gap: '25px',
+    paddingBottom: '25px',
+  },
+}));
+
 
 // console.log(dishes);
 
 const PopOverPage = ({ selectedDishes, onClose }) => {
-  const classes = useStyles();
   const [expandedDishName, setExpandedDishName] = useState(null);
   // const [selectedDishes, setSelectedDishes] = useState([]);
 
@@ -325,11 +332,11 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
 
   return (
     <div>
-      <Card className={classes.cardContainer}>
+      <CardContainer>
 
         {/* CONFIRMATION PAGE */}
-        <CardContent className={classes.confirmationPage}>
-          <div className={classes.confirmationPageChildren}>
+        <ConfirmationPage>
+          <ConfirmationPageChildren>
             <span><KeyboardBackspaceOutlinedIcon onClick={onClose}
               sx={{
                 color: 'white',
@@ -341,7 +348,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                 },
               }} />
             </span>
-            <div className={classes.navBar}>
+            <NavBar>
               <div>
                 <Typography sx={{
                   fontSize: {
@@ -365,7 +372,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                   Order #34562
                 </Typography>
               </div>
-              <Button className={classes.addBtn}
+              <AddBtn
                 variant="outlined"
                 href="#outlined-buttons"
                 sx={{
@@ -376,20 +383,20 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                   minWidth: 'unset',
                 }}>
                 <AddIcon />
-              </Button>
+              </AddBtn>
 
-            </div>
+            </NavBar>
 
             <DishesOrdering
-              className={classes.dishesOrdering}
+              // className={classes.dishesOrdering}
               selectedDishes={selectedDishes}
               handleTextboxChange={handleTextboxChange}
               handleDishName={handleDishName}
               expandedDishName={expandedDishName}
             />
 
-            <div className={classes.discountSubtotalWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
-              <div className={classes.discount}>
+            <DiscountSubtotalWrapper sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
+              <Discount>
                 <Typography sx={{
                   fontSize: '15px',
                   fontFamily: 'Quicksand',
@@ -418,8 +425,8 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     $0
                   </Typography>
                 </span>
-              </div>
-              <div className={classes.subTotal}>
+              </Discount>
+              <SubTotal>
                 <Typography
                   sx={{
                     fontSize: '15px',
@@ -449,17 +456,17 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     $31.90
                   </Typography>
                 </span>
-              </div>
-            </div>
+              </SubTotal>
+            </DiscountSubtotalWrapper>
 
-          </div>
-        </CardContent>
+          </ConfirmationPageChildren>
+        </ConfirmationPage>
 
         {/* PAYMENT PAGE */}
-        <CardContent className={classes.paymentPage}>
-          <div className={classes.paymentPageChildren}>
+        <PaymentPage>
+          <PaymentPageChildren>
 
-            <div className={classes.paymentPageNav}>
+            <PaymentPageNav>
               <Typography sx={{
                 fontSize: {
                   xs: '14px',
@@ -486,7 +493,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
               }}>
                 3 payment method available
               </Typography>
-            </div>
+            </PaymentPageNav>
 
             <div className={classes.paymentPageBody}>
               <Typography sx={{
@@ -505,8 +512,8 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                 Payment Method
               </Typography>
 
-              <div className={classes.paymentMethodBtns}>
-                <Button className={`${classes.paymentMethodBtn} ${classes.creditCardBtn}`}
+              <PaymentMethodBtns>
+                <CreditCardBtn
                   variant="outlined"
                   href="#outlined-buttons"
                   sx={{
@@ -515,12 +522,12 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     fontSize: '14px',
                     fontFamily: 'Quicksand'
                   }}>
-                  <span className={classes.creditCard}>
+                  <CreditCard>
                     <CreditCardOutlinedIcon />
                     Credit Card
-                  </span>
-                </Button>
-                <Button className={`${classes.paymentMethodBtn} ${classes.paypalBtn}`}
+                  </CreditCard>
+                </CreditCardBtn>
+                <PaypalBtn
                   variant="outlined"
                   href="#outlined-buttons"
                   sx={{
@@ -529,13 +536,12 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     fontSize: '14px',
                     fontFamily: 'Quicksand'
                   }}>
-                  <span className={classes.paypal}>
+                  <Paypal>
                     <CreditCardOutlinedIcon />
                     Paypal
-                  </span>
-                </Button>
-                <Button className={`${classes.paymentMethodBtn} ${classes.cashBtn}`}
-                  variant="outlined"
+                  </Paypal>
+                </PaypalBtn>
+                <CashBtn
                   href="#outlined-buttons"
                   sx={{
                     minWidth: 'unset',
@@ -543,14 +549,142 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     fontSize: '14px',
                     fontFamily: 'Quicksand'
                   }}>
-                  <span className={classes.cash}>
+                  <Cash>
                     <CreditCardOutlinedIcon />
                     Cash
-                  </span>
-                </Button>
-              </div>
+                  </Cash>
+                </CashBtn>
+              </PaymentMethodBtns>
+            </div>
 
-              <div className={classes.cardName}>
+            <CardName>
+              <Typography sx={{
+                fontSize: {
+                  xs: '8px',
+                  sm: '10px',
+                  md: '13px',
+                  lg: '15px',
+                  xl: '24px',
+                },
+                fontFamily: 'Quicksand',
+                fontWeight: '500',
+                color: 'white',
+                '@media (max-width: 400px)': {
+                  fontSize: '12px'
+                }
+              }}>
+                Cardholder Name
+              </Typography>
+              <StyledTextField
+                fullWidth
+                // value={dish.textboxValue}
+                // onChange={handleTextboxChange(index)}
+                placeholder="Ridwan Olalekan..."
+                variant="outlined"
+                size="small"
+                InputProps={{
+                  style: {
+                    color: 'white',
+                    backgroundColor: '#393C49',
+                    fontFamily: 'Quicksand',
+                    fontSize: '17px',
+                    borderRadius: '10px',
+                  },
+                }}
+                sx={{
+                  paddingTop: '5px',
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#555a70',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#555a70',
+                    },
+                    '&.Mui-focused fieldset': {
+                      border: '1px solid white',
+                      borderColor: 'white',
+                    },
+                    '& .MuiInputBase-input': {
+                      width: '100%',
+                    },
+                    '@media (max-width: 600px)': {
+                      width: '80%'
+                    },
+                    '@media (max-width: 400px)': {
+                      width: '70%'
+                    },
+                  },
+                }}
+              />
+            </CardName>
+
+            <CardNumber>
+              <Typography sx={{
+                fontSize: {
+                  xs: '8px',
+                  sm: '10px',
+                  md: '13px',
+                  lg: '15px',
+                  xl: '24px',
+                },
+                fontFamily: 'Quicksand',
+                fontWeight: '500',
+                color: 'white',
+                '@media (max-width: 400px)': {
+                  fontSize: '12px'
+                },
+              }}>
+                Card Number
+              </Typography>
+              <StyledTextField
+                fullWidth
+                // value={dish.textboxValue}
+                // onChange={handleTextboxChange(index)}
+                placeholder="1234567890..."
+                autoComplete='off'
+                variant="outlined"
+                size="small"
+                InputProps={{
+                  style: {
+                    color: 'white',
+                    backgroundColor: '#393C49',
+                    fontFamily: 'Quicksand', fontSize: '17px',
+                    borderRadius: '10px',
+                  },
+                  inputProps: {
+                    autoComplete: 'new-password', // Use a different value
+                  },
+                }}
+                sx={{
+                  paddingTop: '5px',
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: '#555a70',
+                    },
+                    '&:hover fieldset': {
+                      borderColor: '#555a70',
+                    },
+                    '&.Mui-focused fieldset': {
+                      border: '1px solid white',
+                      borderColor: 'white',
+                    },
+                    '& .MuiInputBase-input': {
+                      width: '100%',
+                      backgroundColor: '#393C49',
+                    },
+                    '@media (max-width: 600px)': {
+                      width: '80%'
+                    },
+                    '@media (max-width: 400px)': {
+                      width: '70%'
+                    },
+                  },
+                }}
+              />
+            </CardNumber>
+
+            <ExpCvvWrapper>
+              <div className={classes.expDate}>
                 <Typography sx={{
                   fontSize: {
                     xs: '8px',
@@ -566,14 +700,212 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                     fontSize: '12px'
                   }
                 }}>
-                  Cardholder Name
+                  Expiration Date
                 </Typography>
-                <TextField
-                  className={classes.textField}
-                  fullWidth
+                <StyledTextField
+
+                  // fullWidth
                   // value={dish.textboxValue}
                   // onChange={handleTextboxChange(index)}
+                  type="date"
                   placeholder="Ridwan Olalekan..."
+                  variant="outlined"
+                  size="small"
+
+                  InputProps={{
+                    style: {
+                      color: 'white',
+                      backgroundColor: '#393C49',
+                      fontFamily: 'Quicksand', fontSize: '17px',
+                      borderRadius: '10px',
+                    },
+                  }}
+                  sx={{
+                    width: '95%',
+                    paddingTop: '5px',
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&.Mui-focused fieldset': {
+                        border: '1px solid white',
+                        borderColor: 'white',
+                      },
+                      '& .MuiInputBase-input': {
+                        width: '100%',
+                      },
+                    },
+                    '@media (max-width: 600px)': {
+                      width: '80%',
+                      fontSize: '8px',
+                      padding: '7px',
+                    },
+                    '@media (max-width: 400px)': {
+                      width: '100%',
+                      fontSize: '10px',
+                      // padding: '1px',
+                      padding: '2px',
+                    },
+                  }}
+                />
+              </div>
+              <div className={classes.cvv}>
+                <Typography sx={{
+                  fontSize: {
+                    xs: '8px',
+                    sm: '10px',
+                    md: '13px',
+                    lg: '15px',
+                    xl: '24px',
+                  },
+                  fontFamily: 'Quicksand',
+                  fontWeight: '500',
+                  color: 'white',
+                  '@media (max-width: 400px)': {
+                    fontSize: '12px'
+                  }
+                }}>
+                  CVV
+                </Typography>
+                <StyledTextField
+
+                  // fullWidth
+                  // value={dish.textboxValue}
+                  // onChange={handleTextboxChange(index)}
+                  type="password"
+                  placeholder="123..."
+                  variant="outlined"
+                  size="small"
+                  autoComplete="off"
+                  InputProps={{
+                    style: {
+                      color: 'white',
+                      backgroundColor: '#393C49',
+                      fontFamily: 'Quicksand',
+                      fontSize: '17px',
+                      borderRadius: '10px',
+                      autoComplete: 'none',
+                    },
+                    inputProps: {
+                      autoComplete: 'new-password', // Use a different value
+                    },
+                  }}
+                  sx={{
+                    width: '95%',
+                    paddingTop: '5px',
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&:hover fieldset': {
+                        borderColor: '#555a70',
+                      },
+                      '&.Mui-focused fieldset': {
+                        border: '1px solid white',
+                        borderColor: 'white',
+                      },
+                      '& .MuiInputBase-input': {
+                        width: '100%',
+                        backgroundColor: '#393C49',
+                      },
+                      '@media (max-width: 600px)': {
+                        width: '100%',
+                        fontSize: '8px',
+                        padding: '7px',
+                      },
+                      '@media (max-width: 400px)': {
+                        width: '90%',
+                        fontSize: '10px',
+                        paddingLeft: '1px',
+                        padding: '2px',
+                      },
+                    },
+                  }}
+                />
+              </div>
+            </ExpCvvWrapper>
+
+            <OrderTypeTableWrapper>
+              <OrderType>
+                <Typography sx={{
+                  height: '50%',
+                  fontSize: {
+                    xs: '8px',
+                    sm: '10px',
+                    md: '13px',
+                    lg: '15px',
+                    xl: '24px',
+                  },
+                  fontFamily: 'Quicksand',
+                  fontWeight: '500',
+                  color: 'white',
+                  paddingBottom: '8px',
+                  '@media (max-width: 400px)': {
+                    fontSize: '12px'
+                  }
+                }}>
+                  Order Type
+                </Typography>
+                <DineInButton
+                  id="fade-button"
+                  aria-controls={open ? 'fade-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+
+                >
+                  <Typography sx={{ fontSize: '12px', color: 'white', fontFamily: 'Quicksand', display: 'flex', alignItems: 'center', gap: '3px', padding: '0px 5px' }}>
+                    <DineInIcon>
+                      <KeyboardArrowDownIcon />
+                      Dine in
+                    </DineInIcon>
+                  </Typography>
+                </DineInButton>
+                <Menu
+                  id="fade-menu"
+                  MenuListProps={{
+                    'aria-labelledby': 'fade-button',
+                  }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  TransitionComponent={Fade}
+                  sx={{ width: '120px', paddingBottom: '0px' }}
+                >
+                  <DineInItem onClick={handleClose} >Profile</DineInItem>
+                  <DineInItem onClick={handleClose} >My account</DineInItem>
+                  <DineInItem onClick={handleClose} >Logout</DineInItem>
+                </Menu>
+              </OrderType>
+
+              <div className={classes.tableNo}>
+                <Typography sx={{
+                  fontSize: {
+                    xs: '8px',
+                    sm: '10px',
+                    md: '13px',
+                    lg: '15px',
+                    xl: '24px',
+                  },
+                  fontFamily: 'Quicksand',
+                  fontWeight: '500',
+                  color: 'white',
+                  '@media (max-width: 400px)': {
+                    fontSize: '12px'
+                  }
+                }}>
+                  Table no.
+                </Typography>
+                <StyledTextField
+                  
+                  // fullWidth
+                  // value={dish.textboxValue}
+                  // onChange={handleTextboxChange(index)}
+                  type="number"
+                  placeholder="Table no.."
                   variant="outlined"
                   size="small"
                   InputProps={{
@@ -601,399 +933,73 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                       '& .MuiInputBase-input': {
                         width: '100%',
                       },
-                      '@media (max-width: 600px)': {
-                        width: '80%'
-                      },
-                      '@media (max-width: 400px)': {
-                        width: '70%'
-                      },
                     },
                   }}
                 />
               </div>
+            </OrderTypeTableWrapper>
 
-              <div className={classes.cardNumber}>
-                <Typography sx={{
-                  fontSize: {
-                    xs: '8px',
-                    sm: '10px',
-                    md: '13px',
-                    lg: '15px',
-                    xl: '24px',
-                  },
-                  fontFamily: 'Quicksand',
-                  fontWeight: '500',
+            <ContinuePaymentWrapper>
+              <Button
+                sx={{
+                  width: '50%',
+                  border: '1px solid #f97f7f',
+                  borderRadius: '8px',
                   color: 'white',
+                  padding: '10px',
+                  textTransform: 'none',
+                  fontFamily: 'Quicksand',
+                  fontSize: '12px',
+                  '&:hover': {
+                    backgroundColor: '#f97f7f',
+                  },
+                  // fontWeight: '600',
+                  '@media (max-width: 600px)': {
+                    fontSize: '8px',
+                    padding: '7px',
+                  },
                   '@media (max-width: 400px)': {
-                    fontSize: '12px'
+                    width: '30%',
+                    fontSize: '10px',
+                    // padding: '1px',
+                    padding: '2px',
                   },
                 }}>
-                  Card Number
-                </Typography>
-                <TextField
-                  className={classes.textField}
-                  fullWidth
-                  // value={dish.textboxValue}
-                  // onChange={handleTextboxChange(index)}
-                  placeholder="1234567890..."
-                  autoComplete='off'
-                  variant="outlined"
-                  size="small"
-                  InputProps={{
-                    style: {
-                      color: 'white',
-                      backgroundColor: '#393C49',
-                      fontFamily: 'Quicksand', fontSize: '17px',
-                      borderRadius: '10px',
-                    },
-                    inputProps: {
-                      autoComplete: 'new-password', // Use a different value
-                    },
-                  }}
-                  sx={{
-                    paddingTop: '5px',
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: '#555a70',
-                      },
-                      '&:hover fieldset': {
-                        borderColor: '#555a70',
-                      },
-                      '&.Mui-focused fieldset': {
-                        border: '1px solid white',
-                        borderColor: 'white',
-                      },
-                      '& .MuiInputBase-input': {
-                        width: '100%',
-                        backgroundColor: '#393C49',
-                      },
-                      '@media (max-width: 600px)': {
-                        width: '80%'
-                      },
-                      '@media (max-width: 400px)': {
-                        width: '70%'
-                      },
-                    },
-                  }}
-                />
-              </div>
+                Cancel
+              </Button>
+              <Button
+                sx={{
+                  width: '50%',
+                  border: '1px solid #f97f7f',
+                  borderRadius: '8px',
+                  color: 'white',
+                  padding: '5px',
+                  textTransform: 'none',
+                  fontFamily: 'Quicksand',
+                  fontSize: '12px',
+                  '&:hover': {
+                    backgroundColor: '#f97f7f',
+                  },
+                  '@media (max-width: 600px)': {
+                    fontSize: '8px',
+                    padding: '7px',
+                  },
+                  '@media (max-width: 400px)': {
+                    width: '30%',
+                    fontSize: '10px',
+                    // padding: '1px',
+                    padding: '1px',
+                  },
+                }}>
+                Continue Payment
+              </Button>
+            </ContinuePaymentWrapper>
+          </PaymentPageChildren>
 
-              <div className={classes.expCvvWrapper}>
-                <div className={classes.expDate}>
-                  <Typography sx={{
-                    fontSize: {
-                      xs: '8px',
-                      sm: '10px',
-                      md: '13px',
-                      lg: '15px',
-                      xl: '24px',
-                    },
-                    fontFamily: 'Quicksand',
-                    fontWeight: '500',
-                    color: 'white',
-                    '@media (max-width: 400px)': {
-                      fontSize: '12px'
-                    }
-                  }}>
-                    Expiration Date
-                  </Typography>
-                  <TextField
-                    className={classes.textField}
-                    // fullWidth
-                    // value={dish.textboxValue}
-                    // onChange={handleTextboxChange(index)}
-                    type="date"
-                    placeholder="Ridwan Olalekan..."
-                    variant="outlined"
-                    size="small"
-
-                    InputProps={{
-                      style: {
-                        color: 'white',
-                        backgroundColor: '#393C49',
-                        fontFamily: 'Quicksand', fontSize: '17px',
-                        borderRadius: '10px',
-                      },
-                    }}
-                    sx={{
-                      width: '95%',
-                      paddingTop: '5px',
-                      '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&.Mui-focused fieldset': {
-                          border: '1px solid white',
-                          borderColor: 'white',
-                        },
-                        '& .MuiInputBase-input': {
-                          width: '100%',
-                        },
-                      },
-                      '@media (max-width: 600px)': {
-                        width: '80%',
-                        fontSize: '8px',
-                        padding: '7px',
-                      },
-                      '@media (max-width: 400px)': {
-                        width: '100%',
-                        fontSize: '10px',
-                        // padding: '1px',
-                        padding: '2px',
-                      },
-                    }}
-                  />
-                </div>
-                <div className={classes.cvv}>
-                  <Typography sx={{
-                    fontSize: {
-                      xs: '8px',
-                      sm: '10px',
-                      md: '13px',
-                      lg: '15px',
-                      xl: '24px',
-                    },
-                    fontFamily: 'Quicksand',
-                    fontWeight: '500',
-                    color: 'white',
-                    '@media (max-width: 400px)': {
-                      fontSize: '12px'
-                    }
-                  }}>
-                    CVV
-                  </Typography>
-                  <TextField
-                    className={classes.textField}
-                    // fullWidth
-                    // value={dish.textboxValue}
-                    // onChange={handleTextboxChange(index)}
-                    type="password"
-                    placeholder="123..."
-                    variant="outlined"
-                    size="small"
-                    autoComplete="off"
-                    InputProps={{
-                      style: {
-                        color: 'white',
-                        backgroundColor: '#393C49',
-                        fontFamily: 'Quicksand',
-                        fontSize: '17px',
-                        borderRadius: '10px',
-                        autoComplete: 'none',
-                      },
-                      inputProps: {
-                        autoComplete: 'new-password', // Use a different value
-                      },
-                    }}
-                    sx={{
-                      width: '95%',
-                      paddingTop: '5px',
-                      '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&.Mui-focused fieldset': {
-                          border: '1px solid white',
-                          borderColor: 'white',
-                        },
-                        '& .MuiInputBase-input': {
-                          width: '100%',
-                          backgroundColor: '#393C49',
-                        },
-                        '@media (max-width: 600px)': {
-                          width: '100%',
-                          fontSize: '8px',
-                          padding: '7px',
-                        },
-                        '@media (max-width: 400px)': {
-                          width: '90%',
-                          fontSize: '10px',
-                          paddingLeft: '1px',
-                          padding: '2px',
-                        },
-                      },
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className={classes.orderTypeTableWrapper}>
-                <div className={classes.orderType}>
-                  <Typography sx={{
-                    height: '50%',
-                    fontSize: {
-                      xs: '8px',
-                      sm: '10px',
-                      md: '13px',
-                      lg: '15px',
-                      xl: '24px',
-                    },
-                    fontFamily: 'Quicksand',
-                    fontWeight: '500',
-                    color: 'white',
-                    paddingBottom: '8px',
-                    '@media (max-width: 400px)': {
-                      fontSize: '12px'
-                    }
-                  }}>
-                    Order Type
-                  </Typography>
-                  <Button
-                    id="fade-button"
-                    aria-controls={open ? 'fade-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                    className={classes.dineInButton}
-                  >
-                    <Typography sx={{ fontSize: '12px', color: 'white', fontFamily: 'Quicksand', display: 'flex', alignItems: 'center', gap: '3px', padding: '0px 5px' }}>
-                      <KeyboardArrowDownIcon className={classes.dineInIcon} />
-                      Dine in
-                    </Typography>
-                  </Button>
-                  <Menu
-                    id="fade-menu"
-                    MenuListProps={{
-                      'aria-labelledby': 'fade-button',
-                    }}
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    TransitionComponent={Fade}
-                    className={classes.dineInList}
-                    sx={{ width: '120px', paddingBottom: '0px' }}
-                  >
-                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose} className={classes.dineInItem}>My account</MenuItem>
-                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Logout</MenuItem>
-                  </Menu>
-                </div>
-
-                <div className={classes.tableNo}>
-                  <Typography sx={{
-                    fontSize: {
-                      xs: '8px',
-                      sm: '10px',
-                      md: '13px',
-                      lg: '15px',
-                      xl: '24px',
-                    },
-                    fontFamily: 'Quicksand',
-                    fontWeight: '500',
-                    color: 'white',
-                    '@media (max-width: 400px)': {
-                      fontSize: '12px'
-                    }
-                  }}>
-                    Table no.
-                  </Typography>
-                  <TextField
-                    className={classes.textField}
-                    // fullWidth
-                    // value={dish.textboxValue}
-                    // onChange={handleTextboxChange(index)}
-                    type="number"
-                    placeholder="Table no.."
-                    variant="outlined"
-                    size="small"
-                    InputProps={{
-                      style: {
-                        color: 'white',
-                        backgroundColor: '#393C49',
-                        fontFamily: 'Quicksand',
-                        fontSize: '17px',
-                        borderRadius: '10px',
-                      },
-                    }}
-                    sx={{
-                      paddingTop: '5px',
-                      '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&:hover fieldset': {
-                          borderColor: '#555a70',
-                        },
-                        '&.Mui-focused fieldset': {
-                          border: '1px solid white',
-                          borderColor: 'white',
-                        },
-                        '& .MuiInputBase-input': {
-                          width: '100%',
-                        },
-                      },
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div className={classes.continuePaymentWrapper}>
-                <Button
-                  sx={{
-                    width: '50%',
-                    border: '1px solid #f97f7f',
-                    borderRadius: '8px',
-                    color: 'white',
-                    padding: '10px',
-                    textTransform: 'none',
-                    fontFamily: 'Quicksand',
-                    fontSize: '12px',
-                    '&:hover': {
-                      backgroundColor: '#f97f7f',
-                    },
-                    // fontWeight: '600',
-                    '@media (max-width: 600px)': {
-                      fontSize: '8px',
-                      padding: '7px',
-                    },
-                    '@media (max-width: 400px)': {
-                      width: '30%',
-                      fontSize: '10px',
-                      // padding: '1px',
-                      padding: '2px',
-                    },
-                  }}>
-                  Cancel
-                </Button>
-                <Button
-                  sx={{
-                    width: '50%',
-                    border: '1px solid #f97f7f',
-                    borderRadius: '8px',
-                    color: 'white',
-                    padding: '5px',
-                    textTransform: 'none',
-                    fontFamily: 'Quicksand',
-                    fontSize: '12px',
-                    '&:hover': {
-                      backgroundColor: '#f97f7f',
-                    },
-                    '@media (max-width: 600px)': {
-                      fontSize: '8px',
-                      padding: '7px',
-                    },
-                    '@media (max-width: 400px)': {
-                      width: '30%',
-                      fontSize: '10px',
-                      // padding: '1px',
-                      padding: '1px',
-                    },
-                  }}>
-                  Continue Payment
-                </Button>
-              </div>
-            </div>
-
-          </div>
-        </CardContent>
-      </Card>
+        </PaymentPage>
+      </CardContainer>
     </div>
+
   )
 }
 

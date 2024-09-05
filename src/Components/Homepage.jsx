@@ -3,7 +3,6 @@ import {
     Card, CardContent, Box, styled, Button, Menu, MenuItem, Fade, Typography,
     Slide,
 } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import RamenDiningOutlinedIcon from '@mui/icons-material/RamenDiningOutlined';
@@ -52,298 +51,352 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-const useStyles = makeStyles((theme) => ({
-    divContainer: {
-        position: 'relative',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+const DivContainer = styled('div')({
+    position: 'relative',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+});
+
+const CardWrapper = styled(Card)({
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    backgroundColor: 'transparent',
+    borderRadius: '15px',
+});
+
+// Side-Bar...//
+const SideBar = styled(CardContent)({
+    width: '5%',
+    backgroundColor: '#1F1D2B',
+});
+
+const SideBarIcons = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
+
+const Icon = styled('div')(({ theme }) => ({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        padding: 10,
+        borderRadius: '5px',
     },
-    cardWrapper: {
-        width: '100%',
-        height: '100vh',
-        display: 'flex',
-        backgroundColor: 'transparent !important',
-        borderRadius: '15px !important',
+}));
+
+const IconLink = styled(Link)(({ theme }) => ({
+    color: '#EA6969',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        borderRadius: '5px',
     },
-    // Side-Bar...//
-    sideBar: {
-        width: '5%',
-        backgroundColor: '#1F1D2B',
-    },
-    sideBarIcons: {
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    icon: {
-        color: '#EA6969',
-        fontSize: '1.5rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        '&:hover': {
-            backgroundColor: '#f97f7f',
+}));
+
+// Main Bar...//
+const MainBar = styled(CardContent)({
+    backgroundColor: '#393C49',
+    width: '60%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+});
+
+const MainBarChildren = styled('div')({
+    width: '98%',
+    height: '100%',
+    backgroundColor: '#393C49',
+});
+
+const NavBar1 = styled('div')({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
+
+const NavBar2 = styled('ul')(({ theme }) => ({
+    display: 'flex',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    padding: 12,
+    paddingBottom: '20px',
+    borderBottom: '1px solid #555a70',
+    '& li': {
+        marginRight: theme.spacing(6),
+        '& a': {
             color: 'white',
-            padding: 10,
-            borderRadius: '5px',
-        },
-    },
-    // Main Bar...//
-    mainBar: {
-        backgroundColor: '#393C49 !important',
-        width: '60%',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    mainBarChildren: {
-        width: '98%',
-        height: '100%',
-        backgroundColor: '#393C49',
-    },
-    navBar1: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    navBar2: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        listStyle: 'none',
-        padding: 12,
-        paddingBottom: '20px',
-        borderBottom: '1px solid #555a70 !important',
-        '& li': {
-            marginRight: theme.spacing(6),
-            '& a': {
-                color: 'white',
-                textDecoration: 'none',
-                fontFamily: 'Quicksand',
-                '&:hover': {
-                    color: '#EA6969',
-                },
+            textDecoration: 'none',
+            fontFamily: 'Quicksand',
+            '&:hover': {
+                color: '#EA6969',
             },
         },
     },
-    navItem: {
-        position: 'relative',
-        display: 'inline-block',
-        textDecoration: 'none',
-        '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            height: '2px',
-            marginBottom: '-5px',
-            backgroundColor: '#EA6969 !important',
-            transform: 'scaleX(0)',
-            transition: 'transform 0.3s ease',
-        },
-        '&:hover::after': {
-            transform: 'scaleX(1)',
-        },
-    },
-    navLink: {
-        '&:hover': {
-            color: '#EA6969',
-        },
-    },
-    userName: {
-        display: 'flex',
-    },
-    userTypo: {
-        display: 'grid',
-        flexDirection: 'column',
-        color: 'white',
-    },
-    search: {
-        position: 'relative',
-        border: '1px solid #555a70',
-        borderRadius: '10px',
-        backgroundColor: '#474b5d',
-        '&:hover': {
-            backgroundColor: '#1F1D2B',
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        }
-    },
-    searchIconWrapper: {
-        padding: theme.spacing(0, 1),
-        color: '#c9cdce',
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    navBar3: {
-        paddingTop: '5px',
-        paddingBottom: '15px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    chooseDishTypo: {
-        color: 'white',
-        fontFamily: 'Quicksand',
-        fontWeight: '500 !important'
-    },
-    dineInIcon: {
-        transition: 'transform 0.5s ease !important',
-    },
-    dineInButton: {
-        textTransform: 'none !important',
-        backgroundColor: '#1F1D2B !important',
-        padding: '4px 3px !important',
-        border: '0.1px solid #c9cdce !important',
-        '&:hover': {
-            backgroundColor: '#393C49 !important'
-        },
-        '&:focus $dineInIcon': {
-            transform: 'rotate(180deg)',
-        },
-    },
-    dineInItem: {
-        fontSize: '12px !important',
-        fontFamily: 'Quicksand',
-        '&:hover': {
-            backgroundColor: '#393C49 !important',
-            color: 'white',
-            borderRadius: '3px',
-            padding: theme.spacing(1, 2)
-        },
-    },
-    dishesWrapper: {
-        display: 'flex !important',
-        flexWrap: 'wrap',
-        gap: '30px',
-        textAlign: 'center',
-        justifyContent: 'space-between',
-        height: '55%',
-        '@media (max-width: 400px)': {
-            height: '40%'
-        },
-        overflowY: 'scroll !important',
-        borderBottom: '1px solid #555a70',
-        '&::-webkit-scrollbar': {
-            display: 'none',
-        },
-    },
-    dishCard: {
-        width: '23%',
-        '@media (max-width: 600px)': {
-            width: '30%'
-        },
-        '@media (max-width: 400px)': {
-            width: '60%'
-        },
-        backgroundColor: '#1F1D2B !important',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '5px',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        borderRadius: '20px !important',
-        cursor: 'pointer',
-    },
-    dishImg: {
-        width: '100px !important',
-        height: '100px !important',
-        '@media (max-width: 600px)': {
-            width: '80px',
-            height: '80px'
-        },
-        '@media (max-width: 400px)': {
-            width: '60px',
-            height: '60px'
-        }
-    },
-    //Right Bar...//
-    rightBar: {
-        width: '35%',
-        backgroundColor: '#1F1D2B !important',
-        display: 'flex !important',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: '100vh',
-        position: 'relative',
-    },
-    rightBarChildren: {
-        width: '100% !important',
-    },
-    orderBtnWrapper: {
-        display: 'flex !important',
-        flexWrap: 'wrap !important',
-        gap: '8px !important',
-        paddingTop: '15px'
-    },
-    orderBtn: {
-        fontFamily: 'Quicksand !important',
-        fontWeight: '600 !important',
-        textTransform: 'none !important',
-        border: '1px solid #EA6969 !important',
-        borderRadius: '10px !important',
-        padding: theme.spacing(1),
-        color: '#EA6969 !important',
-        '&:hover': {
-            backgroundColor: '#f97f7f !important',
-            color: 'white !important',
-            border: 'none !important',
-        },
-        '&:focus': {
-            backgroundColor: '#EA6969 !important',
-            color: 'white !important',
-            border: '1px solid #555a70',
-        },
-    },
-    paymentWrapper: {
-        position: 'absolute',
-        bottom: 40,
-        left: 15,
-        right: 15,
-        // zIndex: '2 !important',
-        display: 'flex',
-        flexWrap: 'wrap !important',
-        flexDirection: 'column',
-        paddingTop: '0.5rem',
-        marginBottom: '25px',
-        gap: '10px',
-        '@media (max-width: 600px)': {
-            fontSize: '12px',
-            padding: '8px',
-        },
-        '@media (max-width: 400px)': {
-            fontSize: '10px',
-            padding: '6px',
-        },
-    },
-    discount: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    },
-    subTotal: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-    }
 }));
+
+const NavItem = styled('li')({
+    position: 'relative',
+    display: 'inline-block',
+    textDecoration: 'none',
+    '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '2px',
+        marginBottom: '-5px',
+        backgroundColor: '#EA6969',
+        transform: 'scaleX(0)',
+        transition: 'transform 0.3s ease',
+    },
+    '&:hover::after': {
+        transform: 'scaleX(1)',
+    },
+});
+
+const NavLink = styled('a')(({ theme }) => ({
+    '&:hover': {
+        color: '#EA6969',
+    },
+}));
+
+const UserName = styled('div')({
+    display: 'flex',
+});
+
+const UserTypo = styled(Typography)({
+    display: 'grid',
+    flexDirection: 'column',
+    color: 'white',
+});
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    border: '1px solid #555a70',
+    borderRadius: '10px',
+    backgroundColor: '#474b5d',
+    '&:hover': {
+        backgroundColor: '#1F1D2B',
+    },
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 1),
+    color: '#c9cdce',
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const NavBar3 = styled('div')({
+    paddingTop: '5px',
+    paddingBottom: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});
+
+const ChooseDishTypo = styled(Typography)({
+    color: 'white',
+    fontFamily: 'Quicksand',
+    fontWeight: '500',
+});
+
+const DineInIcon = styled('div')({
+    transition: 'transform 0.5s ease',
+});
+
+const DineInButton = styled(Button)({
+    textTransform: 'none',
+    backgroundColor: '#1F1D2B',
+    padding: '4px 3px',
+    border: '0.1px solid #c9cdce',
+    '&:hover': {
+        backgroundColor: '#393C49',
+    },
+    '&:focus $dineInIcon': {
+        transform: 'rotate(180deg)',
+    },
+});
+
+const DineInMenuItem = styled(MenuItem)(({ theme }) => ({
+    fontSize: '12px',
+    fontFamily: 'Quicksand',
+    '&:hover': {
+        backgroundColor: '#393C49',
+        color: 'white',
+        borderRadius: '3px',
+        padding: theme.spacing(1, 2),
+    },
+}));
+
+const DishesWrapper = styled('div')({
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '30px',
+    textAlign: 'center',
+    justifyContent: 'space-between',
+    height: '55%',
+    '@media (max-width: 400px)': {
+        height: '40%',
+    },
+    overflowY: 'scroll',
+    borderBottom: '1px solid #555a70',
+    '&::-webkit-scrollbar': {
+        display: 'none',
+    },
+});
+
+const DishCard = styled(Card)({
+    width: '23%',
+    '@media (max-width: 600px)': {
+        width: '30%',
+    },
+    '@media (max-width: 400px)': {
+        width: '60%',
+    },
+    backgroundColor: '#1F1D2B',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '5px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+    borderRadius: '20px',
+    cursor: 'pointer',
+});
+
+const DishImg = styled('img')({
+    width: '100px',
+    height: '100px',
+    '@media (max-width: 600px)': {
+        width: '80px',
+        height: '80px',
+    },
+    '@media (max-width: 400px)': {
+        width: '60px',
+        height: '60px',
+    },
+});
+
+//Right Bar...//
+const RightBar = styled(CardContent)({
+    width: '35%',
+    backgroundColor: '#1F1D2B',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100vh',
+    position: 'relative',
+});
+
+const RightBarChildren = styled('div')({
+    width: '100%',
+});
+
+const OrderBtnWrapper = styled('div')({
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+    paddingTop: '15px',
+});
+
+const OrderBtn = styled(Button)(({ theme }) => ({
+    fontFamily: 'Quicksand',
+    fontWeight: '600',
+    textTransform: 'none',
+    border: '1px solid #EA6969',
+    borderRadius: '10px',
+    padding: theme.spacing(1),
+    color: '#EA6969',
+    '&:hover': {
+        backgroundColor: '#f97f7f',
+        color: 'white',
+        border: 'none',
+    },
+    '&:focus': {
+        backgroundColor: '#EA6969',
+        color: 'white',
+        border: '1px solid #555a70',
+    },
+}));
+
+const PaymentWrapper = styled('div')({
+    width: '90%',
+    position: 'absolute',
+    bottom: 30,
+    // left: 25,
+    // right: 15,
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    // paddingTop: '0.5rem',
+    marginBottom: '25px',
+    gap: '10px',
+    '@media (max-width: 600px)': {
+        fontSize: '12px',
+        padding: '8px',
+    },
+    '@media (max-width: 400px)': {
+        fontSize: '10px',
+        padding: '6px',
+    },
+});
+
+const Discount = styled('div')({
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+});
+
+const SubTotal = styled('div')({
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+});
+
+// const BtnPayNow = styled('button')(({ theme }) => ({
+//     width: '100%',
+//     padding: theme.spacing(1),
+//     border: 'none',
+//     borderRadius: '10px',
+//     color: 'white',
+//     fontFamily: 'Quicksand',
+//     fontWeight: '700',
+//     backgroundColor: '#EA6969',
+//     textTransform: 'none',
+//     '&:hover': {
+//         backgroundColor: '#f97f7f',
+//     },
+// }));
+
 
 const Homepage = () => {
 
-    const classes = useStyles();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [expandedDishName, setExpandedDishName] = useState(null);
@@ -437,31 +490,37 @@ const Homepage = () => {
 
 
     return (
-        <div className={classes.divContainer}>
-            <Card className={classes.cardWrapper}>
+        <DivContainer>
+            <CardWrapper>
 
                 {/* SIDE-BAR */}
-                <CardContent className={classes.sideBar}>
-                    <div className={classes.sideBarIcons}>
-                        <StorefrontIcon className={classes.icon} />
-                        <Link to="/"><HomeOutlinedIcon className={classes.icon} /></Link>
-                        <RamenDiningOutlinedIcon className={classes.icon} />
-                        <Link to="/dashboard"><DashboardCustomizeOutlinedIcon className={classes.icon} /></Link>
-                        <EmailOutlinedIcon className={classes.icon} />
-                        <NotificationsNoneOutlinedIcon className={classes.icon} />
-                        <Link to="/settings"><SettingsOutlinedIcon className={classes.icon} /></Link>
-                        <ExitToAppOutlinedIcon className={classes.icon} />
-                    </div>
-                </CardContent>
+                <SideBar>
+                    <SideBarIcons>
+                        <Icon><StorefrontIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/"><HomeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon><RamenDiningOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/dashboard"><DashboardCustomizeOutlinedIcon /></IconLink>
+                        </Icon>
+                        <Icon> <EmailOutlinedIcon /></Icon>
+                        <Icon><NotificationsNoneOutlinedIcon /></Icon>
+                        <Icon>
+                            <IconLink to="/settings"><SettingsOutlinedIcon />
+                            </IconLink></Icon>
+                        <Icon><ExitToAppOutlinedIcon /></Icon>
+                    </SideBarIcons>
+                </SideBar>
 
                 {/* MAIN BAR */}
-                <CardContent className={classes.mainBar}>
-                    <div className={classes.mainBarChildren}>
-                        <div className={classes.navBar1}>
-                            <div className={classes.userName}>
+                <MainBar>
+                    <MainBarChildren>
+                        <NavBar1>
+                            <UserName>
                                 <SoupKitchenOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, fontSize: '55px', color: 'whitesmoke' }} />
                                 <div>
-                                    <Typography className={classes.userTypo} sx={{
+                                    <UserTypo sx={{
                                         fontSize: {
                                             xs: '14px',
                                             sm: '16px',
@@ -472,22 +531,22 @@ const Homepage = () => {
                                         letterSpacing: '.1rem'
                                     }}>
                                         Stackbite's Kitchen
-                                    </Typography>
+                                    </UserTypo>
                                     <div>
                                         <DigitalClock />
                                     </div>
                                 </div>
-                            </div>
+                            </UserName>
                             <div>
-                                <div className={classes.search} >
-                                    <div className={classes.searchIconWrapper}>
+                                <Search>
+                                    <SearchIconWrapper>
                                         <SearchIcon />
-                                    </div>
-                                    <StyledInputBase className={classes.searchInputBase}
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
                                         placeholder="Search for food,cofee e.t.c.."
                                         inputProps={{ 'aria-label': 'search' }}
                                     />
-                                </div>
+                                </Search>
                             </div>
                             <div>
                                 <Toolbar disableGutters>
@@ -522,37 +581,40 @@ const Homepage = () => {
                                     </Box>
                                 </Toolbar>
                             </div>
+                        </NavBar1>
+
+                        <div>
+                            <NavBar2>
+                                <NavItem><NavLink href="#">Hot Dishes</NavLink></NavItem>
+                                <NavItem><NavLink href="#">Cold Dishes</NavLink></NavItem>
+                                <NavItem><NavLink href="#">Soup</NavLink></NavItem>
+                                <NavItem><NavLink href="#">Grill</NavLink></NavItem>
+                                <NavItem><NavLink href="#">Appetizer</NavLink></NavItem>
+                                <NavItem><NavLink href="#">Dessert</NavLink></NavItem>
+                            </NavBar2>
                         </div>
-                        <div className={classes.navBar2Wrapper}>
-                            <ul className={classes.navBar2}>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Hot Dishes</a></li>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Cold Dishes</a></li>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Soup</a></li>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Grill</a></li>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Appetizer</a></li>
-                                <li className={classes.navItem}><a href="" className={classes.navLink}>Dessert</a></li>
-                            </ul>
-                        </div>
-                        <div className={classes.navBar3}>
+
+                        <NavBar3>
                             <div>
-                                <Typography className={classes.chooseDishTypo} sx={{ fontSize: '18px' }}>
+                                <ChooseDishTypo sx={{ fontSize: '18px' }}>
                                     Choose Dishes
-                                </Typography>
+                                </ChooseDishTypo>
                             </div>
                             <div>
-                                <Button
+                                <DineInButton
                                     id="fade-button"
                                     aria-controls={open ? 'fade-menu' : undefined}
                                     aria-haspopup="true"
                                     aria-expanded={open ? 'true' : undefined}
                                     onClick={handleClick}
-                                    className={classes.dineInButton}
                                 >
                                     <Typography sx={{ fontSize: '12px', color: 'white', fontFamily: 'Quicksand', display: 'flex', alignItems: 'center', gap: '3px', padding: '0px 5px' }}>
-                                        <KeyboardArrowDownIcon className={classes.dineInIcon} />
+                                        <DineInIcon>
+                                            <KeyboardArrowDownIcon />
+                                        </DineInIcon>
                                         Dine in
                                     </Typography>
-                                </Button>
+                                </DineInButton>
                                 <Menu
                                     id="fade-menu"
                                     MenuListProps={{
@@ -562,51 +624,49 @@ const Homepage = () => {
                                     open={open}
                                     onClose={handleClose}
                                     TransitionComponent={Fade}
-                                    className={classes.dineInList}
                                     sx={{ width: '120px', }}
                                 >
-                                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Profile</MenuItem>
-                                    <MenuItem onClick={handleClose} className={classes.dineInItem}>My account</MenuItem>
-                                    <MenuItem onClick={handleClose} className={classes.dineInItem}>Logout</MenuItem>
+                                    <DineInMenuItem onClick={handleClose}>Profile</DineInMenuItem>
+                                    <DineInMenuItem onClick={handleClose}>My account</DineInMenuItem>
+                                    <DineInMenuItem onClick={handleClose}>Logout</DineInMenuItem>
                                 </Menu>
                             </div>
-                        </div>
+                        </NavBar3>
 
                         {/* Choose Dishes Menu */}
-                        <div className={classes.dishesWrapper}>
+                        <DishesWrapper>
                             {isLoading ? (
                                 <Typography>Loading...</Typography>
                             ) : isError ? (
                                 <Typography>Error loading dishes</Typography>
                             ) : (
                                 dishesData && dishesData.map((dish) => (
-                                    <Card key={dish.id} className={classes.dishCard} onClick={() => handleSelectDish(dish)} >
-                                        <img src={dish.imgSrc} alt={dish.name}
-                                            className={classes.dishImg}
+                                    <DishCard key={dish.id} onClick={() => handleSelectDish(dish)} >
+                                        <DishImg src={dish.imgSrc} alt={dish.name}
                                         />
-                                        <Typography className={classes.dishName} sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
+                                        <Typography sx={{ fontFamily: 'Quicksand', fontWeight: '500', color: 'white', }}>
                                             {dish.name}
                                         </Typography>
                                         <span>
-                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: 'whitesmoke', }}>
+                                            <Typography sx={{ fontFamily: 'Quicksand', color: 'whitesmoke', }}>
                                                 {dish.price}
                                             </Typography>
                                         </span>
                                         <span>
-                                            <Typography className={classes.dishPrice} sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
+                                            <Typography sx={{ fontFamily: 'Quicksand', color: '#b5b8b9', fontSize: '13px' }}>
                                                 {dish.unitAvailable}
                                             </Typography>
                                         </span>
-                                    </Card>
+                                    </DishCard>
                                 ))
                             )}
-                        </div>
-                    </div>
-                </CardContent>
+                        </DishesWrapper>
+                    </MainBarChildren>
+                </MainBar>
 
                 {/* RIGHT-BAR */}
-                <CardContent className={classes.rightBar}>
-                    <div className={classes.rightBarChildren}>
+                <RightBar>
+                    <RightBarChildren>
                         <Typography sx={{
                             fontSize: {
                                 xs: '14px',
@@ -620,29 +680,30 @@ const Homepage = () => {
                         }}>
                             Orders #23244
                         </Typography>
-                        <div className={classes.orderBtnWrapper}>
-                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                        <OrderBtnWrapper>
+                            <OrderBtn variant="outlined" href="#outlined-buttons">
                                 Dine In
-                            </Button>
-                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                            </OrderBtn>
+                            <OrderBtn variant="outlined" href="#outlined-buttons">
                                 To Go
-                            </Button>
-                            <Button className={classes.orderBtn} variant="outlined" href="#outlined-buttons">
+                            </OrderBtn>
+                            <OrderBtn variant="outlined" href="#outlined-buttons">
                                 Delivery
-                            </Button>
-                        </div>
+                            </OrderBtn>
+                        </OrderBtnWrapper>
 
                         {/* Dishes-Ordering Component */}
-                        <DishesOrdering className={classes.dishesOrdering}
+                        <DishesOrdering
                             // dishes={dishesData}
                             selectedDishes={selectedDishes}
                             handleTextboxChange={handleTextboxChange}
                             handleDishName={handleDishName}
                             expandedDishName={expandedDishName}
                         />
+
                         {/* Payment Wrapper */}
-                        <div className={classes.paymentWrapper} sx={{ border: '1px solid red', backgroundColor: 'red', position: 'fixed' }}>
-                            <div className={classes.discount}>
+                        <PaymentWrapper sx={{ }}>
+                            <Discount>
                                 <Typography sx={{
                                     fontSize: '15px',
                                     fontFamily: 'Quicksand',
@@ -671,9 +732,9 @@ const Homepage = () => {
                                         $0
                                     </Typography>
                                 </span>
-                            </div>
+                            </Discount>
 
-                            <div className={classes.subTotal}>
+                            <SubTotal>
                                 <Typography
                                     sx={{
                                         fontSize: '15px',
@@ -703,7 +764,8 @@ const Homepage = () => {
                                         $31.90
                                     </Typography>
                                 </span>
-                            </div>
+                            </SubTotal>
+
                             <Button onClick={openOverlay}
                                 sx={{
                                     backgroundColor: '#f97f7f',
@@ -726,9 +788,9 @@ const Homepage = () => {
                                 }}>
                                 Continue to Payment
                             </Button>
-                        </div>
-                    </div>
-                </CardContent>
+                        </PaymentWrapper>
+                    </RightBarChildren>
+                </RightBar>
 
                 {/* Pop Over Page Component... */}
                 {isOverlayVisible && (
@@ -738,9 +800,8 @@ const Homepage = () => {
                     />
                 )}
 
-
-            </Card>
-        </div>
+            </CardWrapper>
+        </DivContainer>
     )
 }
 
