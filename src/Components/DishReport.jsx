@@ -189,10 +189,11 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
     fontFamily: 'Quicksand',
     color: '#e0e6e9',
     cursor: 'pointer',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    // whiteSpace: 'nowrap',
+    // overflow: 'hidden',
+    // textOverflow: 'ellipsis',
     maxWidth: '150px',
+
 }));
 
 const DeleteButton = styled('button')(({ theme }) => ({
@@ -258,7 +259,11 @@ const DishReport = () => {
 
                                 <MenuCell>
                                     <div>
-                                        <StyledTypography onClick={() => handleDishName(index)}>
+                                        <StyledTypography sx={{
+                                            overflow: expandedDishName === index ? 'visible' : 'hidden',
+                                            textOverflow: expandedDishName === index ? 'unset' : 'ellipsis',
+                                            whiteSpace: expandedDishName === index ? 'normal' : 'nowrap',
+                                        }} onClick={() => handleDishName(index)}>
                                             {dish.name}
                                         </StyledTypography>
                                         <span>

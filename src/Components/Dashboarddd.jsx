@@ -236,7 +236,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Dashboardd = () => {
+const Dashboard = () => {
     const classes = useStyles();
     const [expandedDishName, setExpandedDishName] = useState(null);
 
@@ -550,4 +550,4 @@ const Dashboardd = () => {
     )
 }
 
-export default Dashboardd
+export default Dashboard
