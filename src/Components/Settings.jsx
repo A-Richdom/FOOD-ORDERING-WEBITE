@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { styled }  from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -18,6 +18,7 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import { Link } from 'react-router-dom';
+import DigitalClock from './DIGITAL-CLOCK/DigitalClock';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDish, deleteDish, editDish } from './FEATURES/DishesSlice';
 import AddDishModal from './AddDishModal';
@@ -392,6 +393,9 @@ const Settings = () => {
                             }}>
                                 Settings
                             </Typography>
+                            <div>
+                                <DigitalClock />
+                            </div>
                         </Header>
 
                         <MainBarBodies>

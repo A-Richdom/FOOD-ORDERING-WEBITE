@@ -314,6 +314,9 @@ const Dashboard = () => {
                             }}>
                                 Dashboard
                             </Typography>
+                            <div>
+                                <DigitalClock />
+                            </div>
                         </Header>
 
                         <MetricsContainer>
