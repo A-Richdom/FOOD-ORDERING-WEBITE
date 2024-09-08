@@ -32,7 +32,7 @@ const CardWrapper = styled(Card)({
     display: 'flex',
     backgroundColor: 'transparent !important',
 });
-// Side-Bar...//
+// Side-Bar....//
 const SideBar = styled(CardContent)({
     width: '5%',
     backgroundColor: '#1F1D2B',
