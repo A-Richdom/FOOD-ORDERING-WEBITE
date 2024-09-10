@@ -495,7 +495,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
               </Typography>
             </PaymentPageNav>
 
-            <div className={classes.paymentPageBody}>
+            <div>
               <Typography sx={{
                 fontSize: {
                   xs: '14px',
@@ -684,7 +684,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
             </CardNumber>
 
             <ExpCvvWrapper>
-              <div className={classes.expDate}>
+              <div>
                 <Typography sx={{
                   fontSize: {
                     xs: '8px',
@@ -752,7 +752,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                   }}
                 />
               </div>
-              <div className={classes.cvv}>
+              <div>
                 <Typography sx={{
                   fontSize: {
                     xs: '8px',
@@ -881,7 +881,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                 </Menu>
               </OrderType>
 
-              <div className={classes.tableNo}>
+              <div>
                 <Typography sx={{
                   fontSize: {
                     xs: '8px',
