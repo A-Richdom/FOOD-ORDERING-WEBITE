@@ -432,12 +432,12 @@
 
         //Redux......
         const dispatch = useDispatch();
-        const dishesData = useSelector((state) => state.dishes.dishes);
+        const dishesData = useSelector((state) => state.dishes.dishes || []);
         console.log(dishesData);
 
-        if (!dishesData || dishesData.length === 0) {
-            return <div> No dishes available. Please add some dishes</div>
-        }
+        // if (!dishesData || dishesData.length === 0) {
+        //     return <div> No dishes available. Please add some dishes</div>
+        // }
         const isLoading = useSelector((state) => state.dishes.isLoading);
         const isError = useSelector((state) => state.dishes.isError);
 
