@@ -331,7 +331,7 @@ const Settings = () => {
 
             setTimeout(() => {
                 setIsSpinnerLoading(false);
-            }, 10000);
+            }, 5000);
         }
         handleCloseModal();
     };
