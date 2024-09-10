@@ -277,7 +277,7 @@
             width: '30%',
         },
         '@media (max-width: 400px)': {
-            width: '60%',
+            width: '100%',
         },
         backgroundColor: '#1F1D2B',
         display: 'flex',
@@ -531,10 +531,13 @@
                                         <UserTypo sx={{
                                             fontSize: {
                                                 xs: '14px',
-                                                sm: '16px',
+                                                sm: '17px',
                                                 md: '18px',
                                                 lg: '25px',
                                                 xl: '24px',
+                                            },
+                                            fontWeight: {
+                                                sm: 'bold',
                                             },
                                             letterSpacing: '.1rem'
                                         }}>
