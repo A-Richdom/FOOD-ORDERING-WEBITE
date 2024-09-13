@@ -276,7 +276,7 @@
         '@media (max-width: 600px)': {
             width: '30%',
         },
-        '@media (max-width: 400px)': {
+        '@media (max-width: 450px)': {
             width: '100%',
         },
         backgroundColor: '#1F1D2B',
@@ -323,6 +323,9 @@
         flexWrap: 'wrap',
         gap: '8px',
         paddingTop: '15px',
+        '@media (max-width: 450px)' : {
+            gap: '12px'
+        }
     });
 
     const OrderBtn = styled(Button)(({ theme }) => ({
@@ -537,7 +540,10 @@
                                                 xl: '24px',
                                             },
                                             fontWeight: {
-                                                sm: 'bold',
+                                                xs: 'bold',
+                                            },
+                                            color: {
+                                                xs: '#EA6969'
                                             },
                                             letterSpacing: '.1rem'
                                         }}>
@@ -792,9 +798,9 @@
                                             padding: '8px',
                                         },
                                         '@media (max-width: 480px)': {
-                                            width: '90%',
+                                            width: '70%',
                                             fontSize: '10px',
-                                            padding: '1.5px',
+                                            padding: '5px',
                                         },
                                     }}>
                                     Continue to Payment

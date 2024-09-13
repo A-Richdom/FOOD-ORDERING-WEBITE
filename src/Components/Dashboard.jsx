@@ -17,7 +17,8 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 // Main-Bar...//
-import DigitalClock from './DIGITAL-CLOCK/DigitalClock'
+import DigitalClock from './DIGITAL-CLOCK/DigitalClock';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
@@ -140,15 +141,19 @@ const IconLink = styled(Link)(({ theme }) => ({
 }));
 
 // MAIN BAR.....
-const MainBar = styled(CardContent)({
+const MainBar = styled(CardContent)(({ theme }) => ({
     backgroundColor: '#393C49 !important',
     width: '65%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+        width: '80%',
+        padding: '10px'
+    },
     // Ensure content is scrollable if needed
     // overflowY: 'auto', 
-});
+}));
 
 const MainBarChildren = styled('div')({
     width: '100%',
@@ -161,13 +166,18 @@ const MainBarChildren = styled('div')({
 });
 
 const Header = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+});
+
+const HeaderChildren = styled('div')({
     borderBottom: '1px solid #555a70 !important',
     paddingBottom: '20px',
     // Ensure it spans the width of the container
     width: '100%',
 });
 
-const MetricsContainer = styled('div')({
+const MetricsContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     gap: '25px',
     justifyContent: 'space-between',
@@ -176,6 +186,16 @@ const MetricsContainer = styled('div')({
     borderRadius: '10px',
     // Ensure it spans the width of the container
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+        gap: '10px',
+    }
+}));
+
+const MetricCard = styled(Card)({
+    '@media (max-width: 450px)': {
+        width: '60%',
+        padding: '15px'
+    },
 });
 
 const MetricItem = styled('div')({
@@ -208,6 +228,9 @@ const RightBarChildren = styled('div')({
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
+    '@media (max-width: 450px)': {
+        display: 'none',
+    }
 });
 
 
@@ -301,28 +324,33 @@ const Dashboard = () => {
                 <MainBar>
                     <MainBarChildren>
                         <Header>
-                            <Typography sx={{
-                                fontSize: {
-                                    xs: '14px',
-                                    sm: '16px',
-                                    md: '18px',
-                                    lg: '25px',
-                                    xl: '24px',
-                                },
-                                letterSpacing: '.1rem',
-                                color: 'white',
-                            }}>
-                                Dashboard
-                            </Typography>
-                            <div>
-                                <DigitalClock />
-                            </div>
+                            <HeaderChildren>
+                                <Typography sx={{
+                                    fontSize: {
+                                        xs: '14px',
+                                        sm: '16px',
+                                        md: '18px',
+                                        lg: '25px',
+                                        xl: '24px',
+                                    },
+                                    letterSpacing: '.1rem',
+                                    color: 'white',
+                                }}>
+                                    Dashboard
+                                </Typography>
+                                <div>
+                                    <DigitalClock />
+                                </div>
+                            </HeaderChildren>
+
+                            <WidgetsIcon sx={{ color: 'white', }} />
                         </Header>
 
+                        
                         <MetricsContainer>
-                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                            <MetricCard sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
                                 <MetricItem>
-                                    <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
+                                 <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
                                     <Typography sx={{ fontFamily: 'Quicksand', color: '#50d1aa', }}>+32.39%</Typography>
                                     <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#384c43', color: '#50d1aa', borderRadius: '20px', padding: '5px' }} />
                                 </MetricItem>
@@ -337,9 +365,9 @@ const Dashboard = () => {
                                 }}>$10,243.00</Typography>
 
                                 <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}> Total Revenue</Typography>
-                            </Card>
+                            </MetricCard>
 
-                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                            <MetricCard sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
                                 <MetricItem>
                                     <BookmarkBorderOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#ffb572', borderRadius: '8px', padding: '10px' }} />
                                     <Typography sx={{ fontFamily: 'Quicksand', color: '#ff7ca3' }}>-12.01%</Typography>
@@ -361,9 +389,9 @@ const Dashboard = () => {
                                 <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}>
                                     Total Dish Ordered
                                 </Typography>
-                            </Card>
+                            </MetricCard>
 
-                            <Card sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
+                            <MetricCard sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
                                 <MetricItem>
                                     <PeopleAltOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#65b0f6', borderRadius: '8px', padding: '10px' }} />
                                     <Typography sx={{ fontFamily: 'Quicksand', color: '#ffb572' }}>+2.72%</Typography>
@@ -385,7 +413,7 @@ const Dashboard = () => {
                                 <Typography sx={{ fontSize: '13px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '15px' }}>
                                     Total Customer
                                 </Typography>
-                            </Card>
+                            </MetricCard>
 
                         </MetricsContainer>
 
