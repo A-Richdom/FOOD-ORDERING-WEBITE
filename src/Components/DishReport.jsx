@@ -118,10 +118,11 @@ const dishes = [
 const ReportWrapper = styled('div')(({ theme }) => ({
     width: '100%',
     height: '100vh',
+    marginBottom: '90px'
 }));
 
 const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
-    height: '50%',
+    height: '40%',
     overflowY: 'scroll',
     border: 'none',
     borderBottom: '1px solid #555a70',

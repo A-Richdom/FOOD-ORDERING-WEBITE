@@ -229,7 +229,7 @@ const RightBarChildren = styled('div')({
     flexDirection: 'column',
     gap: '20px',
     '@media (max-width: 450px)': {
-        display: 'none',
+        // display: 'none',
     }
 });
 
@@ -295,7 +295,13 @@ const FilterOrder = styled('span')({
 
 const Dashboard = () => {
     const [expandedDishName, setExpandedDishName] = useState(null);
+    const [showRightBar, setShowRightBar] = useState(false);
 
+    const handleRightBarVisibility = () => {
+        console.log("Widget Clicked", showRightBar);
+        setShowRightBar(true);
+
+    };
 
     return (
         <div>
@@ -343,14 +349,14 @@ const Dashboard = () => {
                                 </div>
                             </HeaderChildren>
 
-                            <WidgetsIcon sx={{ color: 'white', }} />
+                            <WidgetsIcon onClick={() => handleRightBarVisibility()} sx={{ color: 'white', cursor: 'pointer', }} />
                         </Header>
 
-                        
+
                         <MetricsContainer>
                             <MetricCard sx={{ width: '30%', height: '100%', backgroundColor: '#1F1D2B', padding: '15px', borderRadius: '10px' }}>
                                 <MetricItem>
-                                 <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
+                                    <MonetizationOnOutlinedIcon sx={{ fontSize: '20px', backgroundColor: '#393C49', color: '#9288e0', borderRadius: '8px', padding: '10px' }} />
                                     <Typography sx={{ fontFamily: 'Quicksand', color: '#50d1aa', }}>+32.39%</Typography>
                                     <ArrowUpwardOutlinedIcon sx={{ fontSize: '15px', backgroundColor: '#384c43', color: '#50d1aa', borderRadius: '20px', padding: '5px' }} />
                                 </MetricItem>
@@ -434,6 +440,7 @@ const Dashboard = () => {
                                         fontWeight: '400',
                                         color: 'white',
                                     }}>Order Report</Typography>
+                                    
                                     <Button
                                         variant="outlined"
                                         href="#outlined-buttons"
@@ -465,216 +472,218 @@ const Dashboard = () => {
                 </MainBar>
 
                 {/* RIGHT-BAR */}
-                <RightBar>
-                    <RightBarChildren>
+                {showRightBar && (
+                    <RightBar>
+                        <RightBarChildren>
 
-                        <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                            <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
 
-                            <CardContent sx={{ padding: '10px', height: '80vh', }}>
+                                <CardContent sx={{ padding: '10px', height: '80vh', }}>
 
-                                <MostOrderNav>
-                                    <Typography
-                                        sx={{
-                                            fontSize: {
-                                                xs: '12px',
-                                                sm: '14px',
-                                                md: '17px',
-                                                lg: '17px',
-                                                xl: '24px',
-                                            },
-                                            fontFamily: 'Roboto',
-                                            fontWeight: '400',
-                                            color: 'white',
-                                        }}
-                                    >
-                                        Most Ordered
-                                    </Typography>
+                                    <MostOrderNav>
+                                        <Typography
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '12px',
+                                                    sm: '14px',
+                                                    md: '17px',
+                                                    lg: '17px',
+                                                    xl: '24px',
+                                                },
+                                                fontFamily: 'Roboto',
+                                                fontWeight: '400',
+                                                color: 'white',
+                                            }}
+                                        >
+                                            Most Ordered
+                                        </Typography>
+
+                                        <Button
+                                            variant="outlined"
+                                            href="#outlined-buttons"
+                                            sx={{
+                                                minWidth: 'unset',
+                                                textTransform: 'none',
+                                                fontSize: '12px',
+                                                fontFamily: 'Quicksand',
+                                                border: '1px solid #393c49 !important',
+                                                borderRadius: '10px !important',
+                                                padding: '7px 12px !important',
+                                                color: '#abbbc2 !important',
+                                                transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                                '&:hover': {
+                                                    border: '1.4px solid #abbbc2 !important',
+                                                    backgroundColor: 'inherit !important',
+                                                    color: 'white !important',
+                                                },
+                                                '&:focus': {
+                                                    color: 'white !important',
+                                                    border: '1.4px solid #abbbc2 !important',
+                                                },
+                                            }}
+                                        >
+                                            <TodayBtn>
+                                                <ExpandMoreIcon />
+                                                Today
+                                            </TodayBtn>
+                                        </Button>
+                                    </MostOrderNav>
+
+                                    <TableContainerStyled>
+                                        <TableStyled>
+                                            <TableBodyStyled>
+                                                {dishes.map((dish, index) => (
+                                                    <React.Fragment key={dish.name}>
+                                                        <TableRowStyled>
+                                                            <TableCell sx={{ display: 'flex', gap: '25px', alignItems: 'center', }}>
+                                                                <DishImgOrdering src={dish.imgSrc} alt={dish.name} />
+                                                                <div>
+                                                                    <Typography
+                                                                        sx={{
+                                                                            fontFamily: 'Quicksand',
+                                                                            fontSize: '13px',
+                                                                            color: 'white',
+                                                                        }}
+                                                                    >
+                                                                        {dish.name}
+                                                                    </Typography>
+                                                                    <span>
+                                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce' }}>
+                                                                            {dish.price}
+                                                                        </Typography>
+                                                                    </span>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRowStyled>
+                                                    </React.Fragment>
+                                                ))}
+                                            </TableBodyStyled>
+                                        </TableStyled>
+                                    </TableContainerStyled>
 
                                     <Button
-                                        variant="outlined"
-                                        href="#outlined-buttons"
                                         sx={{
-                                            minWidth: 'unset',
-                                            textTransform: 'none',
-                                            fontSize: '12px',
-                                            fontFamily: 'Quicksand',
-                                            border: '1px solid #393c49 !important',
-                                            borderRadius: '10px !important',
-                                            padding: '7px 12px !important',
-                                            color: '#abbbc2 !important',
-                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
-                                            '&:hover': {
-                                                border: '1.4px solid #abbbc2 !important',
-                                                backgroundColor: 'inherit !important',
-                                                color: 'white !important',
-                                            },
-                                            '&:focus': {
-                                                color: 'white !important',
-                                                border: '1.4px solid #abbbc2 !important',
-                                            },
-                                        }}
-                                    >
-                                        <TodayBtn>
-                                            <ExpandMoreIcon />
-                                            Today
-                                        </TodayBtn>
-                                    </Button>
-                                </MostOrderNav>
-
-                                <TableContainerStyled>
-                                    <TableStyled>
-                                        <TableBodyStyled>
-                                            {dishes.map((dish, index) => (
-                                                <React.Fragment key={dish.name}>
-                                                    <TableRowStyled>
-                                                        <TableCell sx={{ display: 'flex', gap: '25px', alignItems: 'center', }}>
-                                                            <DishImgOrdering src={dish.imgSrc} alt={dish.name} />
-                                                            <div>
-                                                                <Typography
-                                                                    sx={{
-                                                                        fontFamily: 'Quicksand',
-                                                                        fontSize: '13px',
-                                                                        color: 'white',
-                                                                    }}
-                                                                >
-                                                                    {dish.name}
-                                                                </Typography>
-                                                                <span>
-                                                                    <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce' }}>
-                                                                        {dish.price}
-                                                                    </Typography>
-                                                                </span>
-                                                            </div>
-                                                        </TableCell>
-                                                    </TableRowStyled>
-                                                </React.Fragment>
-                                            ))}
-                                        </TableBodyStyled>
-                                    </TableStyled>
-                                </TableContainerStyled>
-
-                                <Button
-                                    sx={{
-                                        width: '100%',
-                                        border: '1px solid #f97f7f',
-                                        borderRadius: '8px',
-                                        color: 'white',
-                                        padding: '5px',
-                                        textTransform: 'none',
-                                        fontFamily: 'Quicksand',
-                                        fontSize: '12px',
-                                        '&:hover': {
-                                            backgroundColor: '#f97f7f',
-                                        },
-                                        // fontWeight: '600',
-                                        '@media (max-width: 600px)': {
-                                            fontSize: '8px',
-                                            padding: '7px',
-                                        },
-                                        '@media (max-width: 400px)': {
-                                            width: '30%',
-                                            fontSize: '10px',
-                                            // padding: '1px',
-                                            padding: '2px',
-                                        },
-                                    }}>
-                                    View All
-                                </Button>
-
-                            </CardContent>
-
-                        </Card>
-
-                        <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
-
-                            <CardContent sx={{ padding: '10px', height: '80vh', }}>
-
-                                <MostOrderNav>
-                                    <Typography
-                                        sx={{
-                                            fontSize: {
-                                                xs: '12px',
-                                                sm: '14px',
-                                                md: '17px',
-                                                lg: '17px',
-                                                xl: '24px',
-                                            },
-                                            fontFamily: 'Roboto',
-                                            fontWeight: '400',
+                                            width: '100%',
+                                            border: '1px solid #f97f7f',
+                                            borderRadius: '8px',
                                             color: 'white',
-                                        }}
-                                    >
-                                        Most Type of Order
-                                    </Typography>
-
-                                    <Button
-                                        variant="outlined"
-                                        href="#outlined-buttons"
-                                        sx={{
-                                            minWidth: 'unset',
+                                            padding: '5px',
                                             textTransform: 'none',
-                                            fontSize: '12px',
                                             fontFamily: 'Quicksand',
-                                            border: '1px solid #393c49 !important',
-                                            borderRadius: '10px !important',
-                                            padding: '7px 12px !important',
-                                            color: '#abbbc2 !important',
-                                            transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                            fontSize: '12px',
                                             '&:hover': {
-                                                border: '1.4px solid #abbbc2 !important',
-                                                backgroundColor: 'inherit !important',
-                                                color: 'white !important',
+                                                backgroundColor: '#f97f7f',
                                             },
-                                            '&:focus': {
-                                                color: 'white !important',
-                                                border: '1.4px solid #abbbc2 !important',
+                                            // fontWeight: '600',
+                                            '@media (max-width: 600px)': {
+                                                fontSize: '8px',
+                                                padding: '7px',
                                             },
-                                        }}
-                                    >
-                                        <TodayBtn>
-                                            <ExpandMoreIcon />
-                                            Today
-                                        </TodayBtn>
+                                            '@media (max-width: 400px)': {
+                                                width: '30%',
+                                                fontSize: '10px',
+                                                // padding: '1px',
+                                                padding: '2px',
+                                            },
+                                        }}>
+                                        View All
                                     </Button>
-                                </MostOrderNav>
 
-                                <TableContainerStyled>
-                                    <TableStyled>
-                                        <TableBodyStyled>
-                                            {dishes.map((dish, index) => (
-                                                <React.Fragment key={dish.name}>
-                                                    <TableRowStyled>
-                                                        <TableCell sx={{ display: 'flex', gap: '25px', alignItems: 'center', }}>
-                                                            <DishImgOrdering src={dish.imgSrc} alt={dish.name} />
-                                                            <div>
-                                                                <Typography
-                                                                    sx={{
-                                                                        fontFamily: 'Quicksand',
-                                                                        fontSize: '13px',
-                                                                        color: 'white',
-                                                                    }}
-                                                                >
-                                                                    {dish.name}
-                                                                </Typography>
-                                                                <span>
-                                                                    <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce' }}>
-                                                                        {dish.price}
+                                </CardContent>
+
+                            </Card>
+
+                            <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+
+                                <CardContent sx={{ padding: '10px', height: '80vh', }}>
+
+                                    <MostOrderNav>
+                                        <Typography
+                                            sx={{
+                                                fontSize: {
+                                                    xs: '12px',
+                                                    sm: '14px',
+                                                    md: '17px',
+                                                    lg: '17px',
+                                                    xl: '24px',
+                                                },
+                                                fontFamily: 'Roboto',
+                                                fontWeight: '400',
+                                                color: 'white',
+                                            }}
+                                        >
+                                            Most Type of Order
+                                        </Typography>
+
+                                        <Button
+                                            variant="outlined"
+                                            href="#outlined-buttons"
+                                            sx={{
+                                                minWidth: 'unset',
+                                                textTransform: 'none',
+                                                fontSize: '12px',
+                                                fontFamily: 'Quicksand',
+                                                border: '1px solid #393c49 !important',
+                                                borderRadius: '10px !important',
+                                                padding: '7px 12px !important',
+                                                color: '#abbbc2 !important',
+                                                transition: 'border 0.3s ease, background-color 0.3s ease, color 0.3s ease !important',
+                                                '&:hover': {
+                                                    border: '1.4px solid #abbbc2 !important',
+                                                    backgroundColor: 'inherit !important',
+                                                    color: 'white !important',
+                                                },
+                                                '&:focus': {
+                                                    color: 'white !important',
+                                                    border: '1.4px solid #abbbc2 !important',
+                                                },
+                                            }}
+                                        >
+                                            <TodayBtn>
+                                                <ExpandMoreIcon />
+                                                Today
+                                            </TodayBtn>
+                                        </Button>
+                                    </MostOrderNav>
+
+                                    <TableContainerStyled>
+                                        <TableStyled>
+                                            <TableBodyStyled>
+                                                {dishes.map((dish, index) => (
+                                                    <React.Fragment key={dish.name}>
+                                                        <TableRowStyled>
+                                                            <TableCell sx={{ display: 'flex', gap: '25px', alignItems: 'center', }}>
+                                                                <DishImgOrdering src={dish.imgSrc} alt={dish.name} />
+                                                                <div>
+                                                                    <Typography
+                                                                        sx={{
+                                                                            fontFamily: 'Quicksand',
+                                                                            fontSize: '13px',
+                                                                            color: 'white',
+                                                                        }}
+                                                                    >
+                                                                        {dish.name}
                                                                     </Typography>
-                                                                </span>
-                                                            </div>
-                                                        </TableCell>
-                                                    </TableRowStyled>
-                                                </React.Fragment>
-                                            ))}
-                                        </TableBodyStyled>
-                                    </TableStyled>
-                                </TableContainerStyled>
-                            </CardContent>
+                                                                    <span>
+                                                                        <Typography sx={{ fontFamily: 'Quicksand', fontSize: '14.5px', color: '#c9cdce' }}>
+                                                                            {dish.price}
+                                                                        </Typography>
+                                                                    </span>
+                                                                </div>
+                                                            </TableCell>
+                                                        </TableRowStyled>
+                                                    </React.Fragment>
+                                                ))}
+                                            </TableBodyStyled>
+                                        </TableStyled>
+                                    </TableContainerStyled>
+                                </CardContent>
 
-                        </Card>
+                            </Card>
 
-                    </RightBarChildren>
-                </RightBar>
+                        </RightBarChildren>
+                    </RightBar>
+                )}
 
             </CardContainer>
         </div>
