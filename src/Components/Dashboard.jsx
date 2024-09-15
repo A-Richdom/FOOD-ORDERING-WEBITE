@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { styled } from '@mui/material/styles';
 import {
     Card, CardContent, Box, styled, Button, Menu, MenuItem, Fade, Typography,
@@ -7,6 +7,7 @@ import {
     TableBody,
     TableRow,
     TableCell,
+    useMediaQuery,
 } from '@mui/material'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -220,6 +221,9 @@ const RightBar = styled(CardContent)({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    '@media (max-width: 450px)': {
+        width: '100%',
+    }
 });
 
 const RightBarChildren = styled('div')({
@@ -229,7 +233,7 @@ const RightBarChildren = styled('div')({
     flexDirection: 'column',
     gap: '20px',
     '@media (max-width: 450px)': {
-        // display: 'none',
+        // display: 'none'
     }
 });
 
@@ -296,12 +300,24 @@ const FilterOrder = styled('span')({
 const Dashboard = () => {
     const [expandedDishName, setExpandedDishName] = useState(null);
     const [showRightBar, setShowRightBar] = useState(false);
+    const isMediumScreenUp = useMediaQuery(theme => theme.breakpoints.up('md'));
 
+
+    useEffect(() => {
+      if (isMediumScreenUp) {
+        setShowRightBar(true)
+      } 
+    }, [isMediumScreenUp]);
+    
     const handleRightBarVisibility = () => {
-        console.log("Widget Clicked", showRightBar);
-        setShowRightBar(true);
+        setShowRightBar(prev => !prev);
+      };
 
-    };
+    // const handleRightBarVisibility = () => {
+    //     // console.log("Widget Clicked", showRightBar);
+    //     setShowRightBar(true);
+
+    // };
 
     return (
         <div>
@@ -349,7 +365,10 @@ const Dashboard = () => {
                                 </div>
                             </HeaderChildren>
 
-                            <WidgetsIcon onClick={() => handleRightBarVisibility()} sx={{ color: 'white', cursor: 'pointer', }} />
+                            <WidgetsIcon onClick={() => handleRightBarVisibility()} sx={{ 
+                                color: 'white', 
+                                cursor: 'pointer', 
+                                display: { xs: 'block', md: 'none', lg: 'none' }, }} />
                         </Header>
 
 
@@ -472,7 +491,7 @@ const Dashboard = () => {
                 </MainBar>
 
                 {/* RIGHT-BAR */}
-                {showRightBar && (
+                {(showRightBar || isMediumScreenUp) && (
                     <RightBar>
                         <RightBarChildren>
 
