@@ -29,6 +29,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DishReport from './DishReport';
 import zIndex from '@mui/material/styles/zIndex';
 import { Link } from 'react-router-dom';
+import KeyboardBackspaceOutlinedIcon from '@mui/icons-material/KeyboardBackspaceOutlined';
+
 
 const dishes = [
     {
@@ -152,18 +154,11 @@ const MainBar = styled(CardContent)(({ theme }) => ({
         width: '80%',
         padding: '10px'
     },
-    // Ensure content is scrollable if needed
-    // overflowY: 'auto', 
 }));
 
 const MainBarChildren = styled('div')({
     width: '100%',
     backgroundColor: '#393C49',
-    // Add padding for better spacing
-    // padding: '20px', 
-    // display: 'flex',
-    // flexDirection: 'column',
-    // alignItems: 'center',
 });
 
 const Header = styled('div')({
@@ -214,15 +209,24 @@ const ReportNav1 = styled('div')({
     width: '100%',
 });
 
-// RIGHT BAR....
 const RightBar = styled(CardContent)({
     width: '30%',
     display: 'flex !important',
     flexDirection: 'column',
+    backgroundColor: '#393C49 !important',
     alignItems: 'center',
     justifyContent: 'center',
+    // transition: 'transform 0.3s ease-in-out',  // Add transition for smooth sliding
+    // transform: 'translateX(0)',  // Ensure it's in view initially
     '@media (max-width: 450px)': {
-        width: '100%',
+        width: '75%',
+        position: 'absolute',  // Fix to the side of the screen
+        top: 0,
+        right: 0,
+        height: '95vh',
+        zIndex: 1000,
+        transition: 'transform 0.3s ease-in-out',
+        transform: props => (props.showRightBar ? 'translateX(0)' : 'translateX(-50%)'),  // Slide in/out based on state
     }
 });
 
@@ -232,9 +236,6 @@ const RightBarChildren = styled('div')({
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
-    '@media (max-width: 450px)': {
-        // display: 'none'
-    }
 });
 
 
@@ -267,15 +268,18 @@ const TableContainerStyled = styled(TableContainer)({
 
 const TableStyled = styled(Table)({
     width: '100% !important',
-    borderCollapse: 'collapse !important',
+    border: 'none !important',
 });
 
 const TableBodyStyled = styled(TableBody)({
-    // border: 'none !important',
+    border: 'none !important',
 });
 
 const TableRowStyled = styled(TableRow)({
     border: 'none !important',
+    '& td': {
+        border: 'none !important',
+    },
 });
 
 const DishImg = styled('img')(({ theme }) => ({
@@ -297,27 +301,27 @@ const FilterOrder = styled('span')({
 });
 
 
-const Dashboard = () => {
+const Dashboard = ({ onClose }) => {
     const [expandedDishName, setExpandedDishName] = useState(null);
     const [showRightBar, setShowRightBar] = useState(false);
     const isMediumScreenUp = useMediaQuery(theme => theme.breakpoints.up('md'));
+    const isSmallScreenDown = useMediaQuery(theme => theme.breakpoints.down('sm'));
 
 
     useEffect(() => {
-      if (isMediumScreenUp) {
-        setShowRightBar(true)
-      } 
+        if (isMediumScreenUp) {
+            setShowRightBar(true);
+        }
+
     }, [isMediumScreenUp]);
-    
+
     const handleRightBarVisibility = () => {
         setShowRightBar(prev => !prev);
-      };
+    };
+    const closeRightBar = () => {
+        setShowRightBar(false);
+    };
 
-    // const handleRightBarVisibility = () => {
-    //     // console.log("Widget Clicked", showRightBar);
-    //     setShowRightBar(true);
-
-    // };
 
     return (
         <div>
@@ -365,10 +369,11 @@ const Dashboard = () => {
                                 </div>
                             </HeaderChildren>
 
-                            <WidgetsIcon onClick={() => handleRightBarVisibility()} sx={{ 
-                                color: 'white', 
-                                cursor: 'pointer', 
-                                display: { xs: 'block', md: 'none', lg: 'none' }, }} />
+                            <WidgetsIcon onClick={() => handleRightBarVisibility()} sx={{
+                                color: 'white',
+                                cursor: 'pointer',
+                                display: { xs: 'block', md: 'none', lg: 'none' },
+                            }} />
                         </Header>
 
 
@@ -443,7 +448,7 @@ const Dashboard = () => {
                         </MetricsContainer>
 
                         <Card sx={{
-                            backgroundColor: '#1F1D2B', width: '100%', height: '85%', borderRadius: '10px',
+                            backgroundColor: '#1F1D2B', width: '100%', height: '80%', borderRadius: '10px',
                         }}>
                             <CardContent sx={{ height: '10vh' }}>
                                 <ReportNav1>
@@ -459,7 +464,7 @@ const Dashboard = () => {
                                         fontWeight: '400',
                                         color: 'white',
                                     }}>Order Report</Typography>
-                                    
+
                                     <Button
                                         variant="outlined"
                                         href="#outlined-buttons"
@@ -492,12 +497,27 @@ const Dashboard = () => {
 
                 {/* RIGHT-BAR */}
                 {(showRightBar || isMediumScreenUp) && (
+            
                     <RightBar>
                         <RightBarChildren>
 
-                            <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                            <KeyboardBackspaceOutlinedIcon
+                                onClick={closeRightBar}
+                                sx={{
+                                    display: { xs: 'block', md: 'none', lg: 'none' },
+                                    marginTop: { xs: '12px' },
+                                    color: 'white',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.4s ease-in-out',
+                                    '&:hover': {
+                                        color: '#f97f7f',
+                                        transform: 'scale(1.4)',
+                                    },
+                                }}
+                            />
+                            <Card sx={{ height: {xs: '50%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
 
-                                <CardContent sx={{ padding: '10px', height: '80vh', }}>
+                                <CardContent sx={{ padding: '10px', height: '76vh', }}>
 
                                     <MostOrderNav>
                                         <Typography
@@ -553,7 +573,7 @@ const Dashboard = () => {
                                             <TableBodyStyled>
                                                 {dishes.map((dish, index) => (
                                                     <React.Fragment key={dish.name}>
-                                                        <TableRowStyled>
+                                                        <TableRowStyled  >
                                                             <TableCell sx={{ display: 'flex', gap: '25px', alignItems: 'center', }}>
                                                                 <DishImgOrdering src={dish.imgSrc} alt={dish.name} />
                                                                 <div>
@@ -601,8 +621,7 @@ const Dashboard = () => {
                                             '@media (max-width: 400px)': {
                                                 width: '30%',
                                                 fontSize: '10px',
-                                                // padding: '1px',
-                                                padding: '2px',
+                                                padding: '3px',
                                             },
                                         }}>
                                         View All
@@ -612,9 +631,9 @@ const Dashboard = () => {
 
                             </Card>
 
-                            <Card sx={{ height: '60%', backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                            <Card sx={{ height: {xs: '50%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
 
-                                <CardContent sx={{ padding: '10px', height: '80vh', }}>
+                                <CardContent sx={{ padding: '10px', height: { xs: '80vh', md: '85vh', } }}>
 
                                     <MostOrderNav>
                                         <Typography

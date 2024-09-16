@@ -97,6 +97,7 @@ const MainBarBodies = styled('div')({
 const Body1Content = styled('div')(({ theme }) => ({
     width: '100%',
     display: 'flex',
+    flexWrap: 'wrap',
     gap: '6px',
     padding: '20px',
     paddingTop: '20px',
@@ -194,7 +195,9 @@ const DishesWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'space-around',
     height: '60%',
     '@media (max-width: 400px)': {
-        height: '15%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '35%',
     },
     overflowY: 'scroll !important',
     '&::-webkit-scrollbar': {
@@ -213,7 +216,7 @@ const AddNewDish = styled(Card)(({ theme }) => ({
         width: '30%',
     },
     '@media (max-width: 400px)': {
-        width: '60%',
+        width: '56%',
     },
     backgroundColor: '#1F1D2B !important',
     alignItems: 'center',
@@ -351,7 +354,6 @@ const Settings = () => {
         }
     };
 
-
     return (
         <div>
             <CardWrapper>
@@ -399,7 +401,20 @@ const Settings = () => {
                         </Header>
 
                         <MainBarBodies>
-                            <CardContent sx={{ width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0' }}>
+                            <CardContent sx={{
+                                width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0', overflowY: 'auto',
+                                '@media (max-width: 450px)': {
+                                    height: '50%',
+                                    width: '26%',
+                                    overflowY: 'scroll',
+                                    '&::-webkit-scrollbar': {
+                                        display: 'none',
+                                    },
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    // flexWrap: 'wrap',
+                                },
+                            }}>
                                 <Body1Content>
                                     <FavoriteBorderIcon sx={{ fontSize: '16px', fontFamily: 'Quicksand', color: '#c9cdce', paddingTop: '3px' }} />
                                     <div>
@@ -540,7 +555,7 @@ const Settings = () => {
 
                             </CardContent>
 
-                            <CardContent sx={{ width: '80%', height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
+                            <CardContent sx={{ width: { xs: '40%', md: '80%', }, height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
 
                                 <Nav1>
                                     <Typography sx={{

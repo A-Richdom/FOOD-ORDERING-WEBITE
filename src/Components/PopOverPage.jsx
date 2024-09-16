@@ -349,6 +349,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
               }} />
             </span>
             <NavBar>
+
               <div>
                 <Typography sx={{
                   fontSize: {
@@ -900,7 +901,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                   Table no.
                 </Typography>
                 <StyledTextField
-                  
+
                   // fullWidth
                   // value={dish.textboxValue}
                   // onChange={handleTextboxChange(index)}

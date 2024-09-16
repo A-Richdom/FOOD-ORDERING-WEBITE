@@ -227,6 +227,7 @@ const DishReport = () => {
         <ReportWrapper>
             <StyledTableContainer>
                 <StyledTable>
+
                     <StyledTableHead>
                         <StyledTableRow>
                             <CustomerCell>
@@ -292,6 +293,7 @@ const DishReport = () => {
                             </StyledTableBodyRow>
                         ))}
                     </StyledTableBody>
+                    
                 </StyledTable>
             </StyledTableContainer>
         </ReportWrapper>
