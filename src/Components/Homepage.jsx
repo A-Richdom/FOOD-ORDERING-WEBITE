@@ -719,7 +719,7 @@
                             />
 
                             {/* Payment Wrapper */}
-                            <PaymentWrapper sx={{ }}>
+                            <PaymentWrapper >
                                 <Discount>
                                     <Typography sx={{
                                         fontSize: '15px',
@@ -798,7 +798,7 @@
                                             padding: '8px',
                                         },
                                         '@media (max-width: 480px)': {
-                                            width: '70%',
+                                            width: '60%',
                                             fontSize: '10px',
                                             padding: '5px',
                                         },
