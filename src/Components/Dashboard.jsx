@@ -221,9 +221,9 @@ const RightBar = styled(CardContent)({
     '@media (max-width: 450px)': {
         width: '75%',
         position: 'absolute',  // Fix to the side of the screen
-        top: 0,
+        top: 8,
         right: 0,
-        height: '95vh',
+        height: '94vh',
         zIndex: 1000,
         transition: 'transform 0.3s ease-in-out',
         transform: props => (props.showRightBar ? 'translateX(0)' : 'translateX(-50%)'),  // Slide in/out based on state
@@ -450,7 +450,12 @@ const Dashboard = ({ onClose }) => {
                         <Card sx={{
                             backgroundColor: '#1F1D2B', width: '100%', height: '80%', borderRadius: '10px',
                         }}>
-                            <CardContent sx={{ height: '10vh' }}>
+                            <CardContent sx={{
+                                height: '10vh',
+                                '@media (max-width: 450px)': {
+                                    height: '25vh'
+                                },
+                            }}>
                                 <ReportNav1>
                                     <Typography sx={{
                                         fontSize: {
@@ -497,7 +502,7 @@ const Dashboard = ({ onClose }) => {
 
                 {/* RIGHT-BAR */}
                 {(showRightBar || isMediumScreenUp) && (
-            
+
                     <RightBar>
                         <RightBarChildren>
 
@@ -505,7 +510,7 @@ const Dashboard = ({ onClose }) => {
                                 onClick={closeRightBar}
                                 sx={{
                                     display: { xs: 'block', md: 'none', lg: 'none' },
-                                    marginTop: { xs: '12px' },
+                                    marginTop: { xs: '0px' },
                                     color: 'white',
                                     cursor: 'pointer',
                                     transition: 'all 0.4s ease-in-out',
@@ -515,7 +520,7 @@ const Dashboard = ({ onClose }) => {
                                     },
                                 }}
                             />
-                            <Card sx={{ height: {xs: '50%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                            <Card sx={{ height: { xs: '45%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
 
                                 <CardContent sx={{ padding: '10px', height: '76vh', }}>
 
@@ -619,9 +624,10 @@ const Dashboard = ({ onClose }) => {
                                                 padding: '7px',
                                             },
                                             '@media (max-width: 400px)': {
-                                                width: '30%',
+                                                width: '100%',
                                                 fontSize: '10px',
                                                 padding: '3px',
+                                                marginTop: '15px',
                                             },
                                         }}>
                                         View All
@@ -631,9 +637,9 @@ const Dashboard = ({ onClose }) => {
 
                             </Card>
 
-                            <Card sx={{ height: {xs: '50%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
+                            <Card sx={{ height: { xs: '40%', md: '60%', }, backgroundColor: '#1F1D2B', width: '90%', borderRadius: '10px', padding: '10px' }}>
 
-                                <CardContent sx={{ padding: '10px', height: { xs: '80vh', md: '85vh', } }}>
+                                <CardContent sx={{ padding: '10px', height: { xs: '70vh', md: '85vh', } }}>
 
                                     <MostOrderNav>
                                         <Typography

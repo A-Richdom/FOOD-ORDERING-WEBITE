@@ -293,7 +293,7 @@ const BtnsWrapper = styled('div')({
     gap: '10px',
     paddingTop: '30px',
     '@media (max-width: 450px)': {
-        paddingTop: '6px',
+        paddingTop: '12px',
     },
 });
 
@@ -407,7 +407,7 @@ const Settings = () => {
                             <CardContent sx={{
                                 width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0', overflowY: 'auto',
                                 '@media (max-width: 450px)': {
-                                    height: '85vh',
+                                    height: '87vh',
                                     width: '26%',
                                     overflowY: 'auto',
                                     '&::-webkit-scrollbar': {
@@ -558,7 +558,8 @@ const Settings = () => {
 
                             </CardContent>
 
-                            <CardContent sx={{ width: { xs: '40%', md: '80%', }, height: '78.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center', }}>
+                            <CardContent sx={{ width: { xs: '40%', md: '80%', }, height: {xs: '80.5vh', md: '78.5vh',}, backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center',
+                        }}>
 
                                 <Nav1>
                                     <Typography sx={{
