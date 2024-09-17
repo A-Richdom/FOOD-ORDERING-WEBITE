@@ -404,9 +404,9 @@ const Settings = () => {
                             <CardContent sx={{
                                 width: '25%', height: '85.5vh', backgroundColor: '#1F1D2B', borderRadius: '8px', padding: '0', overflowY: 'auto',
                                 '@media (max-width: 450px)': {
-                                    height: '50%',
+                                    height: '85vh',
                                     width: '26%',
-                                    overflowY: 'scroll',
+                                    overflowY: 'auto',
                                     '&::-webkit-scrollbar': {
                                         display: 'none',
                                     },
