@@ -25,10 +25,6 @@ const CardContainer = styled(Card)(({ theme }) => ({
   },
 }));
 
-// popOverPageVisible: {
-//   right: 0,
-// },
-
 // CONFIRMATION PAGE..//
 const ConfirmationPage = styled(CardContent)(({ theme }) => ({
   width: '50%',
@@ -53,13 +49,6 @@ const ConfirmationPageChildren = styled('div')(({ theme }) => ({
     width: '100%',
   },
 }));
-
-// // height: '100vh',
-//     overflowY: 'scroll',
-//     // overflowX: 'hidden',
-//     '&::-webkit-scrollbar': {
-//         display: 'none',
-//     },
 
 const NavBar = styled('div')({
   display: 'flex',
@@ -111,12 +100,22 @@ const Discount = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-between',
+  '@media (max-width: 450px)': {
+    display: 'flex',
+    gap: '70px',
+    flexWrap: 'nowrap',
+  },
 });
 
 const SubTotal = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-between',
+  '@media (max-width: 450px)': {
+    display: 'flex',
+    gap: '48px',
+    flexWrap: 'nowrap',
+  },
 });
 
 // PAYMENT PAGE...//
@@ -135,11 +134,16 @@ const PaymentPage = styled(CardContent)(({ theme }) => ({
 const PaymentPageChildren = styled('div')(({ theme }) => ({
   width: '100%',
   paddingTop: '20px !important',
-  height: '95%',
-  overflowY: 'scroll',
+  height: '90%',
+  overflowY: 'auto',
   overflowX: 'hidden',
   '&::-webkit-scrollbar': {
     display: 'none',
+  },
+  '@media (max-width: 450px)': {
+    height: '90%',
+    paddingTop: '0px !important',
+    overflowY: 'auto',
   },
 }));
 
@@ -344,7 +348,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                 transition: 'all 0.4s ease-in-out',
                 '&:hover': {
                   color: '#f97f7f',
-                  transform: 'scale(1.4)',
+                  transform: 'scale(2)',
                 },
               }} />
             </span>
@@ -396,7 +400,7 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
               expandedDishName={expandedDishName}
             />
 
-            <DiscountSubtotalWrapper sx={{ border: '1px solid red', backgroundColor: 'red', paddingTop: '20px' }}>
+            <DiscountSubtotalWrapper sx={{ paddingTop: '20px' }}>
               <Discount>
                 <Typography sx={{
                   fontSize: '15px',
@@ -427,16 +431,18 @@ const PopOverPage = ({ selectedDishes, onClose }) => {
                   </Typography>
                 </span>
               </Discount>
+
               <SubTotal>
                 <Typography
                   sx={{
                     fontSize: '15px',
                     fontFamily: 'Quicksand',
                     color: '#b5b8b9',
+                    whiteSpace: 'nowrap',
                     '@media (max-width: 600px)': {
                       fontSize: '12px',
                     },
-                    '@media (max-width: 400px)': {
+                    '@media (max-width: 450px)': {
                       fontSize: '12px !important',
                     },
                   }}>

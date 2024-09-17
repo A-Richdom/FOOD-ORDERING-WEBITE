@@ -22,6 +22,9 @@ const StyledTableContainer = styled(TableContainer)({
     '&::-webkit-scrollbar': {
         display: 'none !important',
     },
+    '@media (max-width: 450px)': {
+        width: '65%'
+    },
 });
 
 const StyledTable = styled(Table)({

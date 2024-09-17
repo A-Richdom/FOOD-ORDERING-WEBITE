@@ -225,23 +225,6 @@ const AddNewDish = styled(Card)(({ theme }) => ({
     borderRadius: '20px !important',
 }));
 
-// const rotate = keyframes`
-// 0% { 
-// transform: rotate(0deg); 
-// }
-//   100% {
-//     transform: rotate(360deg);
-//   }
-// `;
-
-// const RotatingDottedLine = styled('div')({
-//     borderRadius: '50%',
-//     borderTop: '2px dotted white',
-//     width: '50px',
-//     height: '50px',
-//     animation: `${rotate} 1.5s linear infinite`,
-// });
-
 const DishCard = styled(Card)(({ theme }) => ({
     width: '20%',
     border: '1px solid #555a70',
