@@ -292,6 +292,9 @@ const BtnsWrapper = styled('div')({
     display: 'flex',
     gap: '10px',
     paddingTop: '30px',
+    '@media (max-width: 450px)': {
+        paddingTop: '6px',
+    },
 });
 
 
@@ -568,6 +571,9 @@ const Settings = () => {
                                         },
                                         letterSpacing: '.1rem',
                                         color: 'white',
+                                        '@media (max-width: 450px)': {
+                                            display: 'none',
+                                        },
                                     }}>Products Management
                                     </Typography>
 
