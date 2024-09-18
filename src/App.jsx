@@ -10,6 +10,13 @@ import Report from './Components/Report';
 import Settings from './Components/Settings';
 import AddDishModal from './Components/AddDishModal';
 
+//Stripe Imports..//
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+// Initialize Stripe with your publishable key from environment variables
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 const router = createBrowserRouter([
 
   { path: '/', element: <Homepage /> },
@@ -52,9 +59,11 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <>
+        <Elements stripe={stripePromise}>
 
         <RouterProvider router={router} />
 
+        </Elements>
       </>
     </ThemeProvider>
     
