@@ -309,7 +309,7 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
                         ) : (
                             
                                 <Marquee speed={70} gradient={false} pauseOnHover={true}>
-                                    <Typography sx={{ color: 'white', fontFamily: 'Quicksand', fontSize: '18px', paddingRight: '20px', }}>No dishes selected</Typography>
+                                    <Typography sx={{ color: 'white', fontFamily: 'Quicksand', fontSize: '18px', paddingLeft: '20px', }}>No dishes selected</Typography>
                                 </Marquee>
                         )} </TableBodyStyled> </StyledTable> </StyledTableContainer>
         </DishOrdering>

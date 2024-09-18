@@ -254,7 +254,7 @@ const DineInMenuItem = styled(MenuItem)(({ theme }) => ({
     },
 }));
 
-const DishesWrapper = styled('div')({
+const DishesWrapper = styled('div') (({ theme }) => ({
     display: 'flex',
     flexWrap: 'wrap',
     gap: '30px',
@@ -266,11 +266,11 @@ const DishesWrapper = styled('div')({
     '&::-webkit-scrollbar': {
         display: 'none',
     },
-    '@media (max-width: 450px)': {
-        height: '45%',
+ 
+    [theme.breakpoints.down('sm')]: {
+        height: '40%',
     },
-    
-});
+}));
 
 const DishCard = styled(Card)({
     width: '23%',

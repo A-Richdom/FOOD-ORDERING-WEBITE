@@ -32,6 +32,7 @@ const router = createBrowserRouter([
   { path: 'settings', element: <Settings/> },
 
 
+
 ]);
 
 const theme = createTheme({
