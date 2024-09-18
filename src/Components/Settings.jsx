@@ -231,8 +231,8 @@ const DishCard = styled(Card)(({ theme }) => ({
     '@media (max-width: 600px)': {
         width: '30%',
     },
-    '@media (max-width: 400px)': {
-        width: '60%',
+    '@media (max-width: 450px)': {
+        width: '65%',
     },
     backgroundColor: '#1F1D2B !important',
     display: 'flex',
