@@ -4,6 +4,7 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Typog
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { useSelector } from 'react-redux';
 import { deSelectDish } from './FEATURES/DishesSlice';
+import Marquee from 'react-fast-marquee';
 
 
 
@@ -176,7 +177,7 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
                             </TotalPriceCell>
                         </TableRowStyled>
                     </TableHeadStyled>
-                    
+
                     <TableBodyStyled>
                         {selectedDishes.length > 0 ? (
                             selectedDishes.map((dish, index) => (
@@ -306,9 +307,11 @@ const DishesOrdering = ({ dishes, selectedDishes, handleTextboxChange, handleDis
                                 </React.Fragment>
                             ))
                         ) : (
-                            <Typography sx={{
-                                color: 'white', fontFamily: 'Quicksand', fontSize: '18px'
-                            }}> No dishes selected </Typography>)} </TableBodyStyled> </StyledTable> </StyledTableContainer>
+                            
+                                <Marquee speed={70} gradient={false} pauseOnHover={true}>
+                                    <Typography sx={{ color: 'white', fontFamily: 'Quicksand', fontSize: '18px', paddingRight: '20px', }}>No dishes selected</Typography>
+                                </Marquee>
+                        )} </TableBodyStyled> </StyledTable> </StyledTableContainer>
         </DishOrdering>
     )
 }
