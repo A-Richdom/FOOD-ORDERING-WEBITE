@@ -558,7 +558,7 @@ const Settings = () => {
                             </CardContent>
 
                             <CardContent sx={{
-                                width: { xs: '40%', md: '80%', }, height: { xs: '80.5vh', md: '78.5vh', }, backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center',
+                                width: { xs: '40%', md: '80%', }, height: { xs: '81.3vh', md: '78.5vh', }, backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center',
                             }}>
 
                                 <Nav1>
