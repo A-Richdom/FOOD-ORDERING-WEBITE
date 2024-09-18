@@ -228,12 +228,6 @@ const AddNewDish = styled(Card)(({ theme }) => ({
 const DishCard = styled(Card)(({ theme }) => ({
     width: '20%',
     border: '1px solid #555a70',
-    '@media (max-width: 600px)': {
-        width: '30%',
-    },
-    '@media (max-width: 450px)': {
-        width: '65%',
-    },
     backgroundColor: '#1F1D2B !important',
     display: 'flex',
     flexDirection: 'column',
@@ -243,6 +237,17 @@ const DishCard = styled(Card)(({ theme }) => ({
     padding: '20px',
     borderRadius: '20px !important',
     cursor: 'pointer',
+    '@media (max-width: 600px)': {
+        width: '30%',
+    },
+    '@media (max-width: 450px)': {
+        width: '65%',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
+        padding: '10px',
+    },
+
 }));
 
 const DishImg = styled('img')(({ theme }) => ({
@@ -541,8 +546,9 @@ const Settings = () => {
 
                             </CardContent>
 
-                            <CardContent sx={{ width: { xs: '40%', md: '80%', }, height: {xs: '80.5vh', md: '78.5vh',}, backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center',
-                        }}>
+                            <CardContent sx={{
+                                width: { xs: '40%', md: '80%', }, height: { xs: '80.5vh', md: '78.5vh', }, backgroundColor: '#1F1D2B', borderRadius: '8px', justifyContent: 'center',
+                            }}>
 
                                 <Nav1>
                                     <Typography sx={{
