@@ -52,7 +52,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const DivContainer = styled('div')({
-    width: '100vw',
     height: '100vh',
     position: 'relative',
     display: 'flex',
