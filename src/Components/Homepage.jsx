@@ -261,14 +261,15 @@ const DishesWrapper = styled('div')({
     textAlign: 'center',
     justifyContent: 'space-between',
     height: '55%',
-    '@media (max-width: 400px)': {
-        height: '40%',
-    },
     overflowY: 'scroll',
     borderBottom: '1px solid #555a70',
     '&::-webkit-scrollbar': {
         display: 'none',
     },
+    '@media (max-width: 450px)': {
+        height: '45%',
+    },
+    
 });
 
 const DishCard = styled(Card)({
