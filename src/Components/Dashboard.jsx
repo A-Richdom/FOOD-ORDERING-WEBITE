@@ -216,7 +216,7 @@ const RightBar = styled(CardContent)({
     backgroundColor: '#393C49 !important',
     alignItems: 'center',
     justifyContent: 'center',
-    // transition: 'transform 0.3s ease-in-out',  // Add transition for smooth sliding
+    // transition: 'transform 0.3s ease-in-out',  // Add transition for smooth slidingg
     // transform: 'translateX(0)',  // Ensure it's in view initially
     '@media (max-width: 450px)': {
         width: '76%',
