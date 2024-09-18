@@ -194,10 +194,13 @@ const DishesWrapper = styled('div')(({ theme }) => ({
     textAlign: 'center',
     justifyContent: 'space-around',
     height: '60%',
-    '@media (max-width: 400px)': {
+    '@media (max-width: 450px)': {
+        display: 'flex !important',
+        flexWrap: 'wrap',
+        gap: '20px',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '35%',
+        height: '42%',
     },
     overflowY: 'scroll !important',
     '&::-webkit-scrollbar': {
@@ -215,8 +218,12 @@ const AddNewDish = styled(Card)(({ theme }) => ({
     '@media (max-width: 600px)': {
         width: '30%',
     },
-    '@media (max-width: 400px)': {
-        width: '56%',
+    '@media (max-width: 450px)': {
+        width: '65%',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
+        padding: '35px',
     },
     backgroundColor: '#1F1D2B !important',
     alignItems: 'center',
@@ -238,14 +245,18 @@ const DishCard = styled(Card)(({ theme }) => ({
     borderRadius: '20px !important',
     cursor: 'pointer',
     '@media (max-width: 600px)': {
-        width: '30%',
+        width: '65%',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '5px',
+        padding: '35px',
     },
     '@media (max-width: 450px)': {
         width: '65%',
         display: 'flex',
         flexDirection: 'column',
         gap: '5px',
-        padding: '10px',
+        padding: '35px',
     },
 
 }));
