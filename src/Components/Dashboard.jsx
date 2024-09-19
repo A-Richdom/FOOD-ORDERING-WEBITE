@@ -623,11 +623,11 @@ const Dashboard = ({ onClose }) => {
                                                 fontSize: '8px',
                                                 padding: '7px',
                                             },
-                                            '@media (max-width: 400px)': {
+                                            '@media (max-width: 450px)': {
                                                 width: '100%',
                                                 fontSize: '10px',
                                                 padding: '3px',
-                                                marginTop: '15px',
+                                                marginTop: '25px',
                                             },
                                         }}>
                                         View All
