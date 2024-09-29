@@ -25,7 +25,6 @@ import zIndex from '@mui/material/styles/zIndex';
 import DishesOrdering from './DishesOrdering';
 import { Link } from 'react-router-dom';
 import PopOverPage from './PopOverPage';
-
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 

@@ -73,7 +73,6 @@ const initialState = loadStateFromLocalStorage() || {
     isVisible: false,
     isLoading: false,
     isError: false,
-
 };
 
 
@@ -120,13 +119,6 @@ const dishesSlice = createSlice({
             } else {
                 console.log('No more units available for this dish');
             }
-
-            // const dish = action.payload;
-            // if (!state.selectedDishes) {
-            //     state.selectedDishes = []; 
-            // } 
-            // state.selectedDishes.push(dish);
-            // saveStateToLocalStorage(state);
         },
         deSelectDish: (state, action) => {
             const id = action.payload;
