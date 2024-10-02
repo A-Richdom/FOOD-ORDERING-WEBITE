@@ -91,7 +91,7 @@ const ErrorBorder = styled('div')({
 
 const ErrorHelperText = styled('p')({
     color: 'red !important', // Customize the error message color here
-    fontSize: '0.875rem', // Adjust the font size if needed..
+    fontSize: '0.875rem', // Adjust the font size if needed..p
 });
 
 
